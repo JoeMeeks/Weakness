@@ -1,4 +1,0 @@
-Weakness
-========
-
-FFXI Weakness Targeting

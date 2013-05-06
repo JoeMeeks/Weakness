@@ -9,9 +9,10 @@
         <script src="scripts/animate.js"></script>
         <script src="scripts/tkj.js"></script>
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
+        <link href="styles/tkj.css" rel="stylesheet" />
     </head>
     <body id="body">
+        <!-- menu -->
         <div id="menu" class="menu">
             <ul id="lvMenu" data-role="listview" data-bind="source: menu" data-header-template="sectionTemplate" data-template="menuTemplate" data-click="menuSelect"></ul>
             <script id="sectionTemplate" type="text/x-kendo-template">
@@ -22,6 +23,7 @@
             </script>
             <div class="version" data-bind="html: version"></div>
         </div>
+        <!-- layouts -->
         <div data-role="layout" data-id="master" data-init="master_Init" data-show="master_Show">
             <header data-role="header">
                 <div data-role="navbar">
@@ -31,43 +33,108 @@
                 </div>
             </header>
         </div>
+        <div data-role="layout" data-id="abyssea-blue" data-show="master_Show">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="list" data-role="button" data-align="left" data-click="btnMenu_Click" data-rel="slidemenu"><img src="images/proc/white16.png" width="16" height="16" /></a>
+                    <span data-role="view-title" data-align="center"></span>
+                </div>
+            </header>
+            <footer data-role="footer">
+                <div data-role="tabstrip"  data-select="tabSelect">
+                    <a href="#abyssea-blue-piercing"><img src="images/time/piercing.png" /><span>Piercing</span></a>
+                    <a href="#abyssea-blue-slashing"><img src="images/time/slashing.png" /><span>Slashing</span></a>
+                    <a href="#abyssea-blue-blunt"><img src="images/time/blunt.png" /><span>Blunt</span></a>
+                </div>
+            </footer>
+        </div>
+        <div data-role="layout" data-id="voidwatch" data-show="master_Show">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="list" data-role="button" data-align="left" data-click="btnMenu_Click" data-rel="slidemenu"><img src="images/proc/white16.png" width="16" height="16" /></a>
+                    <span data-role="view-title" data-align="center"></span>
+                </div>
+            </header>
+            <footer data-role="footer">
+                <div data-role="tabstrip" data-select="tabSelect">
+                    <a href="#voidwatch-job-ability"><img src="images/type/JA16.png" style="margin:5px" /><span>Abi</span></a>
+                    <a href="#voidwatch-black-magic"><img src="images/type/BLM16.png" style="margin:5px" /><span>BLM</span></a>
+                    <a href="#voidwatch-white-magic"><img src="images/type/WHM16.png" style="margin:5px" /><span>WHM</span></a>
+                    <a href="#voidwatch-ninjutsu"><img src="images/type/NIN16.png" style="margin:5px" /><span>NIN</span></a>
+                    <a href="#voidwatch-bard-songs"><img src="images/type/BRD16.png" style="margin:5px" /><span>BRD</span></a>
+                    <a href="#voidwatch-blue-magic"><img src="images/type/BLU16.png" style="margin:5px" /><span>BLU</span></a>
+                </div>
+            </footer>
+        </div>
+        <!-- views -->
+        <div data-role="view" id="index" data-url="/" data-title="FFXI PROC" data-model="viewModel" data-transition="fade">
+            <div class="contentPanel">
+                <h1>FFXI Weakness Triggering (PROC)</h1>
+                <p>Notorious Monsters in Abyssea and Voidwatch have vulnerabilites that are procedural random occurances, or "PROC"s.</p>
+                <p>The weaknesses for NMs in Abyssea and the rewards for triggering them are:</p>
+                <ul>
+                    <li><img src="images/proc/red24.png" /> Weapon Skills:<br />Atmas and NM key items</li>
+                    <li><img src="images/proc/yellow24.png" /> Magic Spells:<br />EX Empyrean armor upgrade items</li>
+                    <li><img src="images/proc/blue24.png" /> Weapon Skills:<br />RA/EX weapons and armor</li>
+                </ul>
+                <p>Slide right to begin.</p>
+            </div>
+        </div>
         <div data-role="view" id="abyssea-red" data-title="Abyssea &ndash; Red" data-model="viewModel">
             <ul data-role="listview" data-bind="source: abysseaRed" data-template="weaponskillTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
         </div>
         <div data-role="view" id="abyssea-yellow" data-title="Abyssea &ndash; Yellow" data-model="viewModel">
-            <ul data-role="listview"></ul>
+            <ul data-role="listview" data-bind="source: abysseaYellow" data-template="spellTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="abyssea-blue" data-title="Abyssea &ndash; Blue" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="abyssea-blue-piercing" data-layout="abyssea-blue" data-title="Abyssea &ndash; Blue" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: abysseaBluePiercing" data-template="weaponskillTemplate" data-style="group" data-header-template="weaponHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="voidwatch-red" data-title="Voidwatch &ndash; Red" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="abyssea-blue-slashing" data-layout="abyssea-blue" data-title="Abyssea &ndash; Blue" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: abysseaBlueSlashing" data-template="weaponskillTemplate" data-style="group" data-header-template="weaponHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="voidwatch-yellow" data-title="Voidwatch &ndash; Yellow" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="abyssea-blue-blunt" data-layout="abyssea-blue" data-title="Abyssea &ndash; Blue" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: abysseaBlueBlunt" data-template="weaponskillTemplate" data-style="group" data-header-template="weaponHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="voidwatch-blue" data-title="Voidwatch &ndash; Blue" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="voidwatch-job-ability" data-layout="voidwatch" data-title="Voidwatch &ndash; Ability" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: voidwatchAbility" data-template="abilityTemplate" data-style="group" data-header-template="jobHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="dynamis-red" data-title="Dynamis &ndash; Red" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="voidwatch-black-magic" data-layout="voidwatch" data-title="Voidwatch &ndash; Black Magic" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: voidwatchBlackMagic" data-template="spellTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="dynamis-yellow" data-title="Dynamis &ndash; Yellow" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="voidwatch-white-magic" data-layout="voidwatch" data-title="Voidwatch &ndash; White Magic" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: voidwatchWhiteMagic" data-template="spellTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
         </div>
-        <div data-role="view" id="dynamis-blue" data-title="Dynamis &ndash; Blue" data-model="viewModel">
-            <ul data-role="listview"></ul>
+        <div data-role="view" id="voidwatch-ninjutsu" data-layout="voidwatch" data-title="Voidwatch &ndash; Ninjutsu" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: voidwatchNinjutsu" data-template="spellTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
         </div>
-        
+        <div data-role="view" id="voidwatch-bard-songs" data-layout="voidwatch" data-title="Voidwatch &ndash; Bard Songs" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: voidwatchBardSongs" data-template="spellTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
+        </div>
+        <div data-role="view" id="voidwatch-blue-magic" data-layout="voidwatch" data-title="Voidwatch &ndash; Blue Magic" data-model="viewModel">
+            <ul data-role="listview" data-bind="source: voidwatchBlueMagic" data-template="spellTemplate" data-style="group" data-header-template="elementHeaderTemplate"></ul>
+        </div>
+        <!-- templates -->
         <script id="elementHeaderTemplate" type="text/x-kendo-template">
             <img src="images/elements/#:value#.png" width="16" height="16" /><span>#:value#</span>
+        </script>
+        <script id="weaponHeaderTemplate" type="text/x-kendo-template">
+            #=kendo.toString(getWeaponName(value))#
         </script>
         <script id="weaponskillTemplate" type="text/x-kendo-template">
             <img src="images/weapons/#:weapon#.png" width="16" height="16" /> <span data-bind="text: weaponskill"></span>
         </script>
-
+        <script id="jobHeaderTemplate" type="text/x-kendo-template">
+            #:value#
+        </script>
+        <script id="abilityTemplate" type="text/x-kendo-template">
+            <span data-bind="text: name"></span>
+        </script>
+        <script id="spellTemplate" type="text/x-kendo-template">
+            # if (data.type) { #<img src="images/type/#:type#16.png" width="16" height="16" /># } #<span data-bind="text: spell"></span>
+        </script>
+        <!-- init -->
         <script>
-            var app = new kendo.mobile.Application(document.body, { transition: "slide:left", layout: "master", initial: "abyssea-red" });
+            var app = new kendo.mobile.Application(document.body, { layout: "master", initial: "index" });
         </script>
     </body>
 </html>
