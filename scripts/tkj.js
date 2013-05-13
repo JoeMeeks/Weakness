@@ -1,8 +1,12 @@
+//init
+var app;
+
 // Wait for PhoneGap to load
 document.addEventListener("deviceready", onDeviceReady, false);
 
 // PhoneGap is ready
 function onDeviceReady() {
+    app = new kendo.mobile.Application(document.body, { layout: "master", initial: "index" });
     //navigator.splashscreen.hide(); see config.xml
 }
 

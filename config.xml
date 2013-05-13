@@ -16,7 +16,7 @@
   <icon src="images/icons/ios114.png" width="114" height="114" gap:platform="ios" />
   <icon src="images/icons/ios144.png" width="144" height="144" gap:platform="ios" />
 
-  <gap:splash src="images/splash/iphone_portrait.png" width="320"  height="480"  gap:platform="ios" />
+  <gap:splash src="images/splash/portrait_iphone.png" width="320"  height="480"  gap:platform="ios" />
   <gap:splash src="images/splash/portrait-retina.png" width="640"  height="960"  gap:platform="ios" />
   <gap:splash src="images/splash/portrait-iphone5.png" width="640"  height="1136"  gap:platform="ios" />
   <gap:splash src="images/splash/ipad_landscape.png" width="1024" height="748"  gap:platform="ios" />
