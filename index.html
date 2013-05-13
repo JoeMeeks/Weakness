@@ -19,7 +19,7 @@
                 #:items[0].section #
             </script>
             <script id="menuTemplate" type="text/x-kendo-template">
-                <a data-bind="attr: { href: viewID }"><img data-bind="attr: { src: icon }"></span><span>#:title#</span></a>
+                <a data-bind="attr: { href: viewID }"><img data-bind="attr: { src: icon }"></span><span>#=title#</span></a>
             </script>
             <div class="version" data-bind="html: version"></div>
         </div>
@@ -69,7 +69,7 @@
         <!-- views -->
         <div data-role="view" id="index" data-url="/" data-title="FFXI PROC" data-model="viewModel" data-transition="fade">
             <div class="contentPanel">
-                <h1>FFXI Weakness Triggering (PROC)</h1>
+                <h1>FFXI Weakness Triggers (PROC)</h1>
                 <p>Notorious Monsters in Abyssea and Voidwatch have vulnerabilites that are procedural random occurances, or "PROC"s.</p>
                 <p>The weaknesses for NMs in Abyssea and the rewards for triggering them are:</p>
                 <ul>

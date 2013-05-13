@@ -3,7 +3,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 // PhoneGap is ready
 function onDeviceReady() {
-    navigator.splashscreen.hide();
+    //navigator.splashscreen.hide(); see config.xml
 }
 
 var weapons = [
@@ -353,9 +353,9 @@ var viewModel = kendo.observable({
         data: [
             { section: "Abyssea", order: 1, title: "Weapon Skills", icon: "images/proc/red16.png", viewID: "#abyssea-red" },
             { section: "Abyssea", order: 2, title: "Magic Spells", icon: "images/proc/yellow16.png", viewID: "#abyssea-yellow" },
-            { section: "Abyssea", order: 3, title: "6:00–13:59 Piercing", icon: "images/proc/blue16.png", viewID: "#abyssea-blue-piercing" },
-            { section: "Abyssea", order: 4, title: "14:00–21:59 Slashing", icon: "images/proc/blue16.png", viewID: "#abyssea-blue-slashing" },
-            { section: "Abyssea", order: 5, title: "22:00–5:59 Blunt", icon: "images/proc/blue16.png", viewID: "#abyssea-blue-blunt" },
+            { section: "Abyssea", order: 3, title: "6:00&ndash;13:59 Piercing", icon: "images/proc/blue16.png", viewID: "#abyssea-blue-piercing" },
+            { section: "Abyssea", order: 4, title: "14:00&ndash;21:59 Slashing", icon: "images/proc/blue16.png", viewID: "#abyssea-blue-slashing" },
+            { section: "Abyssea", order: 5, title: "22:00&ndash;5:59 Blunt", icon: "images/proc/blue16.png", viewID: "#abyssea-blue-blunt" },
             { section: "Voidwatch", order: 6, title: "Job Ability", icon: "images/type/JA16.png", viewID: "#voidwatch-job-ability" },
             { section: "Voidwatch", order: 7, title: "Black Magic", icon: "images/type/BLM16.png", viewID: "#voidwatch-black-magic" },
             { section: "Voidwatch", order: 8, title: "White Magic", icon: "images/type/WHM16.png", viewID: "#voidwatch-white-magic" },
@@ -372,7 +372,7 @@ var viewModel = kendo.observable({
     }),
     iconclass: function (e) { return "km-icon km-" + e.icon; },
     active: null,
-    version: 'Weakness &copy; 2013 TaeKwonJoe',
+    version: 'Weakness v1.0.1 &copy; 2013 TaeKwonJoe',
     abysseaRed: new kendo.data.DataSource({
         data: abyssea.red,
         group: "element"

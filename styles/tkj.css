@@ -1,4 +1,4 @@
-﻿body { font: Arial, sans-serif }
+﻿#body { background:#000; font-family:Arial, sans-serif }
 #body .km-view { z-index:1 } /* set z-index to overlap menu */
 #body .km-navbar .km-button.km-state-active, #body .km-navbar .km-button.active { background-color:#44648f }
 #body .km-view-title { font-weight:normal }
@@ -27,12 +27,12 @@
 
 #body .km-list > li img { width:16px; height:16px; margin-right:10px }
 
-#body #index .km-content { background-image:url(../images/effects/white.png); background-position:fixed; background-repeat:no-repeat fixed; background-size:100% 100%   }
+#body #index .km-content { background-color:#000; background-image:url(../images/effects/white.png); background-position:fixed; background-repeat:no-repeat fixed; background-size:100% 100%   }
 #body .contentPanel {
     margin:10px; padding:10px; background:rgba(0,0,0,0.75); border:1px solid rgba(47, 55, 64, 0.5); border-radius:10px; color:#FFF;
     box-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.498039) 0px 1px 3px 0px inset; font-weight:normal
 }
-#body .contentPanel h1 { font-size:14px; line-height:18px }
+#body .contentPanel h1 { font-size:1.2em; line-height:1.5em }
 #body .contentPanel ul { margin:0; padding:1em; list-style:none }
 #body .contentPanel ul li { margin:15px }
 #body .contentPanel ul li img { float:left; margin-right:10px }
