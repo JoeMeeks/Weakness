@@ -31,7 +31,7 @@ var abyssea = {
         { element: "light", weapon: "SWD", weaponskill: "Seraph Blade" },
         { element: "darkness", weapon: "DAG", weaponskill: "Energy Drain" },
         { element: "darkness", weapon: "KAT", weaponskill: "Blade: Ei" },
-        { element: "darkness", weapon: "SCY", weaponskill: "Circle of Death" },
+        { element: "darkness", weapon: "SCY", weaponskill: "Shadow of Death" },
         { element: "fire", weapon: "SWD", weaponskill: "Red Lotus Blade" },
         { element: "ice", weapon: "GSD", weaponskill: "Freezebite" },
         { element: "wind", weapon: "DAG", weaponskill: "Cyclone" },
@@ -215,8 +215,8 @@ var voidwatch = {
         { element: "ice", order: 6, spell: "Blizzaga II" },
         { element: "ice", order: 7, spell: "Blizzaga III" },
         { element: "ice", order: 8, spell: "Blizzaja" },
-        { element: "fire", order: 9, spell: "Freeze" },
-        { element: "fire", order: 10, spell: "Frost" },
+        { element: "ice", order: 9, spell: "Freeze" },
+        { element: "ice", order: 10, spell: "Frost" },
         { element: "wind", order: 1, spell: "Anemohelix" },
         { element: "wind", order: 2, spell: "Aero II" },
         { element: "wind", order: 3, spell: "Aero III" },
@@ -457,12 +457,12 @@ function master_Show(e) {
                 var pos = (e.touch.x.startLocation > menuWidth) ? e.touch.x.location - (e.touch.x.startLocation - menuWidth) : e.touch.x.location - e.touch.x.startLocation;
                 if (pos > menuWidth / 2) {
                     view.animate({ left: menuWidth }, { duration: 100, complete: function () {
-                        view.find("a[data-rel=slidemenu]").addClass("active");
+                        view.find("a.menuButton").addClass("active");
                     } 
                     });
                 } else {
                     view.animate({ left: "0" }, { duration: 100, complete: function () {
-                        view.find("a[data-rel=slidemenu]").removeClass("active");
+                        view.find("a.menuButton").removeClass("active");
                     } 
                     });
                 }
@@ -484,7 +484,7 @@ function menuSelect(e) {
         setMenuActive(e.item);
         var view = app.view().element;
         view.animate({ left: "0" }, { duration: 200, complete: function () {
-            view.find("[data-rel=slidemenu]").removeClass("active");
+            view.find("a.menuButton").removeClass("active");
             app.navigate(e.dataItem.viewID);
         } 
         });

@@ -36,6 +36,3 @@
 #body .contentPanel ul { margin:0; padding:1em; list-style:none }
 #body .contentPanel ul li { margin:15px }
 #body .contentPanel ul li img { float:left; margin-right:10px }
-
-/* kendo font icons */
-.km-button.list .km-custom:after { content:'' }
