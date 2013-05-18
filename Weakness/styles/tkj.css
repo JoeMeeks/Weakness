@@ -1,0 +1,38 @@
+﻿#body { background:#000; font-family:Arial, sans-serif }
+#body .km-view { z-index:1 } /* set z-index to overlap menu */
+#body .km-navbar .km-button.km-state-active, #body .km-navbar .km-button.active { background-color:#44648f }
+#body .km-view-title { font-weight:normal }
+#body .km-group-title img { width:16px; height:16px; margin-right:10px; vertical-align:middle }
+#body .km-group-title span { display:inline-block; line-height:16px; text-indent:0; vertical-align:middle }
+#body .km-button.active { background-color:#44648f }
+
+/* menu */
+#body .menu { display:none; position:absolute; top:0; left:0; z-index:0; width:250px; height:100%; color:#FFF; background:#3d4554 }
+#body .menu .km-listview-link { line-height:24px }
+#body .menu .km-list > li.km-state-active .km-listview-link, #body .menu .km-list > li.active .km-listview-link { background-color:#1A2133 }
+#body li a.km-listview-link.active { background-color:#1A2133 }
+#body .menu .km-group-title { background-color:#3d4554; border-top-color:#3d4554; text-shadow:0 1px 1px #362630 }
+#body .menu .km-list > li { font-size:1em }
+#body .menu .km-list > li { background:#30384a;  }
+#body .menu .km-list > li a { color:#b4bac6; line-height:16px; vertical-align:middle }
+#body .menu .km-list > li a img { width:16px; height:16px; margin-right:10px; vertical-align:middle }
+#body .menu .version { padding:10px; color:#797d8e; font-size:0.8em; font-weight:normal; text-align:center }
+
+.km-button.active { background-color:#264e8c }
+
+#body .km-group-title .km-text span { text-transform:capitalize }
+
+#body .km-tabstrip .km-button { min-width:16px; text-align:center }
+#body .km-tabstrip .km-button .km-text { display:block }
+
+#body .km-list > li img { width:16px; height:16px; margin-right:10px }
+
+#body #index .km-content { background-color:#000; background-image:url(../images/effects/white.png); background-position:fixed; background-repeat:no-repeat fixed; background-size:100% 100%   }
+#body .contentPanel {
+    margin:10px; padding:10px; background:rgba(0,0,0,0.75); border:1px solid rgba(47, 55, 64, 0.5); border-radius:10px; color:#FFF;
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.498039) 0px 1px 3px 0px inset; font-weight:normal
+}
+#body .contentPanel h1 { font-size:1.2em; line-height:1.5em }
+#body .contentPanel ul { margin:0; padding:1em; list-style:none }
+#body .contentPanel ul li { margin:15px }
+#body .contentPanel ul li img { float:left; margin-right:10px }
