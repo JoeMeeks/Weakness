@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{aa60b1fc-6800-4e9c-97a4-27ed7e948817}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="Backup\index.html" />
+    <Content Include="config.xml" />
+    <Content Include="google-services.json" />
+    <Content Include="ionic.config.json" />
+    <Content Include="ionic.starter.json" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="Backup\config.xml" />
+    <Content Include="Backup\scripts\animate.js" />
+    <Content Include="Backup\scripts\tkj.js" />
+    <Content Include="Backup\styles\tkj.css" />
+    <Content Include="src\app\app.html" />
+    <Content Include="src\app\app.scss" />
+    <Content Include="src\app\copy.android.js" />
+    <Content Include="src\app\copy.ios.js" />
+    <Content Include="src\assets\fonts\digital7.ttf" />
+    <Content Include="src\assets\fonts\digital7.woff" />
+    <Content Include="src\assets\fonts\digital7.woff2" />
+    <Content Include="src\assets\fonts\sofachrome-italic.ttf" />
+    <Content Include="src\assets\fonts\sofachrome-italic.woff" />
+    <Content Include="src\assets\fonts\sofachrome-italic.woff2" />
+    <Content Include="src\assets\fonts\sofachrome.ttf" />
+    <Content Include="src\assets\fonts\sofachrome.woff" />
+    <Content Include="src\assets\fonts\sofachrome.woff2" />
+    <Content Include="src\assets\icon\favicon.ico" />
+    <Content Include="src\assets\icon\icon.png" />
+    <Content Include="src\assets\images\effects\blue.png" />
+    <Content Include="src\assets\images\effects\red.png" />
+    <Content Include="src\assets\images\effects\white.png" />
+    <Content Include="src\assets\images\effects\yellow.png" />
+    <Content Include="src\assets\images\elements\darkness.png" />
+    <Content Include="src\assets\images\elements\earth.png" />
+    <Content Include="src\assets\images\elements\fire.png" />
+    <Content Include="src\assets\images\elements\ice.png" />
+    <Content Include="src\assets\images\elements\light.png" />
+    <Content Include="src\assets\images\elements\lightning.png" />
+    <Content Include="src\assets\images\elements\water.png" />
+    <Content Include="src\assets\images\elements\wind.png" />
+    <Content Include="src\assets\images\icons\ios100.png" />
+    <Content Include="src\assets\images\icons\ios114.png" />
+    <Content Include="src\assets\images\icons\ios144.png" />
+    <Content Include="src\assets\images\icons\ios29.png" />
+    <Content Include="src\assets\images\icons\ios50.png" />
+    <Content Include="src\assets\images\icons\ios57.png" />
+    <Content Include="src\assets\images\icons\ios58.png" />
+    <Content Include="src\assets\images\icons\ios72.png" />
+    <Content Include="src\assets\images\proc\blue16.png" />
+    <Content Include="src\assets\images\proc\blue24.png" />
+    <Content Include="src\assets\images\proc\red16.png" />
+    <Content Include="src\assets\images\proc\red24.png" />
+    <Content Include="src\assets\images\proc\white16.png" />
+    <Content Include="src\assets\images\proc\white24.png" />
+    <Content Include="src\assets\images\proc\yellow16.png" />
+    <Content Include="src\assets\images\proc\yellow24.png" />
+    <Content Include="src\assets\images\splash\ipad-landscape.png" />
+    <Content Include="src\assets\images\splash\ipad-portrait.png" />
+    <Content Include="src\assets\images\splash\ipad-retina-landscape.png" />
+    <Content Include="src\assets\images\splash\ipad-retina-portrait.png" />
+    <Content Include="src\assets\images\splash\portrait-iphone.png" />
+    <Content Include="src\assets\images\splash\portrait-iphone5.png" />
+    <Content Include="src\assets\images\splash\portrait-retina.png" />
+    <Content Include="src\assets\images\time\blunt.png" />
+    <Content Include="src\assets\images\time\piercing.png" />
+    <Content Include="src\assets\images\time\slashing.png" />
+    <Content Include="src\assets\images\type\BLM16.png" />
+    <Content Include="src\assets\images\type\BLU16.png" />
+    <Content Include="src\assets\images\type\BRD16.png" />
+    <Content Include="src\assets\images\type\JA16.png" />
+    <Content Include="src\assets\images\type\NIN16.png" />
+    <Content Include="src\assets\images\type\WHM16.png" />
+    <Content Include="src\assets\images\weapons\AXE.png" />
+    <Content Include="src\assets\images\weapons\BLU.png" />
+    <Content Include="src\assets\images\weapons\BOW.png" />
+    <Content Include="src\assets\images\weapons\CLB.png" />
+    <Content Include="src\assets\images\weapons\DAG.png" />
+    <Content Include="src\assets\images\weapons\GAX.png" />
+    <Content Include="src\assets\images\weapons\GKT.png" />
+    <Content Include="src\assets\images\weapons\GSD.png" />
+    <Content Include="src\assets\images\weapons\GUN.png" />
+    <Content Include="src\assets\images\weapons\HTH.png" />
+    <Content Include="src\assets\images\weapons\KAT.png" />
+    <Content Include="src\assets\images\weapons\PLM.png" />
+    <Content Include="src\assets\images\weapons\PUP.png" />
+    <Content Include="src\assets\images\weapons\SCY.png" />
+    <Content Include="src\assets\images\weapons\SMN.png" />
+    <Content Include="src\assets\images\weapons\STF.png" />
+    <Content Include="src\assets\images\weapons\SWD.png" />
+    <Content Include="src\index.html" />
+    <Content Include="src\manifest.json" />
+    <Content Include="src\pages\home\home.html" />
+    <Content Include="src\pages\home\home.scss" />
+    <Content Include="src\service-worker.js" />
+    <Content Include="src\theme\variables.scss" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tslint.json" />
+    <Content Include="Weakness\index.html" />
+    <Content Include="Backup\images\effects\blue.png" />
+    <Content Include="Backup\images\effects\red.png" />
+    <Content Include="Backup\images\effects\white.png" />
+    <Content Include="Backup\images\effects\yellow.png" />
+    <Content Include="Backup\images\elements\darkness.png" />
+    <Content Include="Backup\images\elements\earth.png" />
+    <Content Include="Backup\images\elements\fire.png" />
+    <Content Include="Backup\images\elements\ice.png" />
+    <Content Include="Backup\images\elements\light.png" />
+    <Content Include="Backup\images\elements\lightning.png" />
+    <Content Include="Backup\images\elements\water.png" />
+    <Content Include="Backup\images\elements\wind.png" />
+    <Content Include="Backup\images\icons\ios100.png" />
+    <Content Include="Backup\images\icons\ios114.png" />
+    <Content Include="Backup\images\icons\ios144.png" />
+    <Content Include="Backup\images\icons\ios29.png" />
+    <Content Include="Backup\images\icons\ios50.png" />
+    <Content Include="Backup\images\icons\ios57.png" />
+    <Content Include="Backup\images\icons\ios58.png" />
+    <Content Include="Backup\images\icons\ios72.png" />
+    <Content Include="Backup\images\proc\blue16.png" />
+    <Content Include="Backup\images\proc\blue24.png" />
+    <Content Include="Backup\images\proc\red16.png" />
+    <Content Include="Backup\images\proc\red24.png" />
+    <Content Include="Backup\images\proc\white16.png" />
+    <Content Include="Backup\images\proc\white24.png" />
+    <Content Include="Backup\images\proc\yellow16.png" />
+    <Content Include="Backup\images\proc\yellow24.png" />
+    <Content Include="Backup\images\splash\ipad-landscape.png" />
+    <Content Include="Backup\images\splash\ipad-portrait.png" />
+    <Content Include="Backup\images\splash\ipad-retina-landscape.png" />
+    <Content Include="Backup\images\splash\ipad-retina-portrait.png" />
+    <Content Include="Backup\images\splash\portrait-iphone.png" />
+    <Content Include="Backup\images\splash\portrait-iphone5.png" />
+    <Content Include="Backup\images\splash\portrait-retina.png" />
+    <Content Include="Backup\images\time\blunt.png" />
+    <Content Include="Backup\images\time\piercing.png" />
+    <Content Include="Backup\images\time\slashing.png" />
+    <Content Include="Backup\images\type\BLM16.png" />
+    <Content Include="Backup\images\type\BLU16.png" />
+    <Content Include="Backup\images\type\BRD16.png" />
+    <Content Include="Backup\images\type\JA16.png" />
+    <Content Include="Backup\images\type\NIN16.png" />
+    <Content Include="Backup\images\type\WHM16.png" />
+    <Content Include="Backup\images\weapons\AXE.png" />
+    <Content Include="Backup\images\weapons\BLU.png" />
+    <Content Include="Backup\images\weapons\BOW.png" />
+    <Content Include="Backup\images\weapons\CLB.png" />
+    <Content Include="Backup\images\weapons\DAG.png" />
+    <Content Include="Backup\images\weapons\GAX.png" />
+    <Content Include="Backup\images\weapons\GKT.png" />
+    <Content Include="Backup\images\weapons\GSD.png" />
+    <Content Include="Backup\images\weapons\GUN.png" />
+    <Content Include="Backup\images\weapons\HTH.png" />
+    <Content Include="Backup\images\weapons\KAT.png" />
+    <Content Include="Backup\images\weapons\PLM.png" />
+    <Content Include="Backup\images\weapons\PUP.png" />
+    <Content Include="Backup\images\weapons\SCY.png" />
+    <Content Include="Backup\images\weapons\SMN.png" />
+    <Content Include="Backup\images\weapons\STF.png" />
+    <Content Include="Backup\images\weapons\SWD.png" />
+    <Content Include="Backup\kendo\js\jquery.min.js" />
+    <Content Include="Backup\kendo\js\kendo.mobile.min.js" />
+    <Content Include="Backup\kendo\styles\kendo.mobile.all.min.css" />
+    <Content Include="Backup\kendo\styles\images\back.png" />
+    <Content Include="Weakness\scripts\animate.js" />
+    <Content Include="Weakness\scripts\tkj.js" />
+    <Content Include="Weakness\styles\tkj.css" />
+    <Content Include="Weakness\images\effects\blue.png" />
+    <Content Include="Weakness\images\effects\red.png" />
+    <Content Include="Weakness\images\effects\white.png" />
+    <Content Include="Weakness\images\effects\yellow.png" />
+    <Content Include="Weakness\images\elements\darkness.png" />
+    <Content Include="Weakness\images\elements\earth.png" />
+    <Content Include="Weakness\images\elements\fire.png" />
+    <Content Include="Weakness\images\elements\ice.png" />
+    <Content Include="Weakness\images\elements\light.png" />
+    <Content Include="Weakness\images\elements\lightning.png" />
+    <Content Include="Weakness\images\elements\water.png" />
+    <Content Include="Weakness\images\elements\wind.png" />
+    <Content Include="Weakness\images\icons\ios100.png" />
+    <Content Include="Weakness\images\icons\ios114.png" />
+    <Content Include="Weakness\images\icons\ios144.png" />
+    <Content Include="Weakness\images\icons\ios29.png" />
+    <Content Include="Weakness\images\icons\ios50.png" />
+    <Content Include="Weakness\images\icons\ios57.png" />
+    <Content Include="Weakness\images\icons\ios58.png" />
+    <Content Include="Weakness\images\icons\ios72.png" />
+    <Content Include="Weakness\images\proc\blue16.png" />
+    <Content Include="Weakness\images\proc\blue24.png" />
+    <Content Include="Weakness\images\proc\red16.png" />
+    <Content Include="Weakness\images\proc\red24.png" />
+    <Content Include="Weakness\images\proc\white16.png" />
+    <Content Include="Weakness\images\proc\white24.png" />
+    <Content Include="Weakness\images\proc\yellow16.png" />
+    <Content Include="Weakness\images\proc\yellow24.png" />
+    <Content Include="Weakness\images\splash\ipad-landscape.png" />
+    <Content Include="Weakness\images\splash\ipad-portrait.png" />
+    <Content Include="Weakness\images\splash\ipad-retina-landscape.png" />
+    <Content Include="Weakness\images\splash\ipad-retina-portrait.png" />
+    <Content Include="Weakness\images\splash\portrait-iphone.png" />
+    <Content Include="Weakness\images\splash\portrait-iphone5.png" />
+    <Content Include="Weakness\images\splash\portrait-retina.png" />
+    <Content Include="Weakness\images\time\blunt.png" />
+    <Content Include="Weakness\images\time\piercing.png" />
+    <Content Include="Weakness\images\time\slashing.png" />
+    <Content Include="Weakness\images\type\BLM16.png" />
+    <Content Include="Weakness\images\type\BLU16.png" />
+    <Content Include="Weakness\images\type\BRD16.png" />
+    <Content Include="Weakness\images\type\JA16.png" />
+    <Content Include="Weakness\images\type\NIN16.png" />
+    <Content Include="Weakness\images\type\WHM16.png" />
+    <Content Include="Weakness\images\weapons\AXE.png" />
+    <Content Include="Weakness\images\weapons\BLU.png" />
+    <Content Include="Weakness\images\weapons\BOW.png" />
+    <Content Include="Weakness\images\weapons\CLB.png" />
+    <Content Include="Weakness\images\weapons\DAG.png" />
+    <Content Include="Weakness\images\weapons\GAX.png" />
+    <Content Include="Weakness\images\weapons\GKT.png" />
+    <Content Include="Weakness\images\weapons\GSD.png" />
+    <Content Include="Weakness\images\weapons\GUN.png" />
+    <Content Include="Weakness\images\weapons\HTH.png" />
+    <Content Include="Weakness\images\weapons\KAT.png" />
+    <Content Include="Weakness\images\weapons\PLM.png" />
+    <Content Include="Weakness\images\weapons\PUP.png" />
+    <Content Include="Weakness\images\weapons\SCY.png" />
+    <Content Include="Weakness\images\weapons\SMN.png" />
+    <Content Include="Weakness\images\weapons\STF.png" />
+    <Content Include="Weakness\images\weapons\SWD.png" />
+    <Content Include="Weakness\kendo\js\jquery.min.js" />
+    <Content Include="Weakness\kendo\js\kendo.mobile.min.js" />
+    <Content Include="Weakness\kendo\styles\kendo.mobile.all.min.css" />
+    <Content Include="Weakness\kendo\styles\images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Backup\images\" />
+    <Folder Include="Backup\images\effects\" />
+    <Folder Include="Backup\images\elements\" />
+    <Folder Include="Backup\images\icons\" />
+    <Folder Include="Backup\images\proc\" />
+    <Folder Include="Backup\images\splash\" />
+    <Folder Include="Backup\images\time\" />
+    <Folder Include="Backup\images\type\" />
+    <Folder Include="Backup\images\weapons\" />
+    <Folder Include="Backup\kendo\" />
+    <Folder Include="Backup\kendo\js\" />
+    <Folder Include="Backup\kendo\styles\" />
+    <Folder Include="Backup\kendo\styles\images\" />
+    <Folder Include="Backup\" />
+    <Folder Include="Backup\scripts\" />
+    <Folder Include="Backup\styles\" />
+    <Folder Include="src\" />
+    <Folder Include="src\app\" />
+    <Folder Include="src\assets\" />
+    <Folder Include="src\assets\fonts\" />
+    <Folder Include="src\assets\icon\" />
+    <Folder Include="src\assets\images\" />
+    <Folder Include="src\assets\images\effects\" />
+    <Folder Include="src\assets\images\elements\" />
+    <Folder Include="src\assets\images\icons\" />
+    <Folder Include="src\assets\images\proc\" />
+    <Folder Include="src\assets\images\splash\" />
+    <Folder Include="src\assets\images\time\" />
+    <Folder Include="src\assets\images\type\" />
+    <Folder Include="src\assets\images\weapons\" />
+    <Folder Include="src\pages\" />
+    <Folder Include="src\pages\home\" />
+    <Folder Include="src\theme\" />
+    <Folder Include="Weakness" />
+    <Folder Include="Weakness\images" />
+    <Folder Include="Weakness\images\effects" />
+    <Folder Include="Weakness\images\elements" />
+    <Folder Include="Weakness\images\icons" />
+    <Folder Include="Weakness\images\proc" />
+    <Folder Include="Weakness\images\splash" />
+    <Folder Include="Weakness\images\time" />
+    <Folder Include="Weakness\images\type" />
+    <Folder Include="Weakness\images\weapons" />
+    <Folder Include="Weakness\kendo" />
+    <Folder Include="Weakness\kendo\js" />
+    <Folder Include="Weakness\kendo\styles" />
+    <Folder Include="Weakness\kendo\styles\images" />
+    <Folder Include="Weakness\scripts" />
+    <Folder Include="Weakness\styles" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\main.ts" />
+    <TypeScriptCompile Include="src\pages\home\home.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

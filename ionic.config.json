@@ -1,0 +1,8 @@
+{
+    "name": "Weakness",
+    "integrations": {
+        "cordova": {}
+    },
+    "type": "ionic-angular",
+    "id": "b230666d"
+}

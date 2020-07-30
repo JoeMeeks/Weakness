@@ -1,0 +1,196 @@
+html, body { width: 100%; height: 100%; margin: 0; padding: 0; background-color: transparent; }
+body { font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+
+html, body, ion-app, ion-content, ion-page, .nav-decor {
+  background-color: transparent !important;
+}
+
+form { display: block; }
+
+@font-face {
+    font-family: 'sofachrome';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../assets/fonts/sofachrome.ttf') format('truetype'), url('../assets/fonts/sofachrome.woff2') format('woff2'), url('../assets/fonts/sofachrome.woff') format('woff');
+}
+@font-face {
+    font-family: 'sofachrome';
+    font-style: italic;
+    font-weight: normal;
+    src: url('../assets/fonts/sofachrome-italic.ttf') format('truetype'), url('../assets/fonts/sofachrome-italic.woff2') format('woff2'), url('../assets/fonts/sofachrome-italic.woff') format('woff');
+}
+
+ion-app.ios { background: transparent; }
+.ios ion-nav > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment { height: 32px; min-height: 32px; }
+
+ion-header.brand {
+    /*background: transparent url('../assets/images/brand.png') left center no-repeat;*/
+    ion-navbar { opacity: 0; }
+}
+ion-tabs.brand {
+    /*.tabbar { background: transparent url('../assets/images/brand.png') left center no-repeat; }*/
+    .tabbar { opacity: 0; }
+    .tabbar .tab-button { opacity: 0; }
+}
+
+/*h1 { color: #e84e12; }*/
+p ion-icon { vertical-align: middle; }
+
+/*#region parallax*/
+ion-app.platform-core .content.parallax {
+    .scroll-content { 
+        perspective: 1px;
+        perspective-origin: left top;
+        transform-style: preserve-3d;
+    }
+
+    .scroll-content header {
+        display: flex;
+        flex: 1 0 auto;
+        position: relative;
+        box-sizing: border-box;
+        z-index: 0;
+        height: auto;
+        min-height: 50%;
+        justify-content: flex-end;
+        align-items: flex-end;
+        transform: translateZ(-1px) scale(2);
+        transform-origin: left top;
+    }
+
+    .scroll-content article {
+        position: relative;
+        display: block;
+        background-color: white;
+        z-index: 1;
+        transform: translateZ(0);
+    }
+
+    .scroll-content section {
+        display: flex;
+        flex: 1 0 auto;
+        position: relative;
+        box-sizing: border-box;
+        z-index: 10;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        transform: translateZ(0);
+        transform-origin: left center;
+        transform-style: preserve-3d;
+    }
+}
+ion-app.platform-mobileweb .content.parallax header {
+    background-size: auto 150%;
+}
+ion-app.platform-mobileweb.platform-tablet .content.parallax header {
+    background-size: 150% auto;
+}
+/*#endregion parallax*/
+
+/*ios orientationchange scroll lock fix*/
+ion-app.platform-mobileweb .scroll-content > * {
+    transform: translateY(0);
+}
+
+.tabs.hide-tabs .tabbar { display: none; }
+/*.tabs .tabbar { background: #505050 url(../assets/images/textures/carbon-fiber.png) repeat; background-size: auto 10%; }*/
+
+.loading-ios .loading-wrapper { flex-direction: column; justify-content: center; }
+.loading-ios .loading-spinner + .loading-content { display: block; margin-left: 0; text-align: center; }
+.loading-ios .loading-content .progress { display: block; padding: 16px 0 0; text-align: center; text-indent: 10px; }
+
+select { -webkit-appearance: none; height: 40px; padding: 0 40px 0 8px; border: solid 1px #d8d8d8; overflow-x: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/*.item-select { display: flex; flex-direction: row; }*/
+.item-select [item-content] { position: relative; flex-grow: 1; }
+
+ion-item [item-content] { flex-grow: 1; }
+ion-item [item-content] ion-col { display: flex; }
+ion-item.item-label-stacked [item-content] ion-col { flex-direction: column; }
+ion-item.item-label-stacked ion-col {
+    ion-label { flex: 1 0 auto; margin-top: 4px; }
+    [item-content] { display: block; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+}
+
+button.item-block [item-content] { flex-grow: 1; }
+
+.list-ios .item-block.item-segment .item-inner { border-bottom: none; }
+/*.list-ios .item-block.item-segment .item-inner [item-content] { flex-basis: 100%; }*/
+
+.sticky { z-index: 2; } 
+header.select { background-color: #fff; }
+header.select select { border-left: none; border-right: none; border-top: none; }
+ion-header ion-toolbar.select .toolbar-content:before, header.select:before, .item-select [item-content]:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    color: #aaa;
+    content: '\f280';
+    font-family: 'Ionicons';
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+    z-index: 0;
+}
+.item-select [item-content]  { margin: 6px 8px 6px 16px; }
+.item-select [item-content]:before { width: 30px; height: 30px; font-size: 24px; line-height: 30px; }
+.item-select [item-content] select { width: 100%;  height: 30px; margin: 0; padding: 0 30px 0 8px; border-radius: 3px; }
+.item-select [item-content] select[disabled] { color: #d8d8d8; }
+
+header.select select, .item-select [item-content] select { position: relative; z-index: 1; background-color: transparent; }
+
+/*# region *ngIf fade-in */
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    -webkit-animation: fadein 0.5s; -moz-animation: fadein 0.5s; animation: fadein 0.5s;
+}
+/*# endregion *ngIf fade-in */
+
+/*#region [ngSwitch] crossfade*/
+.animate-switch.ng-animate {
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+}
+
+.animate-switch.ng-leave,
+.animate-switch.ng-leave.ng-leave-active {
+    display: none;
+}
+
+.animate-switch.ng-enter {
+    opacity: 0;
+}
+
+.animate-switch.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+/*#endregion [ngSwitch] crossfade*/
+
+/*#region action sheet*/
+.action-sheet-ios .action-sheet-title { font-size: 2rem; color: #666; }
+.action-sheet-ios .action-sheet-sub-title { font-size: 1.6rem; color:#333;  }
+/*#endregion action sheet*/
+
+/*#region ionic debug*/
+.ion-diagnostics-header-content { padding-top: env(safe-area-inset-top); }
+/*#endregion ionic debug*/
