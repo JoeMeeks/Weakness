@@ -2,7 +2,7 @@ html, body { width: 100%; height: 100%; margin: 0; padding: 0; background-color:
 body { font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
 
 html, body, ion-app, ion-content, ion-page, .nav-decor {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 form { display: block; }
@@ -23,6 +23,36 @@ form { display: block; }
 ion-app.ios { background: transparent; }
 .ios ion-nav > .ion-page > ion-header > .toolbar.statusbar-padding:first-child ion-segment { height: 32px; min-height: 32px; }
 
+ion-menu .content-ios { background-color: #30384a; } 
+ion-menu ion-list.list-ios {
+    .item-ios { 
+        background: #30384a; 
+        border-bottom-color: #3d4554; 
+        color: #b4bac6; 
+        line-height: 16px; 
+        vertical-align: middle;
+
+        img { display: inline-block; width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; }
+    }
+    .item-ios.list-header-ios { background-color: #1a2133;  }
+    .item-ios.version, .item-ios.copyright { font-size: 14px; justify-content: center; text-align: center; } 
+}
+ion-menu ion-list.list-ios .item-block .item-inner { border-bottom-color: #3d4554; }
+ion-menu ion-list.list-ios > .item-block:last-child {
+    border-bottom-color: transparent;
+}
+
+ion-header {
+    .toolbar-background-ios { background-color: #264e8c; }
+    .toolbar-title-ios { color: #fff; }
+    button.bar-button-ios[icon-only] { border: solid 1px rgba(0,0,0,0.1); padding: 0 16px; }
+    button.bar-button-ios[menuToggle] { background: rgba(0,0,0,0.1) url(../assets/images/proc/white16.png) no-repeat center center; }
+    button.bar-button-ios.activated { background-color: rgba(255,255,255,0.1); }
+}
+ion-nav.menu-content-open {
+    ion-header button.bar-button-ios[menuToggle] { background-color: rgba(255,255,255,0.1);  }
+}
+
 ion-header.brand {
     /*background: transparent url('../assets/images/brand.png') left center no-repeat;*/
     ion-navbar { opacity: 0; }
@@ -36,62 +66,10 @@ ion-tabs.brand {
 /*h1 { color: #e84e12; }*/
 p ion-icon { vertical-align: middle; }
 
-/*#region parallax*/
-ion-app.platform-core .content.parallax {
-    .scroll-content { 
-        perspective: 1px;
-        perspective-origin: left top;
-        transform-style: preserve-3d;
-    }
-
-    .scroll-content header {
-        display: flex;
-        flex: 1 0 auto;
-        position: relative;
-        box-sizing: border-box;
-        z-index: 0;
-        height: auto;
-        min-height: 50%;
-        justify-content: flex-end;
-        align-items: flex-end;
-        transform: translateZ(-1px) scale(2);
-        transform-origin: left top;
-    }
-
-    .scroll-content article {
-        position: relative;
-        display: block;
-        background-color: white;
-        z-index: 1;
-        transform: translateZ(0);
-    }
-
-    .scroll-content section {
-        display: flex;
-        flex: 1 0 auto;
-        position: relative;
-        box-sizing: border-box;
-        z-index: 10;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        transform: translateZ(0);
-        transform-origin: left center;
-        transform-style: preserve-3d;
-    }
-}
-ion-app.platform-mobileweb .content.parallax header {
-    background-size: auto 150%;
-}
-ion-app.platform-mobileweb.platform-tablet .content.parallax header {
-    background-size: 150% auto;
-}
-/*#endregion parallax*/
-
 /*ios orientationchange scroll lock fix*/
-ion-app.platform-mobileweb .scroll-content > * {
+/*ion-app.platform-mobileweb .scroll-content > * {
     transform: translateY(0);
-}
+}*/
 
 .tabs.hide-tabs .tabbar { display: none; }
 /*.tabs .tabbar { background: #505050 url(../assets/images/textures/carbon-fiber.png) repeat; background-size: auto 10%; }*/

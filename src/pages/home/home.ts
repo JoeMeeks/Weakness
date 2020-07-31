@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Platform, ActionSheet, ActionSheetController, Alert, AlertController, Loading, LoadingController, Modal, ModalController } from 'ionic-angular';
+import { FFXIService } from '../../providers/ffxi';
+import { UIService } from '../../providers/ui';
 import * as _ from 'underscore';
 
 let vm: HomePage;
@@ -14,17 +15,10 @@ export class HomePage {
 	debug: boolean = false;
 	mobile: boolean;
 	orientation: number = 0;
-	
-	private loading: Loading;
-	private modal: Modal;
-	private alert: Alert;
 
 	constructor(
-		private action: ActionSheetController,
-		private ac: AlertController,
-		private lc: LoadingController,
-		private mod: ModalController,
-		private platform: Platform
+		private ffxi: FFXIService,
+		public ui: UIService
 	) {
 		vm = this;
 	}
@@ -50,14 +44,11 @@ export class HomePage {
 	//	vm.modal.present();
 	//}, 400, true);
 
-
 	ionViewWillEnter() {
 		//load
 	}
 
 	ionViewDidEnter() {
-
-
 		//if ('proximity' in navigator) {
 		//	//alert('ProximitySensor');
 		//	let proximity: any = navigator['proximity'],

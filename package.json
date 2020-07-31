@@ -1,6 +1,6 @@
 {
     "name": "Weakness",
-    "version": "1.1.0",
+    "version": "1.5.0",
     "author": "Rare Bear Soft",
     "homepage": "https://rarebearsoft.com",
     "description": "PROC Triggers for FFXI",
@@ -24,6 +24,7 @@
         "@angular/platform-browser": "5.0.0",
         "@angular/platform-browser-dynamic": "5.0.0",
         "@ionic-native/core": "4.20.0",
+        "@ionic-native/native-page-transitions": "4.20.0",
         "@ionic-native/splash-screen": "4.20.0",
         "@ionic-native/status-bar": "4.20.0",
         "@ionic/storage": "2.1.3",

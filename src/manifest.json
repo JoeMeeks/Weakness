@@ -1,13 +1,15 @@
 {
-  "name": "StartLight",
-  "short_name": "startlight",
-  "start_url": "index.html",
-  "display": "standalone",
-  "icons": [{
-    "src": "assets/imgs/icon.png",
-    "sizes": "1024x1024",
-    "type": "image/png"
-  }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+    "name": "Weakness",
+    "short_name": "weakness",
+    "start_url": "index.html",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "assets/images/proc/white24.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        }
+    ],
+    "background_color": "#000000",
+    "theme_color": "#264e8c"
 }

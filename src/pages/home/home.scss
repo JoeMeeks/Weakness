@@ -7,12 +7,58 @@ page-home {
     header ion-toolbar.toolbar-ios .toolbar-background-ios { background-color: transparent; }
     header ion-toolbar.toolbar-ios .bar-button-clear-ios { color: #fff; }
 
-    .fixed-content { background: transparent; overflow: hidden; /*z-index: 9999;*/ z-index: 2; }
-    .content-ios { background-color: transparent; }
+    /*.fixed-content { background: transparent; overflow: hidden; z-index: 2; }*/
+    ion-content.content-ios { 
+        background: #000 url(../assets/images/effects/white.png) no-repeat center center fixed; 
+        background-size: contain; 
 
-    .view[ion-fixed] { display: flex; width: 100%; height: 100%; /*border: solid 1px red; overflow: hidden;*/ flex-direction: row; align-items: center; z-index: 1; }
+        .scroll-content {  }
+    }
     
-    
+    ion-card.card-ios {
+        background: rgba(0,0,0,0.75); 
+        border: solid 1px rgba(255,255,255,0.5); 
+        border-radius: 7px; 
+        box-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.498039) 0px 1px 3px 0px inset; 
+
+        ion-card-header.card-header-ios { 
+            color: #fff; 
+
+            h1 { margin: 0; white-space: normal; }
+        }
+        ion-card-content.card-content-ios {
+            padding: 10px;
+            color: #fff;
+            font-weight: normal;
+
+            p { margin: 16px 0; color: #fff; line-height: 20px; }
+            > p:first-child { margin-top: 0; }
+
+            ul { 
+                list-style: none; 
+                padding: 0;
+
+                li {
+                    margin: 16px 0;
+
+                    img { 
+                        float: left;
+                        width: 24px; 
+                        height: 24px; 
+                        margin-right: 10px;
+                    }
+                }
+                li:after {
+                    content: ' ';
+                    display: block;
+                    height: 0;
+                    clear: both;
+                }
+            }
+
+            
+        }
+    }
 
     footer { 
         position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; min-height: 40px; margin: 0; padding: 0 0 env(safe-area-inset-bottom); 

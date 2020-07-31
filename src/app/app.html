@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" persistent="true" side="left" type="push">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Weakness</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ng-container *ngFor="let group of menu">
+                <ion-list-header>{{group.title}}</ion-list-header>
+                <button ion-item menuClose *ngFor="let item of group.items" (click)="ui.flip(item.name, {}, { animate: false })">
+                    <img [src]="item.icon" /><span [innerHTML]="item.title"></span>
+                </button>
+            </ng-container>
+            <ion-item class="version" [innerHTML]="version"></ion-item>
+            <ion-item class="copyright" [innerHTML]="copyright"></ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
