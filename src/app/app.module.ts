@@ -8,10 +8,16 @@ import { FFXIService } from '../providers/ffxi';
 import { UIService } from '../providers/ui';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AbysseaPage } from '../pages/abyssea/abyssea';
+import { DynamisPage } from '../pages/dynamis/dynamis';
+import { VoidwatchPage } from '../pages/voidwatch/voidwatch';
 
 @NgModule({
 	declarations: [
 		MyApp,
+		AbysseaPage,
+		DynamisPage,
+		VoidwatchPage,
 		HomePage
 	],
 	imports: [
@@ -23,13 +29,19 @@ import { HomePage } from '../pages/home/home';
 			swipeBackEnabled: false,
 		}, {
 			links: [
-				{ component: HomePage, name: 'home', segment: '' }
+				{ component: HomePage, name: 'home', segment: '' },
+				{ component: AbysseaPage, name: 'abyssea', segment: 'abyssea/:type' },
+				{ component: DynamisPage, name: 'dynamis', segment: 'dynamis/:type' },
+				{ component: VoidwatchPage, name: 'voidwatch', segment: 'voidwatch/:type' }
 			]
 		})
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
 		MyApp,
+		AbysseaPage,
+		DynamisPage,
+		VoidwatchPage,
 		HomePage
 	],
 	providers: [

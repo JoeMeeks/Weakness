@@ -159,6 +159,8 @@ export class UIService {
 
 	public menu: MenuController = null;
 
+	public page: string;
+
     //public viewDidEnter = null;
     //public options;
     //public tabBarElement: any;
@@ -194,22 +196,54 @@ export class UIService {
 		self.menu = menuCtrl;
     }
 
-    flip = _.debounce((page: any, params?: any, opts?: NativeTransitionOptions) => {
+    flip = _.debounce((page: string, params?: any, opts?: NativeTransitionOptions) => {
         self.options = _.extend(self.options, opts);
         self.options.direction = opts && opts.direction ? opts.direction : 'left'; //default
         self.animation = 'flip';
         //self.options.animate = false;
+		//if (self.page == page) {
+		//	return Promise.resolve({ message: 'same page' });
+		//} else {
+			self.page = page;
+			let nav: NavControllerBase = self.app.getRootNavs()[0];
+			console.log('flip', nav);
+			if (self.options.direction === 'left') {
+				console.info('nav.push');
+				return nav.push(page, params, self.options);
+			} else if (nav.canGoBack()) {
+				console.info('nav.pop');
+				//return nav.pop(self.options)
+				return nav.push(page, params,self.options).then(() => {
+					let views = nav.getViews();
+					nav.remove(views.length - 3, 2);
+					console.log(views);
+				});
+			} else {
+				console.info('nav.setRoot');
+				return nav.setRoot(page, params, self.options);
+			}
+		//}
+    }, 400, true);
 
+    swap = _.debounce((page: string, params?: any, opts?: NavOptions) => {
+        self.options = _.extend(self.options, opts);
+        self.options.direction = opts && opts.direction ? opts.direction : 'left'; //default
+        opts.animate = false;
+        //self.animation = 'flip';
+        //self.options.animate = false;
+        //if (self.page == page) {
+        //	return Promise.resolve({ message: 'same page' });
+        //} else {
+        self.page = page;
         let nav: NavControllerBase = self.app.getRootNavs()[0];
-
-        console.log('flip');
+        console.log('swap', nav);
         if (self.options.direction === 'left') {
             console.info('nav.push');
             return nav.push(page, params, self.options);
         } else if (nav.canGoBack()) {
             console.info('nav.pop');
             //return nav.pop(self.options)
-            return nav.push(page, params,self.options).then(() => {
+            return nav.push(page, params, self.options).then(() => {
                 let views = nav.getViews();
                 nav.remove(views.length - 3, 2);
                 console.log(views);
@@ -218,6 +252,7 @@ export class UIService {
             console.info('nav.setRoot');
             return nav.setRoot(page, params, self.options);
         }
+        //}
     }, 400, true);
 
     //#region ionic deploy update

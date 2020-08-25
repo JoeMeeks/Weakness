@@ -1,0 +1,101 @@
+<ion-header>
+    <ion-navbar [hideBackButton]="true">
+        <ion-buttons left>
+            <button ion-button icon-only menuToggle></button>
+        </ion-buttons>
+        <ion-title>Voidwatach {{title}}</ion-title>
+        <ion-buttons right>
+            <button ion-button click="timer()">{{ffxi.vanatime}}</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'job-ability'">
+        <ion-list *ngFor="let group of ffxi.voidwatch.jobAbility">
+            <ion-list-header>
+                <span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <span [innerHTML]="item"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'black-magic'">
+        <ion-list *ngFor="let group of ffxi.voidwatch.blackMagic">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <span [innerHTML]="item"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'white-magic'">
+        <ion-list *ngFor="let group of ffxi.voidwatch.whiteMagic">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <span [innerHTML]="item"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'ninjutsu'">
+        <ion-list *ngFor="let group of ffxi.voidwatch.ninjutsu">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <span [innerHTML]="item"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'bard-songs'">
+        <ion-list *ngFor="let group of ffxi.voidwatch.bardSongs">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <span [innerHTML]="item"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'blue-magic'">
+        <ion-list *ngFor="let group of ffxi.voidwatch.blueMagic">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <span [innerHTML]="item"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+</ion-content>
+<ion-footer>
+    <ion-segment [(ngModel)]="type">
+        <ion-segment-button value="job-ability">
+            <img src="../assets/images/type/JA.png" />
+            <ion-label>Abi</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="black-magic">
+            <img src="../assets/images/type/BLM.png" />
+            <ion-label>BLM</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="white-magic">
+            <img src="../assets/images/type/WHM.png" />
+            <ion-label>WHM</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="ninjutsu">
+            <img src="../assets/images/type/NIN.png" />
+            <ion-label>NIN</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="bard-songs">
+            <img src="../assets/images/type/BRD.png" />
+            <ion-label>BRD</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="blue-magic">
+            <img src="../assets/images/type/BLU.png" />
+            <ion-label>BLU</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+</ion-footer>

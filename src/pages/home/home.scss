@@ -1,18 +1,9 @@
 page-home {
-
-    header { 
-        position: absolute; top: 0; left: 0; right: 0; z-index: 1; min-height: 44px; margin: 0; padding: env(safe-area-inset-top) 0 0; 
-        background-color: rgba(0,0,0,0.5); box-sizing: border-box; color: white; font-size: 12px; font-weight: bold; line-height: 44px; text-align: center; 
-    }
-    header ion-toolbar.toolbar-ios .toolbar-background-ios { background-color: transparent; }
-    header ion-toolbar.toolbar-ios .bar-button-clear-ios { color: #fff; }
-
-    /*.fixed-content { background: transparent; overflow: hidden; z-index: 2; }*/
     ion-content.content-ios { 
         background: #000 url(../assets/images/effects/white.png) no-repeat center center fixed; 
         background-size: contain; 
 
-        .scroll-content {  }
+        .scroll-content { background-color: transparent; }
     }
     
     ion-card.card-ios {
@@ -59,29 +50,4 @@ page-home {
             
         }
     }
-
-    footer { 
-        position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; min-height: 40px; margin: 0; padding: 0 0 env(safe-area-inset-bottom); 
-        background-color: rgba(0,0,0,0.5); box-sizing: border-box; color: white; font-size: 12px; font-weight: bold; line-height: 40px; text-align: center; 
-
-    }
-
-    @media screen and 
-        (min-device-width: 320px) and (orientation: landscape), 
-        (min-device-width: 320px) and (orientation: landscape), 
-        (min-device-width: 375px) and (orientation: landscape) {
-            
-    }
-}
-
-.ios ion-footer { 
-    height: 44px;
-    background-color: green;
-}
-.ios ion-footer .toolbar:last-child { 
-    height: 44px;
-    padding-top: env(safe-area-inset-top); 
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
 }

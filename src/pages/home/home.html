@@ -1,13 +1,12 @@
 <ion-header>
     <ion-navbar [hideBackButton]="true">
         <ion-buttons left>
-            <button ion-button icon-only menuToggle [class.open]="ui.menu.isOpen()"></button>
+            <button ion-button icon-only menuToggle></button>
         </ion-buttons>
         <ion-title>FFXI PROC</ion-title>
         <ion-buttons right>
             <button ion-button click="timer()">{{ffxi.vanatime}}</button>
         </ion-buttons>
-        <!--<a href="#menu" data-role="button" data-align="left" data-rel="drawer" data-click-on="down" data-bind="class: { active: drawer }"><img src="images/proc/white16.png" width="16" height="16" /></a>-->
         <!--<span data-role="view-title" data-align="center"></span>-->
         <!--<a data-role="button" data-align="right" data-click-on="down" href="#mvClockSettings" data-rel="modalview" data-bind="class: { active: modal }"><span data-bind="text: vanaTime">4:20</span></a>-->
     </ion-navbar>
@@ -21,16 +20,16 @@
             <p>Notorious Monsters in Abyssea and Voidwatch and all in Dynamis have vulnerabilites that are procedural random occurances, or &ldquo;PROC&rdquo;s.</p>
             <h2>Abyssea Notorious Monsters</h2>
             <ul>
-                <li><img src="assets/images/proc/red24.png" /> Weapon Skills:<br />Atmas and NM key items</li>
-                <li><img src="assets/images/proc/yellow24.png" /> Magic Spells:<br />EX Empyrean armor upgrade items</li>
-                <li><img src="assets/images/proc/blue24.png" /> Weapon Skills:<br />RA/EX weapons and armor</li>
+                <li><img src="../assets/images/proc/red24.png" /> Weapon Skills:<br />Atmas and NM key items</li>
+                <li><img src="../assets/images/proc/yellow24.png" /> Magic Spells:<br />EX Empyrean armor upgrade items</li>
+                <li><img src="../assets/images/proc/blue24.png" /> Weapon Skills:<br />RA/EX weapons and armor</li>
             </ul>
             <h2>Dynamis (# of Time Extensions)</h2>
             <ul>
-                <li><img src="assets/images/proc/blue24.png" /> 3&times; TE:<br />single currency drop slot</li>
-                <li><img src="assets/images/proc/yellow24.png" /> 4&times; TE:<br />additional currency drop slot</li>
-                <li><img src="assets/images/proc/red24.png" /> 5&times; TE:<br />additional 100% drop slot</li>
-                <li><img src="assets/images/proc/white24.png" /> No sub job (CoP areas):<br /> 100% hundred-piece drop slot</li>
+                <li><img src="../assets/images/proc/blue24.png" /> 3&times; TE:<br />single currency drop slot</li>
+                <li><img src="../assets/images/proc/yellow24.png" /> 4&times; TE:<br />additional currency drop slot</li>
+                <li><img src="../assets/images/proc/red24.png" /> 5&times; TE:<br />additional 100% drop slot</li>
+                <li><img src="../assets/images/proc/white24.png" /> No sub job (CoP areas):<br /> 100% hundred-piece drop slot</li>
             </ul>
             <p>Swipe right and select a category.</p>
         </ion-card-content>

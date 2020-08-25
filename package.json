@@ -1,14 +1,14 @@
 {
     "name": "Weakness",
     "version": "1.5.0",
-    "author": "Rare Bear Soft",
+    "author": "RARE BEAR SOFT LTD",
     "homepage": "https://rarebearsoft.com",
     "description": "PROC Triggers for FFXI",
     "private": true,
     "scripts": {
         "web": "ionic-app-scripts serve -c",
-        "ios": "ionic-app-scripts serve -b -c -t ios --copy src/app/copy.ios.js",
-        "android": "ionic-app-scripts serve -b -c -t android --copy src/app/copy.android.js",
+        "ios": "ionic-app-scripts serve -b -c -t ios",
+        "android": "ionic-app-scripts serve -b -c -t android",
         "clean": "ionic-app-scripts clean",
         "build": "ionic-app-scripts build --prod",
         "lint": "ionic-app-scripts lint"
@@ -45,6 +45,7 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "3.2.4",
+        "@types/node": "7.0.7",
         "typescript": "2.4.2"
     },
     "cordova": {

@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-navbar [hideBackButton]="true">
+        <ion-buttons left>
+            <button ion-button icon-only menuToggle></button>
+        </ion-buttons>
+        <ion-title>Abyssea {{title}}</ion-title>
+        <ion-buttons right>
+            <button ion-button click="timer()">{{ffxi.vanatime}}</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'red'">
+        <ion-list *ngFor="let group of ffxi.abyssea.red">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <img [src]="'../assets/images/weapons/' + item.weapon + '.png'" /><span [innerHTML]="item.weaponskill"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'yellow'">
+        <ion-list *ngFor="let group of ffxi.abyssea.yellow">
+            <ion-list-header>
+                <img [src]="'../assets/images/elements/' + group.title + '.png'" /><span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <img [src]="'../assets/images/type/' + item.type + '.png'" /><span [innerHTML]="item.spell"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'blue-piercing'">
+        <ion-list *ngFor="let group of ffxi.abyssea.blue.piercing">
+            <ion-list-header>
+                <span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <img [src]="'../assets/images/weapons/' + item.weapon + '.png'" /><span [innerHTML]="item.weaponskill"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'blue-slashing'">
+        <ion-list *ngFor="let group of ffxi.abyssea.blue.slashing">
+            <ion-list-header>
+                <span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <img [src]="'../assets/images/weapons/' + item.weapon + '.png'" /><span [innerHTML]="item.weaponskill"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+    <ng-container *ngSwitchCase="'blue-blunt'">
+        <ion-list *ngFor="let group of ffxi.abyssea.blue.blunt">
+            <ion-list-header>
+                <span [innerHTML]="group.title"></span>
+            </ion-list-header>
+            <ion-item *ngFor="let item of group.items">
+                <img [src]="'../assets/images/weapons/' + item.weapon + '.png'" /><span [innerHTML]="item.weaponskill"></span>
+            </ion-item>
+        </ion-list>
+    </ng-container>
+</ion-content>

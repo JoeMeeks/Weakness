@@ -24,486 +24,927 @@ export class FFXIService {
 	];
 
 	abyssea: {
-		red: { element: string, weapon: string, weaponskill: string }[],
-		yellow: { element: string, order: number, type: string, spell: string }[],
+		red: { title: string, items: { weapon: string, weaponskill: string }[] }[],
+		yellow: { title: string, items: { order: number, type: string, spell: string }[] }[],
 		blue: {
-			piercing: { weapon: string, weaponskill: string }[],
-			slashing: { weapon: string, weaponskill: string }[],
-			blunt: { weapon: string, weaponskill: string }[]
+			piercing: { title: string, items: { weapon: string, weaponskill: string }[] }[],
+			slashing: { title: string, items: { weapon: string, weaponskill: string }[] }[],
+			blunt: { title: string, items: { weapon: string, weaponskill: string }[] }[],
 		}
 	} = {
 		red: [
-			{ element: "light", weapon: "CLB", weaponskill: "Seraph Strike" },
-			{ element: "light", weapon: "GKT", weaponskill: "Tachi: Koki" },
-			{ element: "light", weapon: "STF", weaponskill: "Sunburst" },
-			{ element: "light", weapon: "SWD", weaponskill: "Seraph Blade" },
-			{ element: "darkness", weapon: "DAG", weaponskill: "Energy Drain" },
-			{ element: "darkness", weapon: "KAT", weaponskill: "Blade: Ei" },
-			{ element: "darkness", weapon: "SCY", weaponskill: "Shadow of Death" },
-			{ element: "fire", weapon: "SWD", weaponskill: "Red Lotus Blade" },
-			{ element: "ice", weapon: "GSD", weaponskill: "Freezebite" },
-			{ element: "wind", weapon: "DAG", weaponskill: "Cyclone" },
-			{ element: "wind", weapon: "GKT", weaponskill: "Tachi: Jinpu" },
-			{ element: "earth", weapon: "STF", weaponskill: "Earth Crusher" },
-			{ element: "lightning", weapon: "PLM", weaponskill: "Raiden Thrust" }
+			{
+				title: 'darkness',
+				items: [
+					{ weapon: "DAG", weaponskill: "Energy Drain" },
+					{ weapon: "KAT", weaponskill: "Blade: Ei" },
+					{ weapon: "SCY", weaponskill: "Shadow of Death" }
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					{ weapon: "STF", weaponskill: "Earth Crusher" }
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					{ weapon: "SWD", weaponskill: "Red Lotus Blade" }
+				]
+			},
+			{
+				title: "ice",
+				items: [
+					{ weapon: "GSD", weaponskill: "Freezebite" }
+				]
+			},
+			{
+				title: 'light',
+				items: [
+					{ weapon: "CLB", weaponskill: "Seraph Strike" },
+					{ weapon: "GKT", weaponskill: "Tachi: Koki" },
+					{ weapon: "STF", weaponskill: "Sunburst" },
+					{ weapon: "SWD", weaponskill: "Seraph Blade" }
+				]
+			},
+			{
+				title: "lightning",
+				items: [
+					{ weapon: "PLM", weaponskill: "Raiden Thrust" }
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					{ weapon: "DAG", weaponskill: "Cyclone" },
+					{ weapon: "GKT", weaponskill: "Tachi: Jinpu" }
+				]
+			},
 		],
 		yellow: [
-			{ element: "light", order: 1, type: "WHM", spell: "Banish II" },
-			{ element: "light", order: 2, type: "WHM", spell: "Banish III" },
-			{ element: "light", order: 3, type: "WHM", spell: "Banishga II" },
-			{ element: "light", order: 4, type: "WHM", spell: "Holy" },
-			{ element: "light", order: 5, type: "WHM", spell: "Flash" },
-			{ element: "light", order: 6, type: "BLU", spell: "Radiant Breath" },
-			{ element: "light", order: 7, type: "BRD", spell: "Dark Threnody" },
-			{ element: "darkness", order: 1, type: "BLM", spell: "Aspir" },
-			{ element: "darkness", order: 2, type: "BLM", spell: "Drain" },
-			{ element: "darkness", order: 3, type: "BLM", spell: "Bio II" },
-			{ element: "darkness", order: 4, type: "BLM", spell: "Dispel" },
-			{ element: "darkness", order: 5, type: "BLU", spell: "Eyes On Me" },
-			{ element: "darkness", order: 6, type: "NIN", spell: "Kurayami: Ni" },
-			{ element: "darkness", order: 7, type: "BRD", spell: "Light Threnody" },
-			{ element: "fire", order: 1, type: "BLM", spell: "Fire III" },
-			{ element: "fire", order: 2, type: "BLM", spell: "Fire IV" },
-			{ element: "fire", order: 3, type: "BLM", spell: "Firaga III" },
-			{ element: "fire", order: 4, type: "BLM", spell: "Flare" },
-			{ element: "fire", order: 5, type: "BLU", spell: "Heat Breath" },
-			{ element: "fire", order: 6, type: "NIN", spell: "Katon: Ni" },
-			{ element: "fire", order: 7, type: "BRD", spell: "Ice Threnody" },
-			{ element: "ice", order: 1, type: "BLM", spell: "Blizzard III" },
-			{ element: "ice", order: 2, type: "BLM", spell: "Blizzard IV" },
-			{ element: "ice", order: 3, type: "BLM", spell: "Blizzaga III" },
-			{ element: "ice", order: 4, type: "BLM", spell: "Freeze" },
-			{ element: "ice", order: 5, type: "BLU", spell: "Ice Break" },
-			{ element: "ice", order: 6, type: "NIN", spell: "Hyoton: Ni" },
-			{ element: "ice", order: 7, type: "BRD", spell: "Wind Threnody" },
-			{ element: "wind", order: 1, type: "BLM", spell: "Aero III" },
-			{ element: "wind", order: 2, type: "BLM", spell: "Aero IV" },
-			{ element: "wind", order: 3, type: "BLM", spell: "Aeroga III" },
-			{ element: "wind", order: 4, type: "BLM", spell: "Tornado" },
-			{ element: "wind", order: 5, type: "BLU", spell: "Mysterious Light" },
-			{ element: "wind", order: 6, type: "NIN", spell: "Huton: Ni" },
-			{ element: "wind", order: 7, type: "BRD", spell: "Earth Threnody" },
-			{ element: "earth", order: 1, type: "BLM", spell: "Stone III" },
-			{ element: "earth", order: 2, type: "BLM", spell: "Stone IV" },
-			{ element: "earth", order: 3, type: "BLM", spell: "Stonega III" },
-			{ element: "earth", order: 4, type: "BLM", spell: "Quake" },
-			{ element: "earth", order: 5, type: "BLU", spell: "Magnetite Cloud" },
-			{ element: "earth", order: 6, type: "NIN", spell: "Doton: Ni" },
-			{ element: "earth", order: 7, type: "BRD", spell: "Lightning Threnody" },
-			{ element: "lightning", order: 1, type: "BLM", spell: "Thunder III" },
-			{ element: "lightning", order: 2, type: "BLM", spell: "Thunder IV" },
-			{ element: "lightning", order: 3, type: "BLM", spell: "Thundaga III" },
-			{ element: "lightning", order: 4, type: "BLM", spell: "Burst" },
-			{ element: "lightning", order: 5, type: "BLU", spell: "Mind Blast" },
-			{ element: "lightning", order: 6, type: "NIN", spell: "Raiton: Ni" },
-			{ element: "lightning", order: 7, type: "BRD", spell: "Water Threnody" },
-			{ element: "water", order: 1, type: "BLM", spell: "Water III" },
-			{ element: "water", order: 2, type: "BLM", spell: "Water IV" },
-			{ element: "water", order: 3, type: "BLM", spell: "Waterga III" },
-			{ element: "water", order: 4, type: "BLM", spell: "Flood" },
-			{ element: "water", order: 5, type: "BLU", spell: "Maelstrom" },
-			{ element: "water", order: 6, type: "NIN", spell: "Suiton: Ni" },
-			{ element: "water", order: 7, type: "BRD", spell: "Fire Threnody" }
+			{
+				title: "light",
+				items: [
+					{ order: 1, type: "WHM", spell: "Banish II" },
+					{ order: 2, type: "WHM", spell: "Banish III" },
+					{ order: 3, type: "WHM", spell: "Banishga II" },
+					{ order: 4, type: "WHM", spell: "Holy" },
+					{ order: 5, type: "WHM", spell: "Flash" },
+					{ order: 6, type: "BLU", spell: "Radiant Breath" },
+					{ order: 7, type: "BRD", spell: "Dark Threnody" }
+				]
+			},
+			{
+				title: "darkness",
+				items: [
+
+					{ order: 1, type: "BLM", spell: "Aspir" },
+					{ order: 2, type: "BLM", spell: "Drain" },
+					{ order: 3, type: "BLM", spell: "Bio II" },
+					{ order: 4, type: "BLM", spell: "Dispel" },
+					{ order: 5, type: "BLU", spell: "Eyes On Me" },
+					{ order: 6, type: "NIN", spell: "Kurayami: Ni" },
+					{ order: 7, type: "BRD", spell: "Light Threnody" }
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					{ order: 1, type: "BLM", spell: "Fire III" },
+					{ order: 2, type: "BLM", spell: "Fire IV" },
+					{ order: 3, type: "BLM", spell: "Firaga III" },
+					{ order: 4, type: "BLM", spell: "Flare" },
+					{ order: 5, type: "BLU", spell: "Heat Breath" },
+					{ order: 6, type: "NIN", spell: "Katon: Ni" },
+					{ order: 7, type: "BRD", spell: "Ice Threnody" }
+				]
+			},
+			{
+				title: "ice",
+				items: [
+					{ order: 1, type: "BLM", spell: "Blizzard III" },
+					{ order: 2, type: "BLM", spell: "Blizzard IV" },
+					{ order: 3, type: "BLM", spell: "Blizzaga III" },
+					{ order: 4, type: "BLM", spell: "Freeze" },
+					{ order: 5, type: "BLU", spell: "Ice Break" },
+					{ order: 6, type: "NIN", spell: "Hyoton: Ni" },
+					{ order: 7, type: "BRD", spell: "Wind Threnody" }
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					{ order: 1, type: "BLM", spell: "Aero III" },
+					{ order: 2, type: "BLM", spell: "Aero IV" },
+					{ order: 3, type: "BLM", spell: "Aeroga III" },
+					{ order: 4, type: "BLM", spell: "Tornado" },
+					{ order: 5, type: "BLU", spell: "Mysterious Light" },
+					{ order: 6, type: "NIN", spell: "Huton: Ni" },
+					{ order: 7, type: "BRD", spell: "Earth Threnody" }
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					{ order: 1, type: "BLM", spell: "Stone III" },
+					{ order: 2, type: "BLM", spell: "Stone IV" },
+					{ order: 3, type: "BLM", spell: "Stonega III" },
+					{ order: 4, type: "BLM", spell: "Quake" },
+					{ order: 5, type: "BLU", spell: "Magnetite Cloud" },
+					{ order: 6, type: "NIN", spell: "Doton: Ni" },
+					{ order: 7, type: "BRD", spell: "Lightning Threnody" }
+				]
+			},
+			{
+				title: "lightning",
+				items: [
+					{ order: 1, type: "BLM", spell: "Thunder III" },
+					{ order: 2, type: "BLM", spell: "Thunder IV" },
+					{ order: 3, type: "BLM", spell: "Thundaga III" },
+					{ order: 4, type: "BLM", spell: "Burst" },
+					{ order: 5, type: "BLU", spell: "Mind Blast" },
+					{ order: 6, type: "NIN", spell: "Raiton: Ni" },
+					{ order: 7, type: "BRD", spell: "Water Threnody" }
+				]
+			},
+			{
+				title: "water",
+				items: [
+					{ order: 1, type: "BLM", spell: "Water III" },
+					{ order: 2, type: "BLM", spell: "Water IV" },
+					{ order: 3, type: "BLM", spell: "Waterga III" },
+					{ order: 4, type: "BLM", spell: "Flood" },
+					{ order: 5, type: "BLU", spell: "Maelstrom" },
+					{ order: 6, type: "NIN", spell: "Suiton: Ni" },
+					{ order: 7, type: "BRD", spell: "Fire Threnody" }
+				]
+			}
 		],
 		blue: {
 			piercing: [
-				{ weapon: "BOW", weaponskill: "Arching Arrow" },
-				{ weapon: "BOW", weaponskill: "Blast Arrow" },
-				{ weapon: "BOW", weaponskill: "Empyreal Arrow" },
-				{ weapon: "BOW", weaponskill: "Sidewinder" },
-				{ weapon: "DAG", weaponskill: "Dancing Edge" },
-				{ weapon: "DAG", weaponskill: "Evisceration" },
-				{ weapon: "DAG", weaponskill: "Shadowstitch" },
-				{ weapon: "DAG", weaponskill: "Shark Bite" },
-				{ weapon: "GUN", weaponskill: "Blash Shot" },
-				{ weapon: "GUN", weaponskill: "Detonator" },
-				{ weapon: "GUN", weaponskill: "Heavy Shot" },
-				{ weapon: "GUN", weaponskill: "Slug Shot" },
-				{ weapon: "PLM", weaponskill: "Impulse Drive" },
-				{ weapon: "PLM", weaponskill: "Skewer" },
-				{ weapon: "PLM", weaponskill: "Wheeling Thrust" }
+				{
+					title: 'Archery',
+					items: [
+						{ weapon: "BOW", weaponskill: "Arching Arrow" },
+						{ weapon: "BOW", weaponskill: "Blast Arrow" },
+						{ weapon: "BOW", weaponskill: "Empyreal Arrow" },
+						{ weapon: "BOW", weaponskill: "Sidewinder" }
+					]
+				},
+				{
+					title: 'Dagger',
+					items: [
+						{ weapon: "DAG", weaponskill: "Dancing Edge" },
+						{ weapon: "DAG", weaponskill: "Evisceration" },
+						{ weapon: "DAG", weaponskill: "Shadowstitch" },
+						{ weapon: "DAG", weaponskill: "Shark Bite" }
+					]
+				},
+				{
+					title: 'Marksmanship',
+					items: [
+						{ weapon: "GUN", weaponskill: "Blash Shot" },
+						{ weapon: "GUN", weaponskill: "Detonator" },
+						{ weapon: "GUN", weaponskill: "Heavy Shot" },
+						{ weapon: "GUN", weaponskill: "Slug Shot" }
+					],
+				},
+				{
+					title: 'Polearm',
+					items: [
+						{ weapon: "PLM", weaponskill: "Impulse Drive" },
+						{ weapon: "PLM", weaponskill: "Skewer" },
+						{ weapon: "PLM", weaponskill: "Wheeling Thrust" }
+					]
+				}
 			],
 			slashing: [
-				{ weapon: "AXE", weaponskill: "Decimation" },
-				{ weapon: "AXE", weaponskill: "Mistral Axe" },
-				{ weapon: "GAX", weaponskill: "Full Break" },
-				{ weapon: "GAX", weaponskill: "Steel Cyclone" },
-				{ weapon: "GKT", weaponskill: "Tachi: Gekko" },
-				{ weapon: "GKT", weaponskill: "Tachi: Kasha" },
-				{ weapon: "GSD", weaponskill: "Ground Strike" },
-				{ weapon: "GSD", weaponskill: "Spinning Slash" },
-				{ weapon: "KAT", weaponskill: "Blade: Ku" },
-				{ weapon: "KAT", weaponskill: "Blade: Ten" },
-				{ weapon: "SCY", weaponskill: "Cross Reaper" },
-				{ weapon: "SCY", weaponskill: "Spiral Hell" },
-				{ weapon: "SWD", weaponskill: "Savage Blade" },
-				{ weapon: "SWD", weaponskill: "Swift Blade" },
-				{ weapon: "SWD", weaponskill: "Vorpal Blade" }
+				{
+					title: 'Axe',
+					items: [
+						{ weapon: "AXE", weaponskill: "Decimation" },
+						{ weapon: "AXE", weaponskill: "Mistral Axe" }
+					]
+				},
+				{
+					title: 'Great Axe',
+					items: [
+						{ weapon: "GAX", weaponskill: "Full Break" },
+						{ weapon: "GAX", weaponskill: "Steel Cyclone" }
+					]
+				},
+				{
+					title: 'Great Katana',
+					items: [
+						{ weapon: "GKT", weaponskill: "Tachi: Gekko" },
+						{ weapon: "GKT", weaponskill: "Tachi: Kasha" }
+					]
+				},
+				{
+					title: 'Great Sword',
+					items: [
+						{ weapon: "GSD", weaponskill: "Ground Strike" },
+						{ weapon: "GSD", weaponskill: "Spinning Slash" }		
+					]
+				},
+				{
+					title: 'Katana',
+					items: [
+						{ weapon: "KAT", weaponskill: "Blade: Ku" },
+						{ weapon: "KAT", weaponskill: "Blade: Ten" }
+					]
+				},
+				{
+					title: 'Scythe',
+					items: [
+						{ weapon: "SCY", weaponskill: "Cross Reaper" },
+						{ weapon: "SCY", weaponskill: "Spiral Hell" }
+					]
+				},
+				{
+					title: 'Sword',
+					items: [
+						{ weapon: "SWD", weaponskill: "Savage Blade" },
+						{ weapon: "SWD", weaponskill: "Swift Blade" },
+						{ weapon: "SWD", weaponskill: "Vorpal Blade" }		
+					]
+				}
 			],
 			blunt: [
-				{ weapon: "CLB", weaponskill: "Black Halo" },
-				{ weapon: "CLB", weaponskill: "Hexa Strike" },
-				{ weapon: "CLB", weaponskill: "Judgement" },
-				{ weapon: "CLB", weaponskill: "Skullbreaker" },
-				{ weapon: "CLB", weaponskill: "True Strike" },
-				{ weapon: "HTH", weaponskill: "Asuran Fists" },
-				{ weapon: "HTH", weaponskill: "Dragon Kick" },
-				{ weapon: "HTH", weaponskill: "Howling Fist" },
-				{ weapon: "HTH", weaponskill: "Raging Fists" },
-				{ weapon: "HTH", weaponskill: "Spinning Attack" },
-				{ weapon: "STF", weaponskill: "Full Swing" },
-				{ weapon: "STF", weaponskill: "Heavy Swing" },
-				{ weapon: "STF", weaponskill: "Retribution" },
-				{ weapon: "STF", weaponskill: "Shell Crusher" },
-				{ weapon: "STF", weaponskill: "Spirit Taker" }
+				{
+					title: 'Club',
+					items: [
+						{ weapon: "CLB", weaponskill: "Black Halo" },
+						{ weapon: "CLB", weaponskill: "Hexa Strike" },
+						{ weapon: "CLB", weaponskill: "Judgement" },
+						{ weapon: "CLB", weaponskill: "Skullbreaker" },
+						{ weapon: "CLB", weaponskill: "True Strike" }
+					]
+				},
+				{
+					title: 'Hand-to-Hand',
+					items: [
+						{ weapon: "HTH", weaponskill: "Asuran Fists" },
+						{ weapon: "HTH", weaponskill: "Dragon Kick" },
+						{ weapon: "HTH", weaponskill: "Howling Fist" },
+						{ weapon: "HTH", weaponskill: "Raging Fists" },
+						{ weapon: "HTH", weaponskill: "Spinning Attack" }
+					]
+				},
+				{
+					title: 'Staff',
+					items: [
+						{ weapon: "STF", weaponskill: "Full Swing" },
+						{ weapon: "STF", weaponskill: "Heavy Swing" },
+						{ weapon: "STF", weaponskill: "Retribution" },
+						{ weapon: "STF", weaponskill: "Shell Crusher" },
+						{ weapon: "STF", weaponskill: "Spirit Taker" }
+					]
+				}
 			]
 		}
-	};
-
-	voidwatch: {
-		ability: { job: string, name: string, element?: string }[],
-		blackMagic: { element: string, order: number, spell: string }[],
-		whiteMagic: { element: string, order: number, spell: string }[],
-		ninjutsu: { element: string, order: number, spell: string }[],
-		bardSongs: { element: string, order: number, spell: string }[],
-		blueMagic: { element: string, order: number, spell: string }[]
-	} = {
-		ability: [
-			{ job: "Black Mage", name: "Enmity Douse" },
-			{ job: "Corsair", name: "Fire Shot" },
-			{ job: "Corsair", name: "Ice Shot" },
-			{ job: "Corsair", name: "Wind Shot" },
-			{ job: "Corsair", name: "Earth Shot" },
-			{ job: "Corsair", name: "Thunder Shot" },
-			{ job: "Corsair", name: "Water Shot" },
-			{ job: "Dancer", name: "Quickstep" },
-			{ job: "Dancer", name: "Stutter Step" },
-			{ job: "Dancer", name: "Box Step" },
-			{ job: "Dancer", name: "Feather Step" },
-			{ job: "Dancer", name: "Violent Fluorish" },
-			{ job: "Dancer", name: "Animated Fluorish" },
-			{ job: "Dancer", name: "Desperate Fluorish" },
-			{ job: "Dark Knight", name: "Weapon Bash" },
-			{ job: "Dragoon", name: "Jump" },
-			{ job: "Dragoon", name: "High Jump" },
-			{ job: "Dragoon", name: "Spirit Jump" },
-			{ job: "Dragoon", name: "Soul Jump" },
-			{ job: "Monk", name: "Chi Blast" },
-			{ job: "Paladin", name: "Shield Bash" },
-			{ job: "Ranger", name: "Shadowbind" },
-			{ job: "Scholar", name: "Libra" },
-			{ job: "Summoner", name: "Carbuncle&rsquo;s Holy Mist", element: "light" },
-			{ job: "Summoner", name: "Fenrir&rsquo;s Lunar Bay", element: "darkness" },
-			{ job: "Summoner", name: "Diabolos&rsquo;s Night Terror", element: "darkness" },
-			{ job: "Summoner", name: "Ifrit&rsquo;s Fire IV", element: "fire" },
-			{ job: "Summoner", name: "Shiva&rsquo;s Blizzard IV", element: "ice" },
-			{ job: "Summoner", name: "Garuda&rsquo;s Aero IV", element: "wind" },
-			{ job: "Summoner", name: "Titan&rsquo;s Stone IV", element: "earth" },
-			{ job: "Summoner", name: "Ramuh&rsquo;s Thunder IV", element: "lightning" },
-			{ job: "Summoner", name: "Leviathan&rsquo;s Water IV", element: "water" },
-			{ job: "Thief", name: "Bully" },
-			{ job: "Warrior", name: "Provoke" }
-		],
-		blackMagic: [
-			{ element: "light", order: 1, spell: "Luminohelix" },
-			{ element: "darkness", order: 1, spell: "Noctohelix" },
-			{ element: "darkness", order: 2, spell: "Drain" },
-			{ element: "darkness", order: 3, spell: "Drain II" },
-			{ element: "darkness", order: 4, spell: "Aspir" },
-			{ element: "darkness", order: 5, spell: "Aspir II" },
-			{ element: "darkness", order: 6, spell: "Absorb-STR" },
-			{ element: "darkness", order: 7, spell: "Absorb-DEX" },
-			{ element: "darkness", order: 8, spell: "Absorb-AGI" },
-			{ element: "darkness", order: 9, spell: "Absorb-VIT" },
-			{ element: "darkness", order: 10, spell: "Absorb-INT" },
-			{ element: "darkness", order: 11, spell: "Absorb-MND" },
-			{ element: "darkness", order: 12, spell: "Absorb-CHR" },
-			{ element: "darkness", order: 13, spell: "Absorb-TP" },
-			{ element: "darkness", order: 14, spell: "Absorb-ACC" },
-			{ element: "darkness", order: 15, spell: "Blind" },
-			{ element: "darkness", order: 16, spell: "Dispel" },
-			{ element: "darkness", order: 17, spell: "Bio II" },
-			{ element: "fire", order: 1, spell: "Pyrohelix" },
-			{ element: "fire", order: 2, spell: "Fire II" },
-			{ element: "fire", order: 3, spell: "Fire III" },
-			{ element: "fire", order: 4, spell: "Fire IV" },
-			{ element: "fire", order: 5, spell: "Firaga" },
-			{ element: "fire", order: 6, spell: "Firaga II" },
-			{ element: "fire", order: 7, spell: "Firaga III" },
-			{ element: "fire", order: 8, spell: "Firaja" },
-			{ element: "fire", order: 9, spell: "Flare" },
-			{ element: "fire", order: 10, spell: "Burn" },
-			{ element: "ice", order: 1, spell: "Cryohelix" },
-			{ element: "ice", order: 2, spell: "Blizzard II" },
-			{ element: "ice", order: 3, spell: "Blizzard III" },
-			{ element: "ice", order: 4, spell: "Blizzard IV" },
-			{ element: "ice", order: 5, spell: "Blizzaga" },
-			{ element: "ice", order: 6, spell: "Blizzaga II" },
-			{ element: "ice", order: 7, spell: "Blizzaga III" },
-			{ element: "ice", order: 8, spell: "Blizzaja" },
-			{ element: "ice", order: 9, spell: "Freeze" },
-			{ element: "ice", order: 10, spell: "Frost" },
-			{ element: "wind", order: 1, spell: "Anemohelix" },
-			{ element: "wind", order: 2, spell: "Aero II" },
-			{ element: "wind", order: 3, spell: "Aero III" },
-			{ element: "wind", order: 4, spell: "Aero IV" },
-			{ element: "wind", order: 5, spell: "Aeroga" },
-			{ element: "wind", order: 6, spell: "Aeroga II" },
-			{ element: "wind", order: 7, spell: "Aeroga II" },
-			{ element: "wind", order: 8, spell: "Aeroja" },
-			{ element: "wind", order: 9, spell: "Tornado" },
-			{ element: "wind", order: 10, spell: "Choke" },
-			{ element: "earth", order: 1, spell: "Geohelix" },
-			{ element: "earth", order: 2, spell: "Stone II" },
-			{ element: "earth", order: 3, spell: "Stone III" },
-			{ element: "earth", order: 4, spell: "Stone IV" },
-			{ element: "earth", order: 5, spell: "Stonega" },
-			{ element: "earth", order: 6, spell: "Stonega II" },
-			{ element: "earth", order: 7, spell: "Stonega III" },
-			{ element: "earth", order: 8, spell: "Stoneja" },
-			{ element: "earth", order: 9, spell: "Quake" },
-			{ element: "earth", order: 10, spell: "Rasp" },
-			{ element: "lightning", order: 1, spell: "Ionohelix" },
-			{ element: "lightning", order: 2, spell: "Thunder II" },
-			{ element: "lightning", order: 3, spell: "Thunder III" },
-			{ element: "lightning", order: 4, spell: "Thunder IV" },
-			{ element: "lightning", order: 5, spell: "Thundaga" },
-			{ element: "lightning", order: 6, spell: "Thundaga II" },
-			{ element: "lightning", order: 7, spell: "Thundaga III" },
-			{ element: "lightning", order: 8, spell: "Thundaja" },
-			{ element: "lightning", order: 9, spell: "Burst" },
-			{ element: "lightning", order: 10, spell: "Shock" },
-			{ element: "lightning", order: 11, spell: "Stun" },
-			{ element: "water", order: 1, spell: "Hydrohelix" },
-			{ element: "water", order: 2, spell: "Water II" },
-			{ element: "water", order: 3, spell: "Water III" },
-			{ element: "water", order: 4, spell: "Water IV" },
-			{ element: "water", order: 5, spell: "Waterga" },
-			{ element: "water", order: 6, spell: "Waterga II" },
-			{ element: "water", order: 7, spell: "Waterga III" },
-			{ element: "water", order: 8, spell: "Waterja" },
-			{ element: "water", order: 9, spell: "Flood" },
-			{ element: "water", order: 10, spell: "Drown" },
-			{ element: "water", order: 11, spell: "Poison" },
-			{ element: "water", order: 12, spell: "Poison II" },
-			{ element: "water", order: 13, spell: "Poisonga" }
-		],
-		whiteMagic: [
-			{ element: "light", order: 1, spell: "Banish II" },
-			{ element: "light", order: 2, spell: "Banish III" },
-			{ element: "light", order: 3, spell: "Banishga" },
-			{ element: "light", order: 4, spell: "Banishga II" },
-			{ element: "light", order: 5, spell: "Holy" },
-			{ element: "light", order: 6, spell: "Flash" },
-			{ element: "light", order: 7, spell: "Dia II" },
-			{ element: "light", order: 8, spell: "Diaga" },
-			{ element: "fire", order: 1, spell: "Addle" },
-			{ element: "ice", order: 1, spell: "Paralyze" },
-			{ element: "earth", order: 1, spell: "Slow" }
-		],
-		ninjutsu: [
-			{ element: "darkness", order: 1, spell: "Kurayami: Ichi" },
-			{ element: "darkness", order: 2, spell: "Kurayami: Ni" },
-			{ element: "darkness", order: 3, spell: "Yurin: Ichi" },
-			{ element: "fire", order: 1, spell: "Katon: Ichi" },
-			{ element: "fire", order: 2, spell: "Katon: Ni" },
-			{ element: "ice", order: 1, spell: "Hyoton: Ichi" },
-			{ element: "ice", order: 2, spell: "Hyoton: Ni" },
-			{ element: "ice", order: 3, spell: "Jubaku: Ichi" },
-			{ element: "wind", order: 1, spell: "Huton: Ichi" },
-			{ element: "wind", order: 2, spell: "Huton: Ichi" },
-			{ element: "earth", order: 1, spell: "Doton: Ichi" },
-			{ element: "earth", order: 2, spell: "Doton: Ni" },
-			{ element: "earth", order: 3, spell: "Hojo: Ichi" },
-			{ element: "earth", order: 4, spell: "Hojo: Ni" },
-			{ element: "lightning", order: 1, spell: "Raiton: Ichi" },
-			{ element: "lightning", order: 2, spell: "Raiton: Ni" },
-			{ element: "water", order: 1, spell: "Suiton: Ichi" },
-			{ element: "water", order: 2, spell: "Suiton: Ni" },
-			{ element: "water", order: 3, spell: "Dokumori: Ichi" },
-			{ element: "water", order: 4, spell: "Aisha: Ichi" }
-		],
-		bardSongs: [
-			{ element: "light", order: 1, spell: "Dark Threnody" },
-			{ element: "light", order: 2, spell: "Magic Finale" },
-			{ element: "darkness", order: 1, spell: "Light Threnody" },
-			{ element: "fire", order: 1, spell: "Ice Threnody" },
-			{ element: "ice", order: 1, spell: "Wind Threnody" },
-			{ element: "wind", order: 1, spell: "Earth Threnody" },
-			{ element: "earth", order: 1, spell: "Lightning Threnody" },
-			{ element: "earth", order: 2, spell: "Battlefield Elegy" },
-			{ element: "earth", order: 3, spell: "Carnage Elegy" },
-			{ element: "lightning", order: 1, spell: "Water Threnody" },
-			{ element: "water", order: 1, spell: "Fire Threnody" }
-		],
-		blueMagic: [
-			{ element: "light", order: 1, spell: "Actinic Burst" },
-			{ element: "light", order: 2, spell: "Blank Gaze" },
-			{ element: "light", order: 3, spell: "Light of Pennance" },
-			{ element: "light", order: 4, spell: "Radiant Breath" },
-			{ element: "darkness", order: 1, spell: "Death Ray" },
-			{ element: "darkness", order: 2, spell: "Eyes On Me" },
-			{ element: "darkness", order: 3, spell: "Sandspray" },
-			{ element: "fire", order: 1, spell: "Blastbomb" },
-			{ element: "fire", order: 2, spell: "Firespit" },
-			{ element: "fire", order: 3, spell: "Heat Breath" },
-			{ element: "fire", order: 4, spell: "Thermal Pulse" },
-			{ element: "ice", order: 1, spell: "Cold Wave" },
-			{ element: "ice", order: 2, spell: "Frost Breath" },
-			{ element: "ice", order: 3, spell: "Ice Break" },
-			{ element: "ice", order: 4, spell: "Infrasonics" },
-			{ element: "wind", order: 1, spell: "Hetacomb Wave" },
-			{ element: "wind", order: 2, spell: "Leafstorm" },
-			{ element: "wind", order: 3, spell: "Mysterious Light" },
-			{ element: "wind", order: 4, spell: "Reaving Wind" },
-			{ element: "earth", order: 1, spell: "Bad Breath" },
-			{ element: "earth", order: 2, spell: "Cimicine Discharge" },
-			{ element: "earth", order: 3, spell: "Magnetite Cloud" },
-			{ element: "earth", order: 4, spell: "Sandspin" },
-			{ element: "lightning", order: 1, spell: "Blitzstrahl" },
-			{ element: "lightning", order: 2, spell: "Charged Whisker" },
-			{ element: "lightning", order: 3, spell: "Mind Blast" },
-			{ element: "lightning", order: 4, spell: "Temporal Shift" },
-			{ element: "water", order: 1, spell: "Acrid Stream" },
-			{ element: "water", order: 2, spell: "Corrosive Ooze" },
-			{ element: "water", order: 3, spell: "Cursed Sphere" },
-			{ element: "water", order: 4, spell: "Maelstrom" },
-			{ element: "water", order: 5, spell: "Awful Eye" }
-		]
 	};
 
 	dynamis: {
-		beastmen: {}[],
-		nightmare: {
-			ordelle: { zone: string, mob: string, type: string, time: number, sort: number }[],
-			tukuku: { zone: string, mob: string, type: string, time: number, sort: number }[],
-			byne: { zone: string, mob: string, type: string, time: number, sort: number }[]
-		}
+		beastmen: { title: string, items: string[] }[],
+		ordelle: { time: number, title: string, items: { zone: string, mob: string }[] }[],
+		tukuku: { time: number, title: string, items: { zone: string, mob: string } [] }[],
+		byne: { time: number, title: string, items: { zone: string, mob: string }[] }[]
 	} = {
 		beastmen: [
-			{ type: "Weaponskill", job: "DRG" },
-			{ type: "Weaponskill", job: "DRK" },
-			{ type: "Weaponskill", job: "PLD" },
-			{ type: "Weaponskill", job: "SAM" },
-			{ type: "Weaponskill", job: "WAR" },
-			{ type: "Job Ability", job: "BST" },
-			{ type: "Job Ability", job: "MNK" },
-			{ type: "Job Ability", job: "NIN" },
-			{ type: "Job Ability", job: "RNG" },
-			{ type: "Job Ability", job: "THF" },
-			{ type: "Magic Spell", job: "BLM" },
-			{ type: "Magic Spell", job: "BRD" },
-			{ type: "Magic Spell", job: "RDM" },
-			{ type: "Magic Spell", job: "SMN" },
-			{ type: "Magic Spell", job: "WHM" }
+			{
+				title: "Weaponskill",
+				items: [
+					"DRG",
+					"DRK",
+					"PLD",
+					"SAM",
+					"WAR"
+				]
+			},
+			{
+				title: "Job Ability",
+				items: [
+					"BST",
+					"MNK",
+					"NIN",
+					"RNG",
+					"THF"
+				]
+			},
+			{
+				title: "Magic Spell",
+				items: [
+					"BLM",
+					"BRD",
+					"RDM",
+					"SMN",
+					"WHM"
+				]
+			}
 		],
-		nightmare: {
-			ordelle: [
-				{ zone: "Buburimu", mob: "Bunny", type: "Magic Spell", time: 0, sort: 1 },
-				{ zone: "Buburimu", mob: "Eft", type: "Magic Spell", time: 0, sort: 2 },
-				{ zone: "Buburimu", mob: "Mandragora", type: "Magic Spell", time: 0, sort: 3 },
-				{ zone: "Valkurm", mob: "Hippogryph", type: "Magic Spell", time: 0, sort: 4 },
-				{ zone: "Valkurm", mob: "Sabotender", type: "Magic Spell", time: 0, sort: 5 },
-				{ zone: "Valkurm", mob: "Sheep", type: "Magic Spell", time: 0, sort: 6 },
-				{ zone: "Qufim", mob: "Snoll", type: "Magic Spell", time: 0, sort: 7 },
-				{ zone: "Qufim", mob: "Stirge", type: "Magic Spell", time: 0, sort: 8 },
-				{ zone: "Qufim", mob: "Weapon", type: "Magic Spell", time: 0, sort: 9 },
-				{ zone: "Tavnazia", mob: "Cluster", type: "Magic Spell", time: 0, sort: 10 },
-				{ zone: "Tavnazia", mob: "Makara", type: "Magic Spell", time: 0, sort: 11 },
-				{ zone: "Buburimu", mob: "Bunny", type: "Job Ability", time: 8, sort: 12 },
-				{ zone: "Buburimu", mob: "Eft", type: "Job Ability", time: 8, sort: 13 },
-				{ zone: "Buburimu", mob: "Mandragora", type: "Job Ability", time: 8, sort: 14 },
-				{ zone: "Valkurm", mob: "Hippogryph", type: "Job Ability", time: 8, sort: 15 },
-				{ zone: "Valkurm", mob: "Sabotender", type: "Job Ability", time: 8, sort: 16 },
-				{ zone: "Valkurm", mob: "Sheep", type: "Job Ability", time: 8, sort: 17 },
-				{ zone: "Qufim", mob: "Snoll", type: "Job Ability", time: 8, sort: 18 },
-				{ zone: "Qufim", mob: "Stirge", type: "Job Ability", time: 8, sort: 19 },
-				{ zone: "Qufim", mob: "Weapon", type: "Job Ability", time: 8, sort: 20 },
-				{ zone: "Tavnazia", mob: "Cluster", type: "Job Ability", time: 8, sort: 21 },
-				{ zone: "Tavnazia", mob: "Makara", type: "Job Ability", time: 8, sort: 22 },
-				{ zone: "Buburimu", mob: "Bunny", type: "Weaponskill", time: 16, sort: 23 },
-				{ zone: "Buburimu", mob: "Eft", type: "Weaponskill", time: 16, sort: 24 },
-				{ zone: "Buburimu", mob: "Mandragora", type: "Weaponskill", time: 16, sort: 25 },
-				{ zone: "Valkurm", mob: "Hippogryph", type: "Weaponskill", time: 16, sort: 26 },
-				{ zone: "Valkurm", mob: "Sabotender", type: "Weaponskill", time: 16, sort: 27 },
-				{ zone: "Valkurm", mob: "Sheep", type: "Weaponskill", time: 16, sort: 28 },
-				{ zone: "Qufim", mob: "Snoll", type: "Weaponskill", time: 16, sort: 29 },
-				{ zone: "Qufim", mob: "Stirge", type: "Weaponskill", time: 16, sort: 30 },
-				{ zone: "Qufim", mob: "Weapon", type: "Weaponskill", time: 16, sort: 31 },
-				{ zone: "Tavnazia", mob: "Cluster", type: "Weaponskill", time: 16, sort: 32 },
-				{ zone: "Tavnazia", mob: "Makara", type: "Weaponskill", time: 16, sort: 33 }
-			],
-			tukuku: [
-				{ zone: "Buburimu", mob: "Crab", type: "Weaponskill", time: 0, sort: 1 },
-				{ zone: "Buburimu", mob: "Dhamel", type: "Weaponskill", time: 0, sort: 2 },
-				{ zone: "Buburimu", mob: "Scorpion", type: "Weaponskill", time: 0, sort: 3 },
-				{ zone: "Valkurm", mob: "Goobbue", type: "Weaponskill", time: 0, sort: 4 },
-				{ zone: "Valkurm", mob: "Manticore", type: "Weaponskill", time: 0, sort: 5 },
-				{ zone: "Valkurm", mob: "Treant", type: "Weaponskill", time: 0, sort: 6 },
-				{ zone: "Qufim", mob: "Diremite", type: "Weaponskill", time: 0, sort: 7 },
-				{ zone: "Qufim", mob: "Raptor", type: "Weaponskill", time: 0, sort: 8 },
-				{ zone: "Qufim", mob: "Tiger", type: "Weaponskill", time: 0, sort: 9 },
-				{ zone: "Tavnazia", mob: "Leech", type: "Weaponskill", time: 0, sort: 10 },
-				{ zone: "Tavnazia", mob: "Worm", type: "Weaponskill", time: 0, sort: 11 },
-				{ zone: "Buburimu", mob: "Crab", type: "Magic Spell", time: 8, sort: 12 },
-				{ zone: "Buburimu", mob: "Dhamel", type: "Magic Spell", time: 8, sort: 13 },
-				{ zone: "Buburimu", mob: "Scorpion", type: "Magic Spell", time: 8, sort: 14 },
-				{ zone: "Valkurm", mob: "Goobbue", type: "Magic Spell", time: 8, sort: 15 },
-				{ zone: "Valkurm", mob: "Manticore", type: "Magic Spell", time: 8, sort: 16 },
-				{ zone: "Valkurm", mob: "Treant", type: "Magic Spell", time: 8, sort: 17 },
-				{ zone: "Qufim", mob: "Diremite", type: "Magic Spell", time: 8, sort: 18 },
-				{ zone: "Qufim", mob: "Raptor", type: "Magic Spell", time: 8, sort: 19 },
-				{ zone: "Qufim", mob: "Tiger", type: "Magic Spell", time: 8, sort: 20 },
-				{ zone: "Tavnazia", mob: "Leech", type: "Magic Spell", time: 8, sort: 21 },
-				{ zone: "Tavnazia", mob: "Worm", type: "Magic Spell", time: 8, sort: 22 },
-				{ zone: "Buburimu", mob: "Crab", type: "Job Ability", time: 16, sort: 23 },
-				{ zone: "Buburimu", mob: "Dhamel", type: "Job Ability", time: 16, sort: 24 },
-				{ zone: "Buburimu", mob: "Scorpion", type: "Job Ability", time: 16, sort: 25 },
-				{ zone: "Valkurm", mob: "Goobbue", type: "Job Ability", time: 16, sort: 26 },
-				{ zone: "Valkurm", mob: "Manticore", type: "Job Ability", time: 16, sort: 27 },
-				{ zone: "Valkurm", mob: "Treant", type: "Job Ability", time: 16, sort: 28 },
-				{ zone: "Qufim", mob: "Diremite", type: "Job Ability", time: 16, sort: 29 },
-				{ zone: "Qufim", mob: "Raptor", type: "Job Ability", time: 16, sort: 30 },
-				{ zone: "Qufim", mob: "Tiger", type: "Job Ability", time: 16, sort: 31 },
-				{ zone: "Tavnazia", mob: "Leech", type: "Job Ability", time: 16, sort: 32 },
-				{ zone: "Tavnazia", mob: "Worm", type: "Job Ability", time: 16, sort: 33 }
-			],
-			byne: [
-				{ zone: "Buburimu", mob: "Crawler", type: "Job Ability", time: 0, sort: 1 },
-				{ zone: "Buburimu", mob: "Raven", type: "Job Ability", time: 0, sort: 2 },
-				{ zone: "Buburimu", mob: "Urganite", type: "Job Ability", time: 0, sort: 3 },
-				{ zone: "Valkurm", mob: "Fly", type: "Job Ability", time: 0, sort: 4 },
-				{ zone: "Valkurm", mob: "Flytrap", type: "Job Ability", time: 0, sort: 5 },
-				{ zone: "Valkurm", mob: "Funguar", type: "Job Ability", time: 0, sort: 6 },
-				{ zone: "Qufim", mob: "Gaylas", type: "Job Ability", time: 0, sort: 7 },
-				{ zone: "Qufim", mob: "Kraken", type: "Job Ability", time: 0, sort: 8 },
-				{ zone: "Qufim", mob: "Roc", type: "Job Ability", time: 0, sort: 9 },
-				{ zone: "Tavnazia", mob: "Bugard", type: "Job Ability", time: 0, sort: 10 },
-				{ zone: "Tavnazia", mob: "Hornet", type: "Job Ability", time: 0, sort: 11 },
-				{ zone: "Buburimu", mob: "Crawler", type: "Weaponskill", time: 8, sort: 12 },
-				{ zone: "Buburimu", mob: "Raven", type: "Weaponskill", time: 8, sort: 13 },
-				{ zone: "Buburimu", mob: "Urganite", type: "Weaponskill", time: 8, sort: 14 },
-				{ zone: "Valkurm", mob: "Fly", type: "Weaponskill", time: 8, sort: 15 },
-				{ zone: "Valkurm", mob: "Flytrap", type: "Weaponskill", time: 8, sort: 16 },
-				{ zone: "Valkurm", mob: "Funguar", type: "Weaponskill", time: 8, sort: 17 },
-				{ zone: "Qufim", mob: "Gaylas", type: "Weaponskill", time: 8, sort: 18 },
-				{ zone: "Qufim", mob: "Kraken", type: "Weaponskill", time: 8, sort: 19 },
-				{ zone: "Qufim", mob: "Roc", type: "Weaponskill", time: 8, sort: 20 },
-				{ zone: "Tavnazia", mob: "Bugard", type: "Weaponskill", time: 8, sort: 21 },
-				{ zone: "Tavnazia", mob: "Hornet", type: "Weaponskill", time: 8, sort: 22 },
-				{ zone: "Buburimu", mob: "Crawler", type: "Magic Spell", time: 16, sort: 23 },
-				{ zone: "Buburimu", mob: "Raven", type: "Magic Spell", time: 16, sort: 24 },
-				{ zone: "Buburimu", mob: "Urganite", type: "Magic Spell", time: 16, sort: 25 },
-				{ zone: "Valkurm", mob: "Fly", type: "Magic Spell", time: 16, sort: 26 },
-				{ zone: "Valkurm", mob: "Flytrap", type: "Magic Spell", time: 16, sort: 27 },
-				{ zone: "Valkurm", mob: "Funguar", type: "Magic Spell", time: 16, sort: 28 },
-				{ zone: "Qufim", mob: "Gaylas", type: "Magic Spell", time: 16, sort: 29 },
-				{ zone: "Qufim", mob: "Kraken", type: "Magic Spell", time: 16, sort: 30 },
-				{ zone: "Qufim", mob: "Roc", type: "Magic Spell", time: 16, sort: 31 },
-				{ zone: "Tavnazia", mob: "Bugard", type: "Magic Spell", time: 16, sort: 32 },
-				{ zone: "Tavnazia", mob: "Hornet", type: "Magic Spell", time: 16, sort: 33 }
-			]
-		}
+		ordelle: [
+			{
+				time: 0,
+				title: "Magic Spell",
+				items: [
+					{ zone: "Buburimu", mob: "Bunny" },
+					{ zone: "Buburimu", mob: "Eft"},
+					{ zone: "Buburimu", mob: "Mandragora" },
+					{ zone: "Valkurm", mob: "Hippogryph" },
+					{ zone: "Valkurm", mob: "Sabotender" },
+					{ zone: "Valkurm", mob: "Sheep" },
+					{ zone: "Qufim", mob: "Snoll" },
+					{ zone: "Qufim", mob: "Stirge" },
+					{ zone: "Qufim", mob: "Weapon"},
+					{ zone: "Tavnazia", mob: "Cluster" },
+					{ zone: "Tavnazia", mob: "Makara" }
+				]
+			},
+			{
+				time: 8,
+				title: "Job Ability",
+				items: [
+					{ zone: "Buburimu", mob: "Bunny" },
+					{ zone: "Buburimu", mob: "Eft" },
+					{ zone: "Buburimu", mob: "Mandragora" },
+					{ zone: "Valkurm", mob: "Hippogryph" },
+					{ zone: "Valkurm", mob: "Sabotender" },
+					{ zone: "Valkurm", mob: "Sheep" },
+					{ zone: "Qufim", mob: "Snoll" },
+					{ zone: "Qufim", mob: "Stirge" },
+					{ zone: "Qufim", mob: "Weapon" },
+					{ zone: "Tavnazia", mob: "Cluster" },
+					{ zone: "Tavnazia", mob: "Makara" }
+				]
+			},
+			{
+				time: 16,
+				title: "Weaponskill",
+				items: [
+					{ zone: "Buburimu", mob: "Bunny" },
+					{ zone: "Buburimu", mob: "Eft" },
+					{ zone: "Buburimu", mob: "Mandragora" },
+					{ zone: "Valkurm", mob: "Hippogryph" },
+					{ zone: "Valkurm", mob: "Sabotender" },
+					{ zone: "Valkurm", mob: "Sheep" },
+					{ zone: "Qufim", mob: "Snoll" },
+					{ zone: "Qufim", mob: "Stirge" },
+					{ zone: "Qufim", mob: "Weapon" },
+					{ zone: "Tavnazia", mob: "Cluster" },
+					{ zone: "Tavnazia", mob: "Makara" }
+				]
+			}
+		],
+		tukuku: [
+			{
+				time: 0,
+				title: "Weaponskill",
+				items: [
+					{ zone: "Buburimu", mob: "Crab" },
+					{ zone: "Buburimu", mob: "Dhamel" },
+					{ zone: "Buburimu", mob: "Scorpion" },
+					{ zone: "Valkurm", mob: "Goobbue" },
+					{ zone: "Valkurm", mob: "Manticore" },
+					{ zone: "Valkurm", mob: "Treant" },
+					{ zone: "Qufim", mob: "Diremite" },
+					{ zone: "Qufim", mob: "Raptor" },
+					{ zone: "Qufim", mob: "Tiger" },
+					{ zone: "Tavnazia", mob: "Leech" },
+					{ zone: "Tavnazia", mob: "Worm" }
+				]
+			},
+			{
+				time: 8,
+				title: "Magic Spell",
+				items: [
+					{ zone: "Buburimu", mob: "Crab" },
+					{ zone: "Buburimu", mob: "Dhamel" },
+					{ zone: "Buburimu", mob: "Scorpion" },
+					{ zone: "Valkurm", mob: "Goobbue" },
+					{ zone: "Valkurm", mob: "Manticore" },
+					{ zone: "Valkurm", mob: "Treant" },
+					{ zone: "Qufim", mob: "Diremite" },
+					{ zone: "Qufim", mob: "Raptor" },
+					{ zone: "Qufim", mob: "Tiger" },
+					{ zone: "Tavnazia", mob: "Leech" },
+					{ zone: "Tavnazia", mob: "Worm" }
+				]
+			},
+			{
+				time: 16,
+				title: "Job Ability",
+				items: [
+					{ zone: "Buburimu", mob: "Crab" },
+					{ zone: "Buburimu", mob: "Dhamel" },
+					{ zone: "Buburimu", mob: "Scorpion" },
+					{ zone: "Valkurm", mob: "Goobbue" },
+					{ zone: "Valkurm", mob: "Manticore" },
+					{ zone: "Valkurm", mob: "Treant" },
+					{ zone: "Qufim", mob: "Diremite" },
+					{ zone: "Qufim", mob: "Raptor" },
+					{ zone: "Qufim", mob: "Tiger" },
+					{ zone: "Tavnazia", mob: "Leech" },
+					{ zone: "Tavnazia", mob: "Worm" }
+				]
+			}
+		],
+		byne: [
+			{
+				time: 0,
+				title: "Job Ability",
+				items: [
+					{ zone: "Buburimu", mob: "Crawler" },
+					{ zone: "Buburimu", mob: "Raven" },
+					{ zone: "Buburimu", mob: "Urganite" },
+					{ zone: "Valkurm", mob: "Fly" },
+					{ zone: "Valkurm", mob: "Flytrap" },
+					{ zone: "Valkurm", mob: "Funguar" },
+					{ zone: "Qufim", mob: "Gaylas" },
+					{ zone: "Qufim", mob: "Kraken" },
+					{ zone: "Qufim", mob: "Roc" },
+					{ zone: "Tavnazia", mob: "Bugard" },
+					{ zone: "Tavnazia", mob: "Hornet" }
+				]
+			},
+			{
+				time: 8,
+				title: "Weaponskill",
+				items: [
+					{ zone: "Buburimu", mob: "Crawler" },
+					{ zone: "Buburimu", mob: "Raven" },
+					{ zone: "Buburimu", mob: "Urganite" },
+					{ zone: "Valkurm", mob: "Fly" },
+					{ zone: "Valkurm", mob: "Flytrap" },
+					{ zone: "Valkurm", mob: "Funguar" },
+					{ zone: "Qufim", mob: "Gaylas" },
+					{ zone: "Qufim", mob: "Kraken" },
+					{ zone: "Qufim", mob: "Roc" },
+					{ zone: "Tavnazia", mob: "Bugard" },
+					{ zone: "Tavnazia", mob: "Hornet" }
+				]
+			},
+			{
+				time: 16,
+				title: "Magic Spell",
+				items: [
+					{ zone: "Buburimu", mob: "Crawler" },
+					{ zone: "Buburimu", mob: "Raven" },
+					{ zone: "Buburimu", mob: "Urganite" },
+					{ zone: "Valkurm", mob: "Fly" },
+					{ zone: "Valkurm", mob: "Flytrap" },
+					{ zone: "Valkurm", mob: "Funguar" },
+					{ zone: "Qufim", mob: "Gaylas" },
+					{ zone: "Qufim", mob: "Kraken" },
+					{ zone: "Qufim", mob: "Roc" },
+					{ zone: "Tavnazia", mob: "Bugard" },
+					{ zone: "Tavnazia", mob: "Hornet" }
+				]
+			}
+		]
+	};
+
+	voidwatch: {
+		jobAbility: { title: string, items: string[] }[],
+		blackMagic: { title: string, items: string[] }[],
+		whiteMagic: { title: string, items: string[] }[],
+		ninjutsu: { title: string, items: string[] }[],
+		bardSongs: { title: string, items: string[] }[],
+		blueMagic: { title: string, items: string[] }[]
+	} = {
+		jobAbility: [
+			{
+				title: 'Black Mage',
+				items: [
+					"Enmity Douse"
+				]
+			},
+			{
+				title: 'Corsair',
+				items: [
+					"Fire Shot",
+					"Ice Shot",
+					"Wind Shot",
+					"Earth Shot",
+					"Thunder Shot",
+					"Water Shot"
+				]
+			},
+			{
+				title: 'Dancer',
+				items: [
+					"Quickstep",
+					"Stutter Step",
+					"Box Step",
+					"Feather Step",
+					"Violent Fluorish",
+					"Animated Fluorish",
+					"Desperate Fluorish"
+				]
+			},
+			{
+				title: 'Dark Knight',
+				items: [
+					"Weapon Bash"
+				]
+			},
+			{
+				title: 'Dragoon',
+				items: [
+					"Jump",
+					"High Jump",
+					"Spirit Jump",
+					"Soul Jump"
+				]
+			},
+			{
+				title: 'Monk',
+				items: [
+					"Chi Blast"
+				]
+			},
+			{
+				title: 'Paladin',
+				items: [
+					"Shield Bash"
+				]
+			},
+			{
+				title: 'Ranger',
+				items: [
+					"Shadowbind"
+				]
+			},
+			{
+				title: 'Scholar',
+				items: [
+					"Libra"
+				]
+			},
+			{
+				title: 'Summoner',
+				items: [
+					"Carbuncle&rsquo;s Holy Mist",
+					"Fenrir&rsquo;s Lunar Bay",
+					"Diabolos&rsquo;s Night Terror",
+					"Ifrit&rsquo;s Fire IV",
+					"Shiva&rsquo;s Blizzard IV",
+					"Garuda&rsquo;s Aero IV",
+					"Titan&rsquo;s Stone IV",
+					"Ramuh&rsquo;s Thunder IV",
+					"Leviathan&rsquo;s Water IV",
+				]
+			},
+			{
+				title: 'Thief',
+				items: [
+					"Bully"
+				]
+			},
+			{
+				title: 'Warrior',
+				items: [
+					"Provoke"
+				]
+			}
+		],
+		blackMagic: [
+			{
+				title: "light",
+				items: [
+					"Luminohelix"
+				]
+			},
+			{
+				title: "darkness",
+				items: [
+					"Noctohelix",
+					"Drain",
+					"Drain II",
+					"Aspir",
+					"Aspir II",
+					"Absorb-STR",
+					"Absorb-DEX",
+					"Absorb-AGI",
+					"Absorb-VIT",
+					"Absorb-INT",
+					"Absorb-MND",
+					"Absorb-CHR",
+					"Absorb-TP",
+					"Absorb-ACC",
+					"Blind",
+					"Dispel",
+					"Bio II"
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					"Pyrohelix",
+					"Fire II",
+					"Fire III",
+					"Fire IV",
+					"Firaga",
+					"Firaga II",
+					"Firaga III",
+					"Firaja",
+					"Flare",
+					"Burn"
+				]
+			},
+			{
+				title: "ice",
+				items: [
+					"Cryohelix",
+					"Blizzard II",
+					"Blizzard III",
+					"Blizzard IV",
+					"Blizzaga",
+					"Blizzaga II",
+					"Blizzaga III",
+					"Blizzaja",
+					"Freeze",
+					"Frost"
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Anemohelix",
+					"Aero II",
+					"Aero III",
+					"Aero IV",
+					"Aeroga",
+					"Aeroga II",
+					"Aeroga II",
+					"Aeroja",
+					"Tornado",
+					"Choke"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Geohelix",
+					"Stone II",
+					"Stone III",
+					"Stone IV",
+					"Stonega",
+					"Stonega II",
+					"Stonega III",
+					"Stoneja",
+					"Quake",
+					"Rasp"
+				]
+			},
+			{
+				title: "lightning",
+				items: [
+					"Ionohelix",
+					"Thunder II",
+					"Thunder III",
+					"Thunder IV",
+					"Thundaga",
+					"Thundaga II",
+					"Thundaga III",
+					"Thundaja",
+					"Burst",
+					"Shock",
+					"Stun"
+				]
+			},
+			{
+				title: "water",
+				items: [
+					"Hydrohelix",
+					"Water II",
+					"Water III",
+					"Water IV",
+					"Waterga",
+					"Waterga II",
+					"Waterga III",
+					"Waterja",
+					"Flood",
+					"Drown",
+					"Poison",
+					"Poison II",
+					"Poisonga"
+				]
+			}
+		],
+		whiteMagic: [
+			{
+				title: "light",
+				items: [
+					"Banish II",
+					"Banish III",
+					"Banishga",
+					"Banishga II",
+					"Holy",
+					"Flash",
+					"Dia II",
+					"Diaga"
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					"Addle"
+				]
+			},
+			{
+				title: "ice",
+				items: [
+					"Paralyze"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Slow"
+				]
+			}
+		],
+		ninjutsu: [
+			{
+				title: "darkness",
+				items: [
+					"Kurayami: Ichi",
+					"Kurayami: Ni",
+					"Yurin: Ichi"
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					"Katon: Ichi",
+					"Katon: Ni"
+				]
+			},
+			{
+				title: "ice",
+				items: [
+					"Hyoton: Ichi",
+					"Hyoton: Ni",
+					"Jubaku: Ichi"
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Huton: Ichi",
+					"Huton: Ni"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Doton: Ichi",
+					"Doton: Ni",
+					"Hojo: Ichi",
+					"Hojo: Ni"
+				]
+			},
+			{
+				title: "lightning",
+				items: [
+					"Raiton: Ichi",
+					"Raiton: Ni"
+				]
+			},
+			{
+				title: "water",
+				items: [
+					"Suiton: Ichi",
+					"Suiton: Ni",
+					"Dokumori: Ichi",
+					"Aisha: Ichi"
+				]
+			}
+		],
+		bardSongs: [
+			{
+				title: "light",
+				items: [
+					"Dark Threnody",
+					"Magic Finale"
+				]
+			},
+			{
+				title: "darkness",
+				items: [
+					"Light Threnody"
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					"Ice Threnody",
+					"Wind Threnody"
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Earth Threnody"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Lightning Threnody",
+					"Battlefield Elegy",
+					"Carnage Elegy"
+				]
+			},
+			{
+				title: "lightning",
+				items: [
+					"Water Threnody"
+				]
+			},
+			{
+				title: "water",
+				items: [
+					"Fire Threnody"
+				]
+			}
+		],
+		blueMagic: [
+			{
+				title: "light",
+				items: [
+					"Actinic Burst",
+					"Blank Gaze",
+					"Light of Pennance",
+					"Radiant Breath"
+				]
+			},
+			{
+				title: "darkness",
+				items: [
+					"Death Ray",
+					"Eyes On Me",
+					"Sandspray"
+				]
+			},
+			{
+				title: "fire",
+				items: [
+					"Blastbomb",
+					"Firespit",
+					"Heat Breath",
+					"Thermal Pulse"
+				]
+			},
+			{
+				title: "ice",
+				items: [
+					"Cold Wave",
+					"Frost Breath",
+					"Ice Break",
+					"Infrasonics"
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Hetacomb Wave",
+					"Leafstorm",
+					"Mysterious Light",
+					"Reaving Wind"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Bad Breath",
+					"Cimicine Discharge",
+					"Magnetite Cloud",
+					"Sandspin"
+				]
+			},
+			{
+				title: "lightning",
+				items: [
+					"Blitzstrahl",
+					"Charged Whisker",
+					"Mind Blast",
+					"Temporal Shift"
+				]
+			},
+			{
+				title: "water",
+				items: [
+					"Acrid Stream",
+					"Corrosive Ooze",
+					"Cursed Sphere",
+					"Maelstrom",
+					"Awful Eye"
+				]
+			}
+		]
 	};
 
 	constructor() {
