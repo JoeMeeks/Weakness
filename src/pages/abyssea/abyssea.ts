@@ -23,13 +23,17 @@ export class AbysseaPage {
 
 	constructor(
 		private params: NavParams,
-		private ffxi: FFXIService,
+		public ffxi: FFXIService,
 		public ui: UIService
 	) {
 		vm = this;
 	}
 
 	private load() {
+
+	}
+
+	timer() {
 
 	}
 

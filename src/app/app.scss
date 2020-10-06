@@ -46,6 +46,15 @@ ion-header {
         button.bar-button-ios.activated { background-color: rgba(255,255,255,0.1); }
     }
 }
+.platform-android.platform-mobile {
+    ion-header {
+        .toolbar-ios {
+            min-height: 64px;
+            padding-top: 28px;
+        }
+        .title-ios { padding-top: 28px; }
+    }
+}
 ion-nav.menu-content-open {
     ion-header button.bar-button-ios[menuToggle] { background-color: rgba(255,255,255,0.1);  }
 }
@@ -152,22 +161,35 @@ ion-header ion-toolbar.select .toolbar-content:before, header.select:before, .it
 
 header.select select, .item-select [item-content] select { position: relative; z-index: 1; background-color: transparent; }
 
-ion-footer { 
+ion-footer {
     background-color: #000;
     color: #fff;
-    ion-segment.segment-ios {
-        ion-segment-button.segment-button {
-            height: 48px;
-            border: none;
-            color: #fff;
-            img { display: block; width: 16px; height: 16px; margin: 10px auto 0; }
-            ion-label.label-ios { display: block; margin: 0; font-size: 11px; line-height: 22px; }
-        }
-        .segment-button:first-of-type, .segment-button:last-of-type { border-radius: 0; }
-        ion-segment-button.segment-button.segment-activated {
-            background-color: #264e8c;
-        }
+    
+    ion-toolbar.toolbar-ios {
+        .toolbar-background-ios { background-color: #000; }
+        .toolbar-content-ios { flex: 1 1 100%; min-width: 100%; }
 
+        ion-segment.segment-ios {
+            flex: 1 1 100%;
+            justify-content: space-evenly;
+
+            ion-segment-button.segment-button {
+                /*flex: 1 1 100%;*/
+                max-width: unset;
+                height: 54px;
+                border: none;
+                color: #fff;
+            
+                img { display: block; width: auto; height: 16px; margin: 10px auto 0; }
+
+                ion-label.label-ios { display: block; margin: 0; font-size: 11px; line-height: 22px; }
+            }
+            .segment-button:first-of-type, .segment-button:last-of-type { border-radius: 0; }
+            ion-segment-button.segment-button.segment-activated {
+                background-color: #264e8c;
+            }
+
+        }
     }
 }
 

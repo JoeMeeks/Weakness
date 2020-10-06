@@ -26,7 +26,7 @@ import { VoidwatchPage } from '../pages/voidwatch/voidwatch';
 		{
 			mode: 'ios',
 			locationStrategy: 'path',
-			swipeBackEnabled: false,
+			swipeBackEnabled: false
 		}, {
 			links: [
 				{ component: HomePage, name: 'home', segment: '' },

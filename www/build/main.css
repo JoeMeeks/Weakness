@@ -25795,6 +25795,15 @@ ion-header .toolbar-ios button.bar-button-ios.activated {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+.platform-android.platform-mobile ion-header .toolbar-ios {
+  min-height: 64px;
+  padding-top: 28px;
+}
+
+.platform-android.platform-mobile ion-header .title-ios {
+  padding-top: 28px;
+}
+
 ion-nav.menu-content-open ion-header button.bar-button-ios[menuToggle] {
   background-color: rgba(255, 255, 255, 0.1);
 }
@@ -26045,31 +26054,56 @@ ion-footer {
   color: #fff;
 }
 
-ion-footer ion-segment.segment-ios ion-segment-button.segment-button {
-  height: 48px;
+ion-footer ion-toolbar.toolbar-ios .toolbar-background-ios {
+  background-color: #000;
+}
+
+ion-footer ion-toolbar.toolbar-ios .toolbar-content-ios {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+  -ms-flex: 1 1 100%;
+  flex: 1 1 100%;
+  min-width: 100%;
+}
+
+ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+  -ms-flex: 1 1 100%;
+  flex: 1 1 100%;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+
+ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button {
+  /*flex: 1 1 100%;*/
+  max-width: unset;
+  height: 54px;
   border: none;
   color: #fff;
 }
 
-ion-footer ion-segment.segment-ios ion-segment-button.segment-button img {
+ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button img {
   display: block;
-  width: 16px;
+  width: auto;
   height: 16px;
   margin: 10px auto 0;
 }
 
-ion-footer ion-segment.segment-ios ion-segment-button.segment-button ion-label.label-ios {
+ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button ion-label.label-ios {
   display: block;
   margin: 0;
   font-size: 11px;
   line-height: 22px;
 }
 
-ion-footer ion-segment.segment-ios .segment-button:first-of-type, ion-footer ion-segment.segment-ios .segment-button:last-of-type {
+ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios .segment-button:first-of-type, ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios .segment-button:last-of-type {
   border-radius: 0;
 }
 
-ion-footer ion-segment.segment-ios ion-segment-button.segment-button.segment-activated {
+ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button.segment-activated {
   background-color: #264e8c;
 }
 
@@ -26136,6 +26170,28 @@ ion-footer ion-segment.segment-ios ion-segment-button.segment-button.segment-act
 }
 
 /*#endregion ionic debug*/
+page-abyssea ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button {
+  height: 54px;
+}
+
+page-abyssea ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button img {
+  display: block;
+  width: auto;
+  height: 24px;
+  margin: 4px auto 0;
+}
+
+page-abyssea ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button ion-label.label-ios {
+  display: block;
+  margin: 0;
+  font-size: 11px;
+  line-height: 22px;
+}
+
+.ios page-abyssea ion-footer .toolbar:last-child {
+  min-height: 54px;
+}
+
 page-home ion-content.content-ios {
   background: #000 url(../assets/images/effects/white.png) no-repeat center center fixed;
   background-size: contain;

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Events } from 'ionic-angular';
 import * as _ from 'underscore';
 
 let self: FFXIService;
@@ -84,18 +85,6 @@ export class FFXIService {
 		],
 		yellow: [
 			{
-				title: "light",
-				items: [
-					{ order: 1, type: "WHM", spell: "Banish II" },
-					{ order: 2, type: "WHM", spell: "Banish III" },
-					{ order: 3, type: "WHM", spell: "Banishga II" },
-					{ order: 4, type: "WHM", spell: "Holy" },
-					{ order: 5, type: "WHM", spell: "Flash" },
-					{ order: 6, type: "BLU", spell: "Radiant Breath" },
-					{ order: 7, type: "BRD", spell: "Dark Threnody" }
-				]
-			},
-			{
 				title: "darkness",
 				items: [
 
@@ -106,6 +95,18 @@ export class FFXIService {
 					{ order: 5, type: "BLU", spell: "Eyes On Me" },
 					{ order: 6, type: "NIN", spell: "Kurayami: Ni" },
 					{ order: 7, type: "BRD", spell: "Light Threnody" }
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					{ order: 1, type: "BLM", spell: "Stone III" },
+					{ order: 2, type: "BLM", spell: "Stone IV" },
+					{ order: 3, type: "BLM", spell: "Stonega III" },
+					{ order: 4, type: "BLM", spell: "Quake" },
+					{ order: 5, type: "BLU", spell: "Magnetite Cloud" },
+					{ order: 6, type: "NIN", spell: "Doton: Ni" },
+					{ order: 7, type: "BRD", spell: "Lightning Threnody" }
 				]
 			},
 			{
@@ -133,27 +134,15 @@ export class FFXIService {
 				]
 			},
 			{
-				title: "wind",
+				title: "light",
 				items: [
-					{ order: 1, type: "BLM", spell: "Aero III" },
-					{ order: 2, type: "BLM", spell: "Aero IV" },
-					{ order: 3, type: "BLM", spell: "Aeroga III" },
-					{ order: 4, type: "BLM", spell: "Tornado" },
-					{ order: 5, type: "BLU", spell: "Mysterious Light" },
-					{ order: 6, type: "NIN", spell: "Huton: Ni" },
-					{ order: 7, type: "BRD", spell: "Earth Threnody" }
-				]
-			},
-			{
-				title: "earth",
-				items: [
-					{ order: 1, type: "BLM", spell: "Stone III" },
-					{ order: 2, type: "BLM", spell: "Stone IV" },
-					{ order: 3, type: "BLM", spell: "Stonega III" },
-					{ order: 4, type: "BLM", spell: "Quake" },
-					{ order: 5, type: "BLU", spell: "Magnetite Cloud" },
-					{ order: 6, type: "NIN", spell: "Doton: Ni" },
-					{ order: 7, type: "BRD", spell: "Lightning Threnody" }
+					{ order: 1, type: "WHM", spell: "Banish II" },
+					{ order: 2, type: "WHM", spell: "Banish III" },
+					{ order: 3, type: "WHM", spell: "Banishga II" },
+					{ order: 4, type: "WHM", spell: "Holy" },
+					{ order: 5, type: "WHM", spell: "Flash" },
+					{ order: 6, type: "BLU", spell: "Radiant Breath" },
+					{ order: 7, type: "BRD", spell: "Dark Threnody" }
 				]
 			},
 			{
@@ -178,6 +167,18 @@ export class FFXIService {
 					{ order: 5, type: "BLU", spell: "Maelstrom" },
 					{ order: 6, type: "NIN", spell: "Suiton: Ni" },
 					{ order: 7, type: "BRD", spell: "Fire Threnody" }
+				]
+			},
+			{
+				title: "wind",
+				items: [
+					{ order: 1, type: "BLM", spell: "Aero III" },
+					{ order: 2, type: "BLM", spell: "Aero IV" },
+					{ order: 3, type: "BLM", spell: "Aeroga III" },
+					{ order: 4, type: "BLM", spell: "Tornado" },
+					{ order: 5, type: "BLU", spell: "Mysterious Light" },
+					{ order: 6, type: "NIN", spell: "Huton: Ni" },
+					{ order: 7, type: "BRD", spell: "Earth Threnody" }
 				]
 			}
 		],
@@ -945,13 +946,58 @@ export class FFXIService {
 				]
 			}
 		]
-	};
+		};
 
-	constructor() {
+	vanatime: string;
+	timer: any;
+
+	constructor(public events: Events) {
 		self = this;
 		// Create an FFXI object and put VanaDate class in the global scope
 		//window.FFXI = new FFXI(window);
 		//window.VanaDate = VanaDate;
+		self.reset();
+	}
+
+	update() {
+		try {
+			let now = new VanaDate(),
+				hour = now.hour,
+				minute = now.minute < 10 ? "0" + now.minute : now.minute,
+				vt = `${hour}:${minute}`;
+			//console.debug('now:');
+			//console.log(self.vanadate.time);
+			console.log(`update: ${vt}`);
+			//console.log(now);
+			//var dateTimeString = "{0}/{1}/{2} {3}:{4}.{5}".format(now.year, now.month, now.day, now.hour, now.minute, now.second);
+			self.vanatime = vt;
+			//filter dynamis triggers
+			if (vt == "0:00" || vt == "8:00" || vt == "16:00") {
+				self.events.publish('time', vt);
+			}
+		} catch (ex) {
+			console.log(ex.message);
+		}
+	}
+	clear() {
+		try {
+			clearInterval(self.timer);
+		} catch (ex) {
+			console.log(ex.mesage);
+		}
+	}
+	reset() {
+		try {
+			if (self.timer) self.clear();
+			//self.vanadate = new VanaDate();
+			//self.vanadate.start();
+			//self.vanadate = new VanaDate();
+			//console.log(self.vanadate);
+			self.timer = setInterval(self.update, 1000, true);
+		} catch (ex) {
+			console.log(ex.mesage);
+			self.clear();
+		}
 	}
 }
 
@@ -968,7 +1014,7 @@ export class VanaDate {
 	// Vana'diel time : 0898/02/01 00:00
 	private VANA_BIRTH = new Date();
 	private VANA_SECS_SINCE_YEAR_0 = (((898 * 360) + 30) * 24 * 60 * 60);
-	private EARTH_TIME_YEAR_0 = new Date(this.VANA_BIRTH.getTime() - (this.VANA_SECS_SINCE_YEAR_0 * 1000) / 25);
+	private EARTH_TIME_YEAR_0 = new Date(this.VANA_BIRTH.getTime() - ((this.VANA_SECS_SINCE_YEAR_0 * 1000) / 25));
 
 	private VANA_SECS_PER_YEAR = 360 * 24 * 60 * 60; // 360 days per year
 	private VANA_SECS_PER_MONTH = 30 * 24 * 60 * 60; // 30 days per month
@@ -1006,22 +1052,28 @@ export class VanaDate {
 
 	constructor(date?) {
 		// vTime is the number of Vana'diel seconds since 0000/01/01
-		var vTime, eTime;
-
-		if (typeof (date) == 'number') {
+		//console.debug('date:');
+		//console.log(date);
+		let eTime, vTime;
+		if (date && typeof date == 'number') {
+			console.log(`date number: ${date}`);
 			vTime = Math.round(date);
 			eTime = new Date(this.EARTH_TIME_YEAR_0.getTime() + Math.round(vTime * 1000 / 25));
 		} else {
-			if (date instanceof Date) {
+			if (date && date instanceof Date) {
+				console.log(`date object: ${date}`);
 				eTime = date;
 			} else {
+				console.log(`date null`);
 				eTime = new Date();
 			}
 
-			var eMilliSinceVanaEpoch = eTime.getTime() - this.EARTH_TIME_YEAR_0.getTime();
+			let eMilliSinceVanaEpoch = eTime.getTime() - this.EARTH_TIME_YEAR_0.getTime();
 			vTime = Math.round(eMilliSinceVanaEpoch / 1000 * 25);
 		}
-
+		//console.log(vTime, eTime);
+		console.log(eTime.getTime());
+		//console.log(vTime);
 		// Calculate the individual parts of the date
 		this.earthDate = eTime;
 		this.time = vTime; // number of vana'diel seconds since midnight 0000/01/01
@@ -1088,7 +1140,7 @@ export class VanaDate {
 		return new VanaDate(newVTime);
 	}
 
-	previous(days) {
+	prev(days) {
 		var numDays = days;
 		if (typeof (numDays) != 'number') {
 			numDays = 1;
