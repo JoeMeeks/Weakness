@@ -25749,6 +25749,10 @@ ion-menu ion-list.list-ios .item-ios img {
   vertical-align: middle;
 }
 
+ion-menu ion-list.list-ios .item-ios.active {
+  background-color: #485570;
+}
+
 ion-menu ion-list.list-ios .item-ios.list-header-ios {
   background-color: #1a2133;
 }
@@ -25787,12 +25791,25 @@ ion-header .toolbar-ios button.bar-button-ios[icon-only] {
   padding: 0 16px;
 }
 
-ion-header .toolbar-ios button.bar-button-ios[menuToggle] {
+ion-header .toolbar-ios button.bar-button-menutoggle-ios, ion-header .toolbar-ios button.bar-button-ios[menuToggle] {
+  margin: 0;
   background: rgba(0, 0, 0, 0.1) url(../assets/images/proc/white16.png) no-repeat center center;
 }
 
-ion-header .toolbar-ios button.bar-button-ios.activated {
+ion-header .toolbar-ios button.bar-button-ios.activated, ion-header .toolbar-ios button.bar-button-ios:focus {
   background-color: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+ion-header .toolbar-ios button.bar-button-clear-ios {
+  color: #fff;
+}
+
+ion-header .toolbar-ios button.bar-button-outline-ios {
+  min-width: 54px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
 }
 
 .platform-android.platform-mobile ion-header .toolbar-ios {
@@ -26083,13 +26100,14 @@ ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.se
   height: 54px;
   border: none;
   color: #fff;
+  /*img { display: block; width: auto; height: 16px; margin: 10px auto 0; }*/
 }
 
 ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button img {
   display: block;
   width: auto;
-  height: 16px;
-  margin: 10px auto 0;
+  height: 24px;
+  margin: 8px auto 0;
 }
 
 ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button ion-label.label-ios {
@@ -26105,6 +26123,10 @@ ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios .segment-button:first
 
 ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button.segment-activated {
   background-color: #264e8c;
+}
+
+.ios ion-footer .toolbar:last-child {
+  min-height: 54px;
 }
 
 /*# region *ngIf fade-in */
@@ -26170,28 +26192,6 @@ ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.se
 }
 
 /*#endregion ionic debug*/
-page-abyssea ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button {
-  height: 54px;
-}
-
-page-abyssea ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button img {
-  display: block;
-  width: auto;
-  height: 24px;
-  margin: 4px auto 0;
-}
-
-page-abyssea ion-footer ion-toolbar.toolbar-ios ion-segment.segment-ios ion-segment-button.segment-button ion-label.label-ios {
-  display: block;
-  margin: 0;
-  font-size: 11px;
-  line-height: 22px;
-}
-
-.ios page-abyssea ion-footer .toolbar:last-child {
-  min-height: 54px;
-}
-
 page-home ion-content.content-ios {
   background: #000 url(../assets/images/effects/white.png) no-repeat center center fixed;
   background-size: contain;

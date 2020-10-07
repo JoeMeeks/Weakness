@@ -29,10 +29,6 @@ export class VoidwatchPage {
 		vm = this;
 	}
 
-	private load() {
-
-	}
-
 	//tips = _.debounce(() => {
 	//	//let mv = vm.mo
 	//	vm.modal = vm.mod.create(TipsPage, { seen: vm.seen }, { cssClass: 'tips', enableBackdropDismiss: false });
@@ -54,10 +50,6 @@ export class VoidwatchPage {
 		//load
 		vm.type = vm.params.data.type;
 		vm.title = vm.type.replace(/-/g, ' ');
-	}
-
-	ionViewDidEnter() {
-
 	}
 
 	ionViewWillLeave() {

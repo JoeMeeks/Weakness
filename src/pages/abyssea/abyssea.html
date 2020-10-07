@@ -5,7 +5,7 @@
         </ion-buttons>
         <ion-title>Abyssea {{title}}</ion-title>
         <ion-buttons right>
-            <button ion-button small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>
+            <button ion-button outline small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -64,9 +64,9 @@
 <ion-footer *ngIf="type && type.startsWith('blue')">
     <ion-toolbar>
         <ion-segment [(ngModel)]="type">
-            <ion-segment-button value="blue-piercing"><img src="../assets/images/time/piercing.png" /><span>Piercing</span></ion-segment-button>
-            <ion-segment-button value="blue-slashing"><img src="../assets/images/time/slashing.png" /><span>Slashing</span></ion-segment-button>
-            <ion-segment-button value="blue-blunt"><img src="../assets/images/time/blunt.png" /><span>Blunt</span></ion-segment-button>
+            <ion-segment-button value="blue-piercing" (click)="ui.link('blue-piercing')"><img src="../assets/images/time/piercing.png" /><span>Piercing</span></ion-segment-button>
+            <ion-segment-button value="blue-slashing" (click)="ui.link('blue-slashing')"><img src="../assets/images/time/slashing.png" /><span>Slashing</span></ion-segment-button>
+            <ion-segment-button value="blue-blunt" (click)="ui.link('blue-blunt')"><img src="../assets/images/time/blunt.png" /><span>Blunt</span></ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 </ion-footer>

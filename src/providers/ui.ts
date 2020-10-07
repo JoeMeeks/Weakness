@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { App, Animation, PageTransition, Platform, MenuController, NavControllerBase, NavOptions, Loading, LoadingController, LoadingOptions, AlertController, AlertOptions, ModalController, ModalOptions, Modal, ToastController, ToastOptions } from 'ionic-angular';
+import { App, Animation, Events, PageTransition, Platform, MenuController, NavControllerBase, NavOptions, Loading, LoadingController, LoadingOptions, AlertController, AlertOptions, ModalController, ModalOptions, Modal, ToastController, ToastOptions } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 //import { Pro } from '@ionic/pro';
 import * as _ from 'underscore';
@@ -167,6 +167,7 @@ export class UIService {
     constructor(
         public app: App,
         public platform: Platform,
+        private events: Events,
         private loadingCtrl: LoadingController,
 		private alertCtrl: AlertController,
 		private menuCtrl: MenuController,
@@ -254,6 +255,10 @@ export class UIService {
         }
         //}
     }, 400, true);
+
+    link(type: string) {
+        self.events.publish('link', type);
+    }
 
     //#region ionic deploy update
     private download(progress: number) {

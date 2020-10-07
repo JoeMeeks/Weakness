@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { Events, NavParams } from 'ionic-angular';
 import { FFXIService } from '../../providers/ffxi';
 import { UIService } from '../../providers/ui';
 import * as _ from 'underscore';
@@ -19,18 +19,17 @@ export class DynamisPage {
 
 	type: string;
 	title: string;
-	list: any[] = [];
+	ordelle: any[] = [];
+	tukuku: any[] = [];
+	byne: any[] = [];
 
 	constructor(
+		private events: Events,
 		private params: NavParams,
 		private ffxi: FFXIService,
 		public ui: UIService
 	) {
 		vm = this;
-	}
-
-	private load() {
-
 	}
 
 	//tips = _.debounce(() => {
@@ -50,13 +49,29 @@ export class DynamisPage {
 	//	vm.modal.present();
 	//}, 400, true);
 
+	switch() {
+		let hour:number = vm.ffxi.hour(),
+			time: number = 0;
+		if (hour < 8) {
+			hour = 0;
+		} else if (hour < 16) {
+			time = 8;
+		} else {
+			time = 16;
+		}
+		console.log(hour);
+		
+		vm.ordelle = _.filter(vm.ffxi.dynamis.ordelle, { time: time });
+		vm.tukuku = _.filter(vm.ffxi.dynamis.tukuku, { time: time });
+		vm.byne = _.filter(vm.ffxi.dynamis.byne, { time: time });
+	}
+
 	ionViewWillEnter() {
 		//load
 		vm.type = vm.params.data.type;
-	}
+		vm.switch();
 
-	ionViewDidEnter() {
-
+		vm.events.subscribe('time', vm.switch);
 	}
 
 	ionViewWillLeave() {

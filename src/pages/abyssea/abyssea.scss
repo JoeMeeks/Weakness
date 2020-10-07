@@ -1,15 +1,3 @@
 page-abyssea {
-   ion-footer { 
-       ion-toolbar.toolbar-ios {
-            ion-segment.segment-ios {
-                ion-segment-button.segment-button {
-                    height: 54px;
-                    img { display: block; width: auto; height: 24px; margin: 4px auto 0; }
-
-                    ion-label.label-ios { display: block; margin: 0; font-size: 11px; line-height: 22px; }
-                }
-            }
-        }
-    }
+   
 }
-.ios page-abyssea ion-footer .toolbar:last-child { min-height: 54px; }

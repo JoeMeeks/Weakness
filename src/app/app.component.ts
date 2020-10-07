@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { Events, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FFXIService } from '../providers/ffxi';
@@ -17,6 +17,7 @@ export class MyApp {
 	private json: any = require('../../package.json');
 	version: string;
 	copyright: string;
+	active: string;
 
 	menu: {
 		title: string,
@@ -65,6 +66,7 @@ export class MyApp {
 	];
 
 	constructor(
+		private events: Events,
 		private platform: Platform,
 		private status: StatusBar,
 		private splash: SplashScreen,
@@ -98,7 +100,19 @@ export class MyApp {
 			this.copyright = `&copy; ${new Date().getFullYear()} RARE BEAR SOFTWARE LTD`;
 
 			ui.page = 'home';
+			this.active = 'index';
+			this.events.subscribe('link', val => this.active = val);
 		});
+	}
+
+	link(item: any) {
+		this.active = item.type;
+		this.ui.swap(item.name, { type: item.type }, { animate: false })
+	}
+
+	blur() {
+		let active: any = document.activeElement;
+		if (active && active.blur) active.blur();
 	}
 
 	timer() {

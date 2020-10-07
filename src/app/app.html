@@ -1,4 +1,4 @@
-<ion-menu [content]="content" persistent="true" side="left" type="push">
+<ion-menu [content]="content" persistent="true" side="left" type="push" (ionClose)="blur()">
     <ion-header>
         <ion-toolbar>
             <ion-title>Weakness</ion-title>
@@ -8,7 +8,7 @@
         <ion-list>
             <ng-container *ngFor="let group of menu">
                 <ion-list-header>{{group.title}}</ion-list-header>
-                <button ion-item menuClose *ngFor="let item of group.items" (click)="ui.swap(item.name, { type: item.type }, { animate: false })">
+                <button ion-item menuClose *ngFor="let item of group.items" [ngClass]="{ active: active == item.type }" (click)="link(item)">
                     <img [src]="item.icon" /><span [innerHTML]="item.title"></span>
                 </button>
             </ng-container>

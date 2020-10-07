@@ -3,9 +3,9 @@
         <ion-buttons left>
             <button ion-button icon-only menuToggle></button>
         </ion-buttons>
-        <ion-title>Voidwatach {{title}}</ion-title>
+        <ion-title>Voidwatch {{title}}</ion-title>
         <ion-buttons right>
-            <button ion-button click="timer()">{{ffxi.vanatime}}</button>
+            <button ion-button outline small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -72,30 +72,32 @@
     </ng-container>
 </ion-content>
 <ion-footer>
-    <ion-segment [(ngModel)]="type">
-        <ion-segment-button value="job-ability">
-            <img src="../assets/images/type/JA.png" />
-            <ion-label>Abi</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="black-magic">
-            <img src="../assets/images/type/BLM.png" />
-            <ion-label>BLM</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="white-magic">
-            <img src="../assets/images/type/WHM.png" />
-            <ion-label>WHM</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="ninjutsu">
-            <img src="../assets/images/type/NIN.png" />
-            <ion-label>NIN</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="bard-songs">
-            <img src="../assets/images/type/BRD.png" />
-            <ion-label>BRD</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="blue-magic">
-            <img src="../assets/images/type/BLU.png" />
-            <ion-label>BLU</ion-label>
-        </ion-segment-button>
-    </ion-segment>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="type">
+            <ion-segment-button value="job-ability" (click)="ui.link('job-ability')">
+                <img src="../assets/images/type/JA.png" />
+                <ion-label>Abi</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="black-magic" (click)="ui.link('black-magic')">
+                <img src="../assets/images/type/BLM.png" />
+                <ion-label>BLM</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="white-magic" (click)="ui.link('white-magic')">
+                <img src="../assets/images/type/WHM.png" />
+                <ion-label>WHM</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="ninjutsu" (click)="ui.link('ninjutsu')">
+                <img src="../assets/images/type/NIN.png" />
+                <ion-label>NIN</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="bard-songs" (click)="ui.link('bard-songs')">
+                <img src="../assets/images/type/BRD.png" />
+                <ion-label>BRD</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="blue-magic" (click)="ui.link('blue-magic')">
+                <img src="../assets/images/type/BLU.png" />
+                <ion-label>BLU</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-footer>

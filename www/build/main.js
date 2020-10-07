@@ -105,7 +105,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>FFXI PROC</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button click="timer()">{{ffxi.vanatime}}</button>\n\n        </ion-buttons>\n\n        <!--<span data-role="view-title" data-align="center"></span>-->\n\n        <!--<a data-role="button" data-align="right" data-click-on="down" href="#mvClockSettings" data-rel="modalview" data-bind="class: { active: modal }"><span data-bind="text: vanaTime">4:20</span></a>-->\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-card>\n\n        <ion-card-header>\n\n            <h1>FFXI Weakness Triggers (PROC)</h1>\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n            <p>Notorious Monsters in Abyssea and Voidwatch and all in Dynamis have vulnerabilites that are procedural random occurances, or &ldquo;PROC&rdquo;s.</p>\n\n            <h2>Abyssea Notorious Monsters</h2>\n\n            <ul>\n\n                <li><img src="../assets/images/proc/red24.png" /> Weapon Skills:<br />Atmas and NM key items</li>\n\n                <li><img src="../assets/images/proc/yellow24.png" /> Magic Spells:<br />EX Empyrean armor upgrade items</li>\n\n                <li><img src="../assets/images/proc/blue24.png" /> Weapon Skills:<br />RA/EX weapons and armor</li>\n\n            </ul>\n\n            <h2>Dynamis (# of Time Extensions)</h2>\n\n            <ul>\n\n                <li><img src="../assets/images/proc/blue24.png" /> 3&times; TE:<br />single currency drop slot</li>\n\n                <li><img src="../assets/images/proc/yellow24.png" /> 4&times; TE:<br />additional currency drop slot</li>\n\n                <li><img src="../assets/images/proc/red24.png" /> 5&times; TE:<br />additional 100% drop slot</li>\n\n                <li><img src="../assets/images/proc/white24.png" /> No sub job (CoP areas):<br /> 100% hundred-piece drop slot</li>\n\n            </ul>\n\n            <p>Swipe right and select a category.</p>\n\n        </ion-card-content>\n\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>FFXI PROC</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button clear>{{ffxi.vanatime}}</button>\n\n        </ion-buttons>\n\n        <!--<span data-role="view-title" data-align="center"></span>-->\n\n        <!--<a data-role="button" data-align="right" data-click-on="down" href="#mvClockSettings" data-rel="modalview" data-bind="class: { active: modal }"><span data-bind="text: vanaTime">4:20</span></a>-->\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-card>\n\n        <ion-card-header>\n\n            <h1>FFXI Weakness Triggers (PROC)</h1>\n\n        </ion-card-header>\n\n        <ion-card-content>\n\n            <p>Notorious Monsters in Abyssea and Voidwatch and all in Dynamis have vulnerabilites that are procedural random occurances, or &ldquo;PROC&rdquo;s.</p>\n\n            <h2>Abyssea Notorious Monsters</h2>\n\n            <ul>\n\n                <li><img src="../assets/images/proc/red24.png" /> Weapon Skills:<br />Atmas and NM key items</li>\n\n                <li><img src="../assets/images/proc/yellow24.png" /> Magic Spells:<br />EX Empyrean armor upgrade items</li>\n\n                <li><img src="../assets/images/proc/blue24.png" /> Weapon Skills:<br />RA/EX weapons and armor</li>\n\n            </ul>\n\n            <h2>Dynamis (# of Time Extensions)</h2>\n\n            <ul>\n\n                <li><img src="../assets/images/proc/blue24.png" /> 3&times; TE:<br />single currency drop slot</li>\n\n                <li><img src="../assets/images/proc/yellow24.png" /> 4&times; TE:<br />additional currency drop slot</li>\n\n                <li><img src="../assets/images/proc/red24.png" /> 5&times; TE:<br />additional 100% drop slot</li>\n\n                <li><img src="../assets/images/proc/white24.png" /> No sub job (CoP areas):<br /> 100% hundred-piece drop slot</li>\n\n            </ul>\n\n            <p>Swipe right and select a category.</p>\n\n        </ion-card-content>\n\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_ffxi__["a" /* FFXIService */],
             __WEBPACK_IMPORTED_MODULE_2__providers_ui__["a" /* UIService */]])
@@ -252,8 +252,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MyApp = (function () {
-    function MyApp(platform, status, splash, ffxi, ui, mc) {
+    function MyApp(events, platform, status, splash, ffxi, ui, mc) {
         var _this = this;
+        this.events = events;
         this.platform = platform;
         this.status = status;
         this.splash = splash;
@@ -320,23 +321,30 @@ var MyApp = (function () {
             //this.copyright = `&copy; ${new Date().getFullYear()} ${process.env.npm_package_author}`;
             _this.copyright = "&copy; " + new Date().getFullYear() + " RARE BEAR SOFTWARE LTD";
             ui.page = 'home';
+            _this.active = 'index';
+            _this.events.subscribe('link', function (val) { return _this.active = val; });
         });
     }
+    MyApp.prototype.link = function (item) {
+        this.active = item.type;
+        this.ui.swap(item.name, { type: item.type }, { animate: false });
+    };
+    MyApp.prototype.blur = function () {
+        var active = document.activeElement;
+        if (active && active.blur)
+            active.blur();
+    };
     MyApp.prototype.timer = function () {
         console.debug('show timer modal');
         //this.ui.modal
     };
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\RareBear\Weakness\src\app\app.html"*/'<ion-menu [content]="content" persistent="true" side="left" type="push">\n\n    <ion-header>\n\n        <ion-toolbar>\n\n            <ion-title>Weakness</ion-title>\n\n        </ion-toolbar>\n\n    </ion-header>\n\n    <ion-content>\n\n        <ion-list>\n\n            <ng-container *ngFor="let group of menu">\n\n                <ion-list-header>{{group.title}}</ion-list-header>\n\n                <button ion-item menuClose *ngFor="let item of group.items" (click)="ui.swap(item.name, { type: item.type }, { animate: false })">\n\n                    <img [src]="item.icon" /><span [innerHTML]="item.title"></span>\n\n                </button>\n\n            </ng-container>\n\n        </ion-list>\n\n        <div class="version" [innerHTML]="version"></div>\n\n        <div class="copyright" [innerHTML]="copyright"></div>\n\n    </ion-content>\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"D:\RareBear\Weakness\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\RareBear\Weakness\src\app\app.html"*/'<ion-menu [content]="content" persistent="true" side="left" type="push" (ionClose)="blur()">\n\n    <ion-header>\n\n        <ion-toolbar>\n\n            <ion-title>Weakness</ion-title>\n\n        </ion-toolbar>\n\n    </ion-header>\n\n    <ion-content>\n\n        <ion-list>\n\n            <ng-container *ngFor="let group of menu">\n\n                <ion-list-header>{{group.title}}</ion-list-header>\n\n                <button ion-item menuClose *ngFor="let item of group.items" [ngClass]="{ active: active == item.type }" (click)="link(item)">\n\n                    <img [src]="item.icon" /><span [innerHTML]="item.title"></span>\n\n                </button>\n\n            </ng-container>\n\n        </ion-list>\n\n        <div class="version" [innerHTML]="version"></div>\n\n        <div class="copyright" [innerHTML]="copyright"></div>\n\n    </ion-content>\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"D:\RareBear\Weakness\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_ffxi__["a" /* FFXIService */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_ui__["a" /* UIService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_ffxi__["a" /* FFXIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_ffxi__["a" /* FFXIService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__providers_ui__["a" /* UIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_ui__["a" /* UIService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _g || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -383,10 +391,6 @@ var AbysseaPage = (function () {
         this.list = [];
         vm = this;
     }
-    AbysseaPage.prototype.load = function () {
-    };
-    AbysseaPage.prototype.timer = function () {
-    };
     //tips = _.debounce(() => {
     //	//let mv = vm.mo
     //	vm.modal = vm.mod.create(TipsPage, { seen: vm.seen }, { cssClass: 'tips', enableBackdropDismiss: false });
@@ -408,8 +412,6 @@ var AbysseaPage = (function () {
         vm.type = vm.params.data.type;
         vm.title = vm.type.replace(/-/g, ' ');
     };
-    AbysseaPage.prototype.ionViewDidEnter = function () {
-    };
     AbysseaPage.prototype.ionViewWillLeave = function () {
         //if (window['DeviceOrientationEvent']) {
         //	window.removeEventListener('deviceorientation', vm.tilt);
@@ -417,13 +419,12 @@ var AbysseaPage = (function () {
     };
     AbysseaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-abyssea',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\abyssea\abyssea.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>Abyssea {{title}}</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content [ngSwitch]="type">\n\n    <ng-container *ngSwitchCase="\'red\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.red">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'yellow\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.yellow">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/type/\' + item.type + \'.png\'" /><span [innerHTML]="item.spell"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-piercing\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.blue.piercing">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-slashing\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.blue.slashing">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-blunt\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.blue.blunt">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n</ion-content>\n\n<ion-footer *ngIf="type && type.startsWith(\'blue\')">\n\n    <ion-toolbar>\n\n        <ion-segment [(ngModel)]="type">\n\n            <ion-segment-button value="blue-piercing"><img src="../assets/images/time/piercing.png" /><span>Piercing</span></ion-segment-button>\n\n            <ion-segment-button value="blue-slashing"><img src="../assets/images/time/slashing.png" /><span>Slashing</span></ion-segment-button>\n\n            <ion-segment-button value="blue-blunt"><img src="../assets/images/time/blunt.png" /><span>Blunt</span></ion-segment-button>\n\n        </ion-segment>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\abyssea\abyssea.html"*/
+            selector: 'page-abyssea',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\abyssea\abyssea.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>Abyssea {{title}}</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button outline small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content [ngSwitch]="type">\n\n    <ng-container *ngSwitchCase="\'red\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.red">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'yellow\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.yellow">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/type/\' + item.type + \'.png\'" /><span [innerHTML]="item.spell"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-piercing\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.blue.piercing">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-slashing\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.blue.slashing">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-blunt\'">\n\n        <ion-list *ngFor="let group of ffxi.abyssea.blue.blunt">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <img [src]="\'../assets/images/weapons/\' + item.weapon + \'.png\'" /><span [innerHTML]="item.weaponskill"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n</ion-content>\n\n<ion-footer *ngIf="type && type.startsWith(\'blue\')">\n\n    <ion-toolbar>\n\n        <ion-segment [(ngModel)]="type">\n\n            <ion-segment-button value="blue-piercing" (click)="ui.link(\'blue-piercing\')"><img src="../assets/images/time/piercing.png" /><span>Piercing</span></ion-segment-button>\n\n            <ion-segment-button value="blue-slashing" (click)="ui.link(\'blue-slashing\')"><img src="../assets/images/time/slashing.png" /><span>Slashing</span></ion-segment-button>\n\n            <ion-segment-button value="blue-blunt" (click)="ui.link(\'blue-blunt\')"><img src="../assets/images/time/blunt.png" /><span>Blunt</span></ion-segment-button>\n\n        </ion-segment>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\abyssea\abyssea.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */]) === "function" && _c || Object])
     ], AbysseaPage);
     return AbysseaPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=abyssea.js.map
@@ -439,6 +440,8 @@ var AbysseaPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_ui__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_underscore__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_underscore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_underscore__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -452,19 +455,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var vm;
 var DynamisPage = (function () {
-    function DynamisPage(params, ffxi, ui) {
+    function DynamisPage(events, params, ffxi, ui) {
+        this.events = events;
         this.params = params;
         this.ffxi = ffxi;
         this.ui = ui;
         this.debug = false;
         this.orientation = 0;
-        this.list = [];
+        this.ordelle = [];
+        this.tukuku = [];
+        this.byne = [];
         vm = this;
     }
-    DynamisPage.prototype.load = function () {
-    };
     //tips = _.debounce(() => {
     //	//let mv = vm.mo
     //	vm.modal = vm.mod.create(TipsPage, { seen: vm.seen }, { cssClass: 'tips', enableBackdropDismiss: false });
@@ -481,11 +486,27 @@ var DynamisPage = (function () {
     //	});
     //	vm.modal.present();
     //}, 400, true);
+    DynamisPage.prototype.switch = function () {
+        var hour = vm.ffxi.hour(), time = 0;
+        if (hour < 8) {
+            hour = 0;
+        }
+        else if (hour < 16) {
+            time = 8;
+        }
+        else {
+            time = 16;
+        }
+        console.log(hour);
+        vm.ordelle = __WEBPACK_IMPORTED_MODULE_4_underscore__["filter"](vm.ffxi.dynamis.ordelle, { time: time });
+        vm.tukuku = __WEBPACK_IMPORTED_MODULE_4_underscore__["filter"](vm.ffxi.dynamis.tukuku, { time: time });
+        vm.byne = __WEBPACK_IMPORTED_MODULE_4_underscore__["filter"](vm.ffxi.dynamis.byne, { time: time });
+    };
     DynamisPage.prototype.ionViewWillEnter = function () {
         //load
         vm.type = vm.params.data.type;
-    };
-    DynamisPage.prototype.ionViewDidEnter = function () {
+        vm.switch();
+        vm.events.subscribe('time', vm.switch);
     };
     DynamisPage.prototype.ionViewWillLeave = function () {
         //if (window['DeviceOrientationEvent']) {
@@ -494,13 +515,12 @@ var DynamisPage = (function () {
     };
     DynamisPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-dynamis',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\dynamis\dynamis.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>Dynamis {{title}}</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button click="timer()">{{ffxi.vanatime}}</button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content [ngSwitch]="type">\n\n    <ng-container *ngSwitchCase="\'beastmen\'">\n\n        <ion-list *ngFor="let group of ffxi.dynamis.beastmen">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'ordelle\'">\n\n        <ion-list *ngFor="let group of ffxi.dynamis.ordelle">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item.zone"></span><ion-note item-end>{{item.mob}}</ion-note>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'tukuku\'">\n\n        <ion-list *ngFor="let group of ffxi.dynamis.tukuku">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item.zone"></span><ion-note item-end>{{item.mob}}</ion-note>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'byne\'">\n\n        <ion-list *ngFor="let group of ffxi.dynamis.byne">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item.zone"></span><ion-note item-end>{{item.mob}}</ion-note>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n</ion-content>\n\n<ion-footer>\n\n    <ion-segment [(ngModel)]="type">\n\n        <ion-segment-button value="beastmen">\n\n            <img src="../assets/images/type/beastmen.png" />\n\n            <ion-label>Beastmen</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="ordelle">\n\n            <img src="../assets/images/currency/ordelle.png" />\n\n            <ion-label>O. Bronzepiece</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="tukuku">\n\n            <img src="../assets/images/currency/tukuku.png" />\n\n            <ion-label>T. Whiteshell</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="byne">\n\n            <img src="../assets/images/currency/byne.png" />\n\n            <ion-label>1 Byne Bill</ion-label>\n\n        </ion-segment-button>\n\n    </ion-segment>\n\n</ion-footer>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\dynamis\dynamis.html"*/
+            selector: 'page-dynamis',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\dynamis\dynamis.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>Dynamis {{title}}</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button outline small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content [ngSwitch]="type">\n\n    <ng-container *ngSwitchCase="\'beastmen\'">\n\n        <ion-list *ngFor="let group of ffxi.dynamis.beastmen">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'ordelle\'">\n\n        <ion-list *ngFor="let group of ordelle">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item.mob"></span><ion-note item-end>{{item.zone}}</ion-note>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'tukuku\'">\n\n        <ion-list *ngFor="let group of tukuku">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item.mob"></span><ion-note item-end>{{item.zone}}</ion-note>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'byne\'">\n\n        <ion-list *ngFor="let group of byne">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item.mob"></span><ion-note item-end>{{item.zone}}</ion-note>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n</ion-content>\n\n<ion-footer>\n\n    <ion-toolbar>\n\n        <ion-segment [(ngModel)]="type">\n\n            <ion-segment-button value="beastmen" (click)="ui.link(\'beastmen\')">\n\n                <img src="../assets/images/type/beastmen.png" />\n\n                <ion-label>Beastmen</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="ordelle" (click)="ui.link(\'ordelle\')">\n\n                <img src="../assets/images/currency/ordelle.png" />\n\n                <ion-label>O. Bronzepiece</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="tukuku" (click)="ui.link(\'tukuku\')">\n\n                <img src="../assets/images/currency/tukuku.png" />\n\n                <ion-label>T. Whiteshell</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="byne" (click)="ui.link(\'byne\')">\n\n                <img src="../assets/images/currency/byne.png" />\n\n                <ion-label>1 Byne Bill</ion-label>\n\n            </ion-segment-button>\n\n        </ion-segment>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\dynamis\dynamis.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */]) === "function" && _d || Object])
     ], DynamisPage);
     return DynamisPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=dynamis.js.map
@@ -540,8 +560,6 @@ var VoidwatchPage = (function () {
         this.list = [];
         vm = this;
     }
-    VoidwatchPage.prototype.load = function () {
-    };
     //tips = _.debounce(() => {
     //	//let mv = vm.mo
     //	vm.modal = vm.mod.create(TipsPage, { seen: vm.seen }, { cssClass: 'tips', enableBackdropDismiss: false });
@@ -563,8 +581,6 @@ var VoidwatchPage = (function () {
         vm.type = vm.params.data.type;
         vm.title = vm.type.replace(/-/g, ' ');
     };
-    VoidwatchPage.prototype.ionViewDidEnter = function () {
-    };
     VoidwatchPage.prototype.ionViewWillLeave = function () {
         //if (window['DeviceOrientationEvent']) {
         //	window.removeEventListener('deviceorientation', vm.tilt);
@@ -572,13 +588,12 @@ var VoidwatchPage = (function () {
     };
     VoidwatchPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-voidwatch',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\voidwatch\voidwatch.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>Voidwatach {{title}}</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button click="timer()">{{ffxi.vanatime}}</button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content [ngSwitch]="type">\n\n    <ng-container *ngSwitchCase="\'job-ability\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.jobAbility">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'black-magic\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.blackMagic">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'white-magic\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.whiteMagic">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'ninjutsu\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.ninjutsu">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'bard-songs\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.bardSongs">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-magic\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.blueMagic">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n</ion-content>\n\n<ion-footer>\n\n    <ion-segment [(ngModel)]="type">\n\n        <ion-segment-button value="job-ability">\n\n            <img src="../assets/images/type/JA.png" />\n\n            <ion-label>Abi</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="black-magic">\n\n            <img src="../assets/images/type/BLM.png" />\n\n            <ion-label>BLM</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="white-magic">\n\n            <img src="../assets/images/type/WHM.png" />\n\n            <ion-label>WHM</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="ninjutsu">\n\n            <img src="../assets/images/type/NIN.png" />\n\n            <ion-label>NIN</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="bard-songs">\n\n            <img src="../assets/images/type/BRD.png" />\n\n            <ion-label>BRD</ion-label>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="blue-magic">\n\n            <img src="../assets/images/type/BLU.png" />\n\n            <ion-label>BLU</ion-label>\n\n        </ion-segment-button>\n\n    </ion-segment>\n\n</ion-footer>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\voidwatch\voidwatch.html"*/
+            selector: 'page-voidwatch',template:/*ion-inline-start:"D:\RareBear\Weakness\src\pages\voidwatch\voidwatch.html"*/'<ion-header>\n\n    <ion-navbar [hideBackButton]="true">\n\n        <ion-buttons left>\n\n            <button ion-button icon-only menuToggle></button>\n\n        </ion-buttons>\n\n        <ion-title>Voidwatch {{title}}</ion-title>\n\n        <ion-buttons right>\n\n            <button ion-button outline small (click)="timer()" [innerHTML]="ffxi.vanatime"></button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content [ngSwitch]="type">\n\n    <ng-container *ngSwitchCase="\'job-ability\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.jobAbility">\n\n            <ion-list-header>\n\n                <span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'black-magic\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.blackMagic">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'white-magic\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.whiteMagic">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'ninjutsu\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.ninjutsu">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'bard-songs\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.bardSongs">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n    <ng-container *ngSwitchCase="\'blue-magic\'">\n\n        <ion-list *ngFor="let group of ffxi.voidwatch.blueMagic">\n\n            <ion-list-header>\n\n                <img [src]="\'../assets/images/elements/\' + group.title + \'.png\'" /><span [innerHTML]="group.title"></span>\n\n            </ion-list-header>\n\n            <ion-item *ngFor="let item of group.items">\n\n                <span [innerHTML]="item"></span>\n\n            </ion-item>\n\n        </ion-list>\n\n    </ng-container>\n\n</ion-content>\n\n<ion-footer>\n\n    <ion-toolbar>\n\n        <ion-segment [(ngModel)]="type">\n\n            <ion-segment-button value="job-ability" (click)="ui.link(\'job-ability\')">\n\n                <img src="../assets/images/type/JA.png" />\n\n                <ion-label>Abi</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="black-magic" (click)="ui.link(\'black-magic\')">\n\n                <img src="../assets/images/type/BLM.png" />\n\n                <ion-label>BLM</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="white-magic" (click)="ui.link(\'white-magic\')">\n\n                <img src="../assets/images/type/WHM.png" />\n\n                <ion-label>WHM</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="ninjutsu" (click)="ui.link(\'ninjutsu\')">\n\n                <img src="../assets/images/type/NIN.png" />\n\n                <ion-label>NIN</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="bard-songs" (click)="ui.link(\'bard-songs\')">\n\n                <img src="../assets/images/type/BRD.png" />\n\n                <ion-label>BRD</ion-label>\n\n            </ion-segment-button>\n\n            <ion-segment-button value="blue-magic" (click)="ui.link(\'blue-magic\')">\n\n                <img src="../assets/images/type/BLU.png" />\n\n                <ion-label>BLU</ion-label>\n\n            </ion-segment-button>\n\n        </ion-segment>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\RareBear\Weakness\src\pages\voidwatch\voidwatch.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_ffxi__["a" /* FFXIService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_ui__["a" /* UIService */]) === "function" && _c || Object])
     ], VoidwatchPage);
     return VoidwatchPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=voidwatch.js.map
@@ -593,6 +608,8 @@ var VoidwatchPage = (function () {
 /* unused harmony export VanaDate */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_underscore__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_underscore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_underscore__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -602,6 +619,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var self;
@@ -900,16 +918,6 @@ var FFXIService = (function () {
         this.dynamis = {
             beastmen: [
                 {
-                    title: "Weaponskill",
-                    items: [
-                        "DRG",
-                        "DRK",
-                        "PLD",
-                        "SAM",
-                        "WAR"
-                    ]
-                },
-                {
                     title: "Job Ability",
                     items: [
                         "BST",
@@ -928,12 +936,22 @@ var FFXIService = (function () {
                         "SMN",
                         "WHM"
                     ]
+                },
+                {
+                    title: "Weaponskill",
+                    items: [
+                        "DRG",
+                        "DRK",
+                        "PLD",
+                        "SAM",
+                        "WAR"
+                    ]
                 }
             ],
             ordelle: [
                 {
                     time: 0,
-                    title: "Magic Spell",
+                    title: "0:00&ndash;7:59 Magic Spell",
                     items: [
                         { zone: "Buburimu", mob: "Bunny" },
                         { zone: "Buburimu", mob: "Eft" },
@@ -950,7 +968,7 @@ var FFXIService = (function () {
                 },
                 {
                     time: 8,
-                    title: "Job Ability",
+                    title: "8:00&ndash;15:59 Job Ability",
                     items: [
                         { zone: "Buburimu", mob: "Bunny" },
                         { zone: "Buburimu", mob: "Eft" },
@@ -967,7 +985,7 @@ var FFXIService = (function () {
                 },
                 {
                     time: 16,
-                    title: "Weaponskill",
+                    title: "16:00&ndash;23:59 Weaponskill",
                     items: [
                         { zone: "Buburimu", mob: "Bunny" },
                         { zone: "Buburimu", mob: "Eft" },
@@ -986,7 +1004,7 @@ var FFXIService = (function () {
             tukuku: [
                 {
                     time: 0,
-                    title: "Weaponskill",
+                    title: "0:00&ndash;7:59 Weaponskill",
                     items: [
                         { zone: "Buburimu", mob: "Crab" },
                         { zone: "Buburimu", mob: "Dhamel" },
@@ -1003,7 +1021,7 @@ var FFXIService = (function () {
                 },
                 {
                     time: 8,
-                    title: "Magic Spell",
+                    title: "8:00&ndash;15:59 Magic Spell",
                     items: [
                         { zone: "Buburimu", mob: "Crab" },
                         { zone: "Buburimu", mob: "Dhamel" },
@@ -1020,7 +1038,7 @@ var FFXIService = (function () {
                 },
                 {
                     time: 16,
-                    title: "Job Ability",
+                    title: "16:00&ndash;23:59 Job Ability",
                     items: [
                         { zone: "Buburimu", mob: "Crab" },
                         { zone: "Buburimu", mob: "Dhamel" },
@@ -1039,7 +1057,7 @@ var FFXIService = (function () {
             byne: [
                 {
                     time: 0,
-                    title: "Job Ability",
+                    title: "0:00&ndash;7:59 Job Ability",
                     items: [
                         { zone: "Buburimu", mob: "Crawler" },
                         { zone: "Buburimu", mob: "Raven" },
@@ -1056,7 +1074,7 @@ var FFXIService = (function () {
                 },
                 {
                     time: 8,
-                    title: "Weaponskill",
+                    title: "8:00&ndash;15:59 Weaponskill",
                     items: [
                         { zone: "Buburimu", mob: "Crawler" },
                         { zone: "Buburimu", mob: "Raven" },
@@ -1073,7 +1091,7 @@ var FFXIService = (function () {
                 },
                 {
                     time: 16,
-                    title: "Magic Spell",
+                    title: "16:00&ndash;23:59 Magic Spell",
                     items: [
                         { zone: "Buburimu", mob: "Crawler" },
                         { zone: "Buburimu", mob: "Raven" },
@@ -1189,12 +1207,6 @@ var FFXIService = (function () {
             ],
             blackMagic: [
                 {
-                    title: "light",
-                    items: [
-                        "Luminohelix"
-                    ]
-                },
-                {
                     title: "darkness",
                     items: [
                         "Noctohelix",
@@ -1214,6 +1226,21 @@ var FFXIService = (function () {
                         "Blind",
                         "Dispel",
                         "Bio II"
+                    ]
+                },
+                {
+                    title: "earth",
+                    items: [
+                        "Geohelix",
+                        "Stone II",
+                        "Stone III",
+                        "Stone IV",
+                        "Stonega",
+                        "Stonega II",
+                        "Stonega III",
+                        "Stoneja",
+                        "Quake",
+                        "Rasp"
                     ]
                 },
                 {
@@ -1247,33 +1274,9 @@ var FFXIService = (function () {
                     ]
                 },
                 {
-                    title: "wind",
+                    title: "light",
                     items: [
-                        "Anemohelix",
-                        "Aero II",
-                        "Aero III",
-                        "Aero IV",
-                        "Aeroga",
-                        "Aeroga II",
-                        "Aeroga II",
-                        "Aeroja",
-                        "Tornado",
-                        "Choke"
-                    ]
-                },
-                {
-                    title: "earth",
-                    items: [
-                        "Geohelix",
-                        "Stone II",
-                        "Stone III",
-                        "Stone IV",
-                        "Stonega",
-                        "Stonega II",
-                        "Stonega III",
-                        "Stoneja",
-                        "Quake",
-                        "Rasp"
+                        "Luminohelix"
                     ]
                 },
                 {
@@ -1309,20 +1312,28 @@ var FFXIService = (function () {
                         "Poison II",
                         "Poisonga"
                     ]
+                },
+                {
+                    title: "wind",
+                    items: [
+                        "Anemohelix",
+                        "Aero II",
+                        "Aero III",
+                        "Aero IV",
+                        "Aeroga",
+                        "Aeroga II",
+                        "Aeroga II",
+                        "Aeroja",
+                        "Tornado",
+                        "Choke"
+                    ]
                 }
             ],
             whiteMagic: [
                 {
-                    title: "light",
+                    title: "earth",
                     items: [
-                        "Banish II",
-                        "Banish III",
-                        "Banishga",
-                        "Banishga II",
-                        "Holy",
-                        "Flash",
-                        "Dia II",
-                        "Diaga"
+                        "Slow"
                     ]
                 },
                 {
@@ -1338,9 +1349,16 @@ var FFXIService = (function () {
                     ]
                 },
                 {
-                    title: "earth",
+                    title: "light",
                     items: [
-                        "Slow"
+                        "Banish II",
+                        "Banish III",
+                        "Banishga",
+                        "Banishga II",
+                        "Holy",
+                        "Flash",
+                        "Dia II",
+                        "Diaga"
                     ]
                 }
             ],
@@ -1351,6 +1369,15 @@ var FFXIService = (function () {
                         "Kurayami: Ichi",
                         "Kurayami: Ni",
                         "Yurin: Ichi"
+                    ]
+                },
+                {
+                    title: "earth",
+                    items: [
+                        "Doton: Ichi",
+                        "Doton: Ni",
+                        "Hojo: Ichi",
+                        "Hojo: Ni"
                     ]
                 },
                 {
@@ -1369,22 +1396,6 @@ var FFXIService = (function () {
                     ]
                 },
                 {
-                    title: "wind",
-                    items: [
-                        "Huton: Ichi",
-                        "Huton: Ni"
-                    ]
-                },
-                {
-                    title: "earth",
-                    items: [
-                        "Doton: Ichi",
-                        "Doton: Ni",
-                        "Hojo: Ichi",
-                        "Hojo: Ni"
-                    ]
-                },
-                {
                     title: "lightning",
                     items: [
                         "Raiton: Ichi",
@@ -1399,20 +1410,28 @@ var FFXIService = (function () {
                         "Dokumori: Ichi",
                         "Aisha: Ichi"
                     ]
+                },
+                {
+                    title: "wind",
+                    items: [
+                        "Huton: Ichi",
+                        "Huton: Ni"
+                    ]
                 }
             ],
             bardSongs: [
                 {
-                    title: "light",
-                    items: [
-                        "Dark Threnody",
-                        "Magic Finale"
-                    ]
-                },
-                {
                     title: "darkness",
                     items: [
                         "Light Threnody"
+                    ]
+                },
+                {
+                    title: "earth",
+                    items: [
+                        "Lightning Threnody",
+                        "Battlefield Elegy",
+                        "Carnage Elegy"
                     ]
                 },
                 {
@@ -1423,17 +1442,10 @@ var FFXIService = (function () {
                     ]
                 },
                 {
-                    title: "wind",
+                    title: "light",
                     items: [
-                        "Earth Threnody"
-                    ]
-                },
-                {
-                    title: "earth",
-                    items: [
-                        "Lightning Threnody",
-                        "Battlefield Elegy",
-                        "Carnage Elegy"
+                        "Dark Threnody",
+                        "Magic Finale"
                     ]
                 },
                 {
@@ -1447,24 +1459,30 @@ var FFXIService = (function () {
                     items: [
                         "Fire Threnody"
                     ]
+                },
+                {
+                    title: "wind",
+                    items: [
+                        "Earth Threnody"
+                    ]
                 }
             ],
             blueMagic: [
-                {
-                    title: "light",
-                    items: [
-                        "Actinic Burst",
-                        "Blank Gaze",
-                        "Light of Pennance",
-                        "Radiant Breath"
-                    ]
-                },
                 {
                     title: "darkness",
                     items: [
                         "Death Ray",
                         "Eyes On Me",
                         "Sandspray"
+                    ]
+                },
+                {
+                    title: "earth",
+                    items: [
+                        "Bad Breath",
+                        "Cimicine Discharge",
+                        "Magnetite Cloud",
+                        "Sandspin"
                     ]
                 },
                 {
@@ -1486,21 +1504,12 @@ var FFXIService = (function () {
                     ]
                 },
                 {
-                    title: "wind",
+                    title: "light",
                     items: [
-                        "Hetacomb Wave",
-                        "Leafstorm",
-                        "Mysterious Light",
-                        "Reaving Wind"
-                    ]
-                },
-                {
-                    title: "earth",
-                    items: [
-                        "Bad Breath",
-                        "Cimicine Discharge",
-                        "Magnetite Cloud",
-                        "Sandspin"
+                        "Actinic Burst",
+                        "Blank Gaze",
+                        "Light of Pennance",
+                        "Radiant Breath"
                     ]
                 },
                 {
@@ -1521,9 +1530,21 @@ var FFXIService = (function () {
                         "Maelstrom",
                         "Awful Eye"
                     ]
+                },
+                {
+                    title: "wind",
+                    items: [
+                        "Hetacomb Wave",
+                        "Leafstorm",
+                        "Mysterious Light",
+                        "Reaving Wind"
+                    ]
                 }
             ]
         };
+        this.publish = __WEBPACK_IMPORTED_MODULE_2_underscore__["debounce"](function (time) {
+            self.events.publish('time', time);
+        }, 5000, true);
         self = this;
         // Create an FFXI object and put VanaDate class in the global scope
         //window.FFXI = new FFXI(window);
@@ -1532,16 +1553,13 @@ var FFXIService = (function () {
     }
     FFXIService.prototype.update = function () {
         try {
-            var now = new VanaDate(), hour = now.hour, minute = now.minute < 10 ? "0" + now.minute : now.minute, vt = hour + ":" + minute;
-            //console.debug('now:');
-            //console.log(self.vanadate.time);
-            console.log("update: " + vt);
-            //console.log(now);
-            //var dateTimeString = "{0}/{1}/{2} {3}:{4}.{5}".format(now.year, now.month, now.day, now.hour, now.minute, now.second);
+            var now = new VanaDate(), hour = now.hour, minute = now.minute < 10 ? '0' + now.minute : now.minute, vt = hour + ":" + minute;
+            //console.log(`update: ${vt}`);
+            //var dateTimeString = `${now.year}/${now.month}/${now.day} ${now.hour}:${now.minute}.${now.second}`;
             self.vanatime = vt;
             //filter dynamis triggers
-            if (vt == "0:00" || vt == "8:00" || vt == "16:00") {
-                self.events.publish('time', vt);
+            if (vt == '0:00' || vt == '8:00' || vt == '16:00') {
+                self.publish(vt);
             }
         }
         catch (ex) {
@@ -1564,12 +1582,15 @@ var FFXIService = (function () {
             //self.vanadate.start();
             //self.vanadate = new VanaDate();
             //console.log(self.vanadate);
-            self.timer = setInterval(self.update, 1000, true);
+            self.timer = setInterval(self.update, 500, true);
         }
         catch (ex) {
             console.log(ex.mesage);
             self.clear();
         }
+    };
+    FFXIService.prototype.hour = function () {
+        return new VanaDate().hour;
     };
     FFXIService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -1590,7 +1611,7 @@ var VanaDate = (function () {
         // Constants
         // Earth time : 2002/06/23 16:00 GMT
         // Vana'diel time : 0898/02/01 00:00
-        this.VANA_BIRTH = new Date();
+        this.VANA_BIRTH = new Date(Date.UTC(2002, 5, 23, 15, 0, 0));
         this.VANA_SECS_SINCE_YEAR_0 = (((898 * 360) + 30) * 24 * 60 * 60);
         this.EARTH_TIME_YEAR_0 = new Date(this.VANA_BIRTH.getTime() - ((this.VANA_SECS_SINCE_YEAR_0 * 1000) / 25));
         this.VANA_SECS_PER_YEAR = 360 * 24 * 60 * 60; // 360 days per year
@@ -1605,25 +1626,23 @@ var VanaDate = (function () {
         //console.log(date);
         var eTime, vTime;
         if (date && typeof date == 'number') {
-            console.log("date number: " + date);
+            //console.log(`date number: ${date}`);
             vTime = Math.round(date);
             eTime = new Date(this.EARTH_TIME_YEAR_0.getTime() + Math.round(vTime * 1000 / 25));
         }
         else {
             if (date && date instanceof Date) {
-                console.log("date object: " + date);
+                //console.log(`date object: ${date}`);
                 eTime = date;
             }
             else {
-                console.log("date null");
+                //console.log(`date null`);
                 eTime = new Date();
             }
             var eMilliSinceVanaEpoch = eTime.getTime() - this.EARTH_TIME_YEAR_0.getTime();
             vTime = Math.round(eMilliSinceVanaEpoch / 1000 * 25);
         }
         //console.log(vTime, eTime);
-        console.log(eTime.getTime());
-        //console.log(vTime);
         // Calculate the individual parts of the date
         this.earthDate = eTime;
         this.time = vTime; // number of vana'diel seconds since midnight 0000/01/01
@@ -1750,9 +1769,10 @@ var UIService = (function () {
     //public viewDidEnter = null;
     //public options;
     //public tabBarElement: any;
-    function UIService(app, platform, loadingCtrl, alertCtrl, menuCtrl, modalCtrl, toastCtrl, transitions) {
+    function UIService(app, platform, events, loadingCtrl, alertCtrl, menuCtrl, modalCtrl, toastCtrl, transitions) {
         this.app = app;
         this.platform = platform;
+        this.events = events;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
         this.menuCtrl = menuCtrl;
@@ -1979,6 +1999,9 @@ var UIService = (function () {
         });
         self.menu = menuCtrl;
     }
+    UIService.prototype.link = function (type) {
+        self.events.publish('link', type);
+    };
     //#region ionic deploy update
     UIService.prototype.download = function (progress) {
         //console.log(progress);
@@ -1996,16 +2019,10 @@ var UIService = (function () {
     };
     UIService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_page_transitions__["a" /* NativePageTransitions */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_page_transitions__["a" /* NativePageTransitions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_page_transitions__["a" /* NativePageTransitions */]) === "function" && _j || Object])
     ], UIService);
     return UIService;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 var PageFlip = (function (_super) {

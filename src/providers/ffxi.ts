@@ -315,16 +315,6 @@ export class FFXIService {
 	} = {
 		beastmen: [
 			{
-				title: "Weaponskill",
-				items: [
-					"DRG",
-					"DRK",
-					"PLD",
-					"SAM",
-					"WAR"
-				]
-			},
-			{
 				title: "Job Ability",
 				items: [
 					"BST",
@@ -343,12 +333,22 @@ export class FFXIService {
 					"SMN",
 					"WHM"
 				]
+			},
+			{
+				title: "Weaponskill",
+				items: [
+					"DRG",
+					"DRK",
+					"PLD",
+					"SAM",
+					"WAR"
+				]
 			}
 		],
 		ordelle: [
 			{
 				time: 0,
-				title: "Magic Spell",
+				title: "0:00&ndash;7:59 Magic Spell",
 				items: [
 					{ zone: "Buburimu", mob: "Bunny" },
 					{ zone: "Buburimu", mob: "Eft"},
@@ -365,7 +365,7 @@ export class FFXIService {
 			},
 			{
 				time: 8,
-				title: "Job Ability",
+				title: "8:00&ndash;15:59 Job Ability",
 				items: [
 					{ zone: "Buburimu", mob: "Bunny" },
 					{ zone: "Buburimu", mob: "Eft" },
@@ -382,7 +382,7 @@ export class FFXIService {
 			},
 			{
 				time: 16,
-				title: "Weaponskill",
+				title: "16:00&ndash;23:59 Weaponskill",
 				items: [
 					{ zone: "Buburimu", mob: "Bunny" },
 					{ zone: "Buburimu", mob: "Eft" },
@@ -401,7 +401,7 @@ export class FFXIService {
 		tukuku: [
 			{
 				time: 0,
-				title: "Weaponskill",
+				title: "0:00&ndash;7:59 Weaponskill",
 				items: [
 					{ zone: "Buburimu", mob: "Crab" },
 					{ zone: "Buburimu", mob: "Dhamel" },
@@ -418,7 +418,7 @@ export class FFXIService {
 			},
 			{
 				time: 8,
-				title: "Magic Spell",
+				title: "8:00&ndash;15:59 Magic Spell",
 				items: [
 					{ zone: "Buburimu", mob: "Crab" },
 					{ zone: "Buburimu", mob: "Dhamel" },
@@ -435,7 +435,7 @@ export class FFXIService {
 			},
 			{
 				time: 16,
-				title: "Job Ability",
+				title: "16:00&ndash;23:59 Job Ability",
 				items: [
 					{ zone: "Buburimu", mob: "Crab" },
 					{ zone: "Buburimu", mob: "Dhamel" },
@@ -454,7 +454,7 @@ export class FFXIService {
 		byne: [
 			{
 				time: 0,
-				title: "Job Ability",
+				title: "0:00&ndash;7:59 Job Ability",
 				items: [
 					{ zone: "Buburimu", mob: "Crawler" },
 					{ zone: "Buburimu", mob: "Raven" },
@@ -471,7 +471,7 @@ export class FFXIService {
 			},
 			{
 				time: 8,
-				title: "Weaponskill",
+				title: "8:00&ndash;15:59 Weaponskill",
 				items: [
 					{ zone: "Buburimu", mob: "Crawler" },
 					{ zone: "Buburimu", mob: "Raven" },
@@ -488,7 +488,7 @@ export class FFXIService {
 			},
 			{
 				time: 16,
-				title: "Magic Spell",
+				title: "16:00&ndash;23:59 Magic Spell",
 				items: [
 					{ zone: "Buburimu", mob: "Crawler" },
 					{ zone: "Buburimu", mob: "Raven" },
@@ -612,12 +612,6 @@ export class FFXIService {
 		],
 		blackMagic: [
 			{
-				title: "light",
-				items: [
-					"Luminohelix"
-				]
-			},
-			{
 				title: "darkness",
 				items: [
 					"Noctohelix",
@@ -637,6 +631,21 @@ export class FFXIService {
 					"Blind",
 					"Dispel",
 					"Bio II"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Geohelix",
+					"Stone II",
+					"Stone III",
+					"Stone IV",
+					"Stonega",
+					"Stonega II",
+					"Stonega III",
+					"Stoneja",
+					"Quake",
+					"Rasp"
 				]
 			},
 			{
@@ -670,33 +679,9 @@ export class FFXIService {
 				]
 			},
 			{
-				title: "wind",
+				title: "light",
 				items: [
-					"Anemohelix",
-					"Aero II",
-					"Aero III",
-					"Aero IV",
-					"Aeroga",
-					"Aeroga II",
-					"Aeroga II",
-					"Aeroja",
-					"Tornado",
-					"Choke"
-				]
-			},
-			{
-				title: "earth",
-				items: [
-					"Geohelix",
-					"Stone II",
-					"Stone III",
-					"Stone IV",
-					"Stonega",
-					"Stonega II",
-					"Stonega III",
-					"Stoneja",
-					"Quake",
-					"Rasp"
+					"Luminohelix"
 				]
 			},
 			{
@@ -732,20 +717,28 @@ export class FFXIService {
 					"Poison II",
 					"Poisonga"
 				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Anemohelix",
+					"Aero II",
+					"Aero III",
+					"Aero IV",
+					"Aeroga",
+					"Aeroga II",
+					"Aeroga II",
+					"Aeroja",
+					"Tornado",
+					"Choke"
+				]
 			}
 		],
 		whiteMagic: [
 			{
-				title: "light",
+				title: "earth",
 				items: [
-					"Banish II",
-					"Banish III",
-					"Banishga",
-					"Banishga II",
-					"Holy",
-					"Flash",
-					"Dia II",
-					"Diaga"
+					"Slow"
 				]
 			},
 			{
@@ -761,9 +754,16 @@ export class FFXIService {
 				]
 			},
 			{
-				title: "earth",
+				title: "light",
 				items: [
-					"Slow"
+					"Banish II",
+					"Banish III",
+					"Banishga",
+					"Banishga II",
+					"Holy",
+					"Flash",
+					"Dia II",
+					"Diaga"
 				]
 			}
 		],
@@ -774,6 +774,15 @@ export class FFXIService {
 					"Kurayami: Ichi",
 					"Kurayami: Ni",
 					"Yurin: Ichi"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Doton: Ichi",
+					"Doton: Ni",
+					"Hojo: Ichi",
+					"Hojo: Ni"
 				]
 			},
 			{
@@ -792,22 +801,6 @@ export class FFXIService {
 				]
 			},
 			{
-				title: "wind",
-				items: [
-					"Huton: Ichi",
-					"Huton: Ni"
-				]
-			},
-			{
-				title: "earth",
-				items: [
-					"Doton: Ichi",
-					"Doton: Ni",
-					"Hojo: Ichi",
-					"Hojo: Ni"
-				]
-			},
-			{
 				title: "lightning",
 				items: [
 					"Raiton: Ichi",
@@ -822,20 +815,28 @@ export class FFXIService {
 					"Dokumori: Ichi",
 					"Aisha: Ichi"
 				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Huton: Ichi",
+					"Huton: Ni"
+				]
 			}
 		],
 		bardSongs: [
 			{
-				title: "light",
-				items: [
-					"Dark Threnody",
-					"Magic Finale"
-				]
-			},
-			{
 				title: "darkness",
 				items: [
 					"Light Threnody"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Lightning Threnody",
+					"Battlefield Elegy",
+					"Carnage Elegy"
 				]
 			},
 			{
@@ -846,17 +847,10 @@ export class FFXIService {
 				]
 			},
 			{
-				title: "wind",
+				title: "light",
 				items: [
-					"Earth Threnody"
-				]
-			},
-			{
-				title: "earth",
-				items: [
-					"Lightning Threnody",
-					"Battlefield Elegy",
-					"Carnage Elegy"
+					"Dark Threnody",
+					"Magic Finale"
 				]
 			},
 			{
@@ -870,24 +864,30 @@ export class FFXIService {
 				items: [
 					"Fire Threnody"
 				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Earth Threnody"
+				]
 			}
 		],
 		blueMagic: [
-			{
-				title: "light",
-				items: [
-					"Actinic Burst",
-					"Blank Gaze",
-					"Light of Pennance",
-					"Radiant Breath"
-				]
-			},
 			{
 				title: "darkness",
 				items: [
 					"Death Ray",
 					"Eyes On Me",
 					"Sandspray"
+				]
+			},
+			{
+				title: "earth",
+				items: [
+					"Bad Breath",
+					"Cimicine Discharge",
+					"Magnetite Cloud",
+					"Sandspin"
 				]
 			},
 			{
@@ -909,21 +909,12 @@ export class FFXIService {
 				]
 			},
 			{
-				title: "wind",
+				title: "light",
 				items: [
-					"Hetacomb Wave",
-					"Leafstorm",
-					"Mysterious Light",
-					"Reaving Wind"
-				]
-			},
-			{
-				title: "earth",
-				items: [
-					"Bad Breath",
-					"Cimicine Discharge",
-					"Magnetite Cloud",
-					"Sandspin"
+					"Actinic Burst",
+					"Blank Gaze",
+					"Light of Pennance",
+					"Radiant Breath"
 				]
 			},
 			{
@@ -944,9 +935,18 @@ export class FFXIService {
 					"Maelstrom",
 					"Awful Eye"
 				]
+			},
+			{
+				title: "wind",
+				items: [
+					"Hetacomb Wave",
+					"Leafstorm",
+					"Mysterious Light",
+					"Reaving Wind"
+				]
 			}
 		]
-		};
+	};
 
 	vanatime: string;
 	timer: any;
@@ -959,45 +959,50 @@ export class FFXIService {
 		self.reset();
 	}
 
-	update() {
+	private publish = _.debounce((time: string): void => {
+		self.events.publish('time', time);
+	}, 5000, true);
+
+	update(): void {
 		try {
 			let now = new VanaDate(),
 				hour = now.hour,
-				minute = now.minute < 10 ? "0" + now.minute : now.minute,
+				minute = now.minute < 10 ? '0' + now.minute : now.minute,
 				vt = `${hour}:${minute}`;
-			//console.debug('now:');
-			//console.log(self.vanadate.time);
-			console.log(`update: ${vt}`);
-			//console.log(now);
-			//var dateTimeString = "{0}/{1}/{2} {3}:{4}.{5}".format(now.year, now.month, now.day, now.hour, now.minute, now.second);
+			//console.log(`update: ${vt}`);
+			//var dateTimeString = `${now.year}/${now.month}/${now.day} ${now.hour}:${now.minute}.${now.second}`;
 			self.vanatime = vt;
 			//filter dynamis triggers
-			if (vt == "0:00" || vt == "8:00" || vt == "16:00") {
-				self.events.publish('time', vt);
+			if (vt == '0:00' || vt == '8:00' || vt == '16:00') {
+				self.publish(vt);
 			}
 		} catch (ex) {
 			console.log(ex.message);
 		}
 	}
-	clear() {
+	clear(): void {
 		try {
 			clearInterval(self.timer);
 		} catch (ex) {
 			console.log(ex.mesage);
 		}
 	}
-	reset() {
+	reset(): void {
 		try {
 			if (self.timer) self.clear();
 			//self.vanadate = new VanaDate();
 			//self.vanadate.start();
 			//self.vanadate = new VanaDate();
 			//console.log(self.vanadate);
-			self.timer = setInterval(self.update, 1000, true);
+			self.timer = setInterval(self.update, 500, true);
 		} catch (ex) {
 			console.log(ex.mesage);
 			self.clear();
 		}
+	}
+
+	hour(): number {
+		return new VanaDate().hour;
 	}
 }
 
@@ -1012,7 +1017,7 @@ export class VanaDate {
 	// Constants
 	// Earth time : 2002/06/23 16:00 GMT
 	// Vana'diel time : 0898/02/01 00:00
-	private VANA_BIRTH = new Date();
+	private VANA_BIRTH = new Date(Date.UTC(2002, 5, 23, 15, 0, 0));
 	private VANA_SECS_SINCE_YEAR_0 = (((898 * 360) + 30) * 24 * 60 * 60);
 	private EARTH_TIME_YEAR_0 = new Date(this.VANA_BIRTH.getTime() - ((this.VANA_SECS_SINCE_YEAR_0 * 1000) / 25));
 
@@ -1056,24 +1061,21 @@ export class VanaDate {
 		//console.log(date);
 		let eTime, vTime;
 		if (date && typeof date == 'number') {
-			console.log(`date number: ${date}`);
+			//console.log(`date number: ${date}`);
 			vTime = Math.round(date);
 			eTime = new Date(this.EARTH_TIME_YEAR_0.getTime() + Math.round(vTime * 1000 / 25));
 		} else {
 			if (date && date instanceof Date) {
-				console.log(`date object: ${date}`);
+				//console.log(`date object: ${date}`);
 				eTime = date;
 			} else {
-				console.log(`date null`);
+				//console.log(`date null`);
 				eTime = new Date();
 			}
-
 			let eMilliSinceVanaEpoch = eTime.getTime() - this.EARTH_TIME_YEAR_0.getTime();
 			vTime = Math.round(eMilliSinceVanaEpoch / 1000 * 25);
 		}
 		//console.log(vTime, eTime);
-		console.log(eTime.getTime());
-		//console.log(vTime);
 		// Calculate the individual parts of the date
 		this.earthDate = eTime;
 		this.time = vTime; // number of vana'diel seconds since midnight 0000/01/01
