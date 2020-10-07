@@ -5,10 +5,8 @@
         </ion-buttons>
         <ion-title>FFXI PROC</ion-title>
         <ion-buttons right>
-            <button ion-button clear>{{ffxi.vanatime}}</button>
+            <button ion-button outline small (click)="ui.settings()" [innerHTML]="ffxi.vanatime"></button>
         </ion-buttons>
-        <!--<span data-role="view-title" data-align="center"></span>-->
-        <!--<a data-role="button" data-align="right" data-click-on="down" href="#mvClockSettings" data-rel="modalview" data-bind="class: { active: modal }"><span data-bind="text: vanaTime">4:20</span></a>-->
     </ion-navbar>
 </ion-header>
 <ion-content>

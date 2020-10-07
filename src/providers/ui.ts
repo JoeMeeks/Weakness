@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { App, Animation, Events, PageTransition, Platform, MenuController, NavControllerBase, NavOptions, Loading, LoadingController, LoadingOptions, AlertController, AlertOptions, ModalController, ModalOptions, Modal, ToastController, ToastOptions } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { Media, MediaObject } from '@ionic-native/media';
 //import { Pro } from '@ionic/pro';
 import * as _ from 'underscore';
 
@@ -159,7 +160,17 @@ export class UIService {
 
 	public menu: MenuController = null;
 
-	public page: string;
+    public page: string;
+
+    //public audio: MediaObject;
+    public audio: any;
+    public sound: boolean = true;
+
+    private load() {
+        self.audio = new Audio();
+        self.audio.src = '../../assets/audio/alert.mp3';
+        self.audio.load();
+	}
 
     //public viewDidEnter = null;
     //public options;
@@ -169,7 +180,8 @@ export class UIService {
         public platform: Platform,
         private events: Events,
         private loadingCtrl: LoadingController,
-		private alertCtrl: AlertController,
+        private alertCtrl: AlertController,
+        private media: Media,
 		private menuCtrl: MenuController,
         private modalCtrl: ModalController,
         private toastCtrl: ToastController,
@@ -194,7 +206,21 @@ export class UIService {
             self.animation = null;
 		});
 
-		self.menu = menuCtrl;
+        self.menu = menuCtrl;
+        
+        let sound = localStorage.getItem('sound');
+        if (sound) {
+            self.sound = JSON.parse(sound);
+        } else {
+            self.sound = true;
+        }
+        self.load();
+        self.events.subscribe('time', (val) => {
+            //console.info('time event');
+            if (self.sound) {
+                self.chime();
+            }
+        });
     }
 
     flip = _.debounce((page: string, params?: any, opts?: NativeTransitionOptions) => {
@@ -207,12 +233,12 @@ export class UIService {
 		//} else {
 			self.page = page;
 			let nav: NavControllerBase = self.app.getRootNavs()[0];
-			console.log('flip', nav);
+			//console.log('flip', nav);
 			if (self.options.direction === 'left') {
-				console.info('nav.push');
+				//console.info('nav.push');
 				return nav.push(page, params, self.options);
 			} else if (nav.canGoBack()) {
-				console.info('nav.pop');
+				//console.info('nav.pop');
 				//return nav.pop(self.options)
 				return nav.push(page, params,self.options).then(() => {
 					let views = nav.getViews();
@@ -237,12 +263,12 @@ export class UIService {
         //} else {
         self.page = page;
         let nav: NavControllerBase = self.app.getRootNavs()[0];
-        console.log('swap', nav);
+        //console.log('swap', nav);
         if (self.options.direction === 'left') {
-            console.info('nav.push');
+            //console.info('nav.push');
             return nav.push(page, params, self.options);
         } else if (nav.canGoBack()) {
-            console.info('nav.pop');
+            //console.info('nav.pop');
             //return nav.pop(self.options)
             return nav.push(page, params, self.options).then(() => {
                 let views = nav.getViews();
@@ -258,6 +284,68 @@ export class UIService {
 
     link(type: string) {
         self.events.publish('link', type);
+    }
+
+    chime = _.debounce(() => {
+        try {
+            if (!self.audio) {
+                console.info('init sound');
+                //self.audio = self.media.create('../../assets/audio/alert.mp3');
+                //self.audio.onStatusUpdate.subscribe(status => console.info(status)); // fires when file status changes
+                //self.audio.onSuccess.subscribe(() => console.log('Action is successful'));
+                //self.audio.onError.subscribe(err => console.log('Error!', JSON.stringify(err)));
+
+                //let path = window.cordova.file.applicationDirectory + "www/audio/alert.mp3";
+                //if (self.platform.is('ios')) {
+                //    try {
+                //        window.resolveLocalFileSystemURL(path, function (fileEntry) {
+                //            console.log('fileEntry:');
+                //            console.log(fileEntry);
+                //            fileEntry.file(function (file) {
+                //                var audio = self.media.create(file.localURL);
+                //                if (audio) {
+                //                    //tkj.vm.set('sound', audio);
+                //                    console.log('audio set: ' + audio);
+                //                } else {
+                //                    console.log('unable to load audio');
+                //                }
+                //            }, function (error) {
+                //                console.log('file error:', error);
+                //            });
+                //        }, function (err) {
+                //            console.log('resolveLocalFileSystemURL error: ' + JSON.stringify(err));
+                //        });
+                //    } catch (ex) {
+                //        console.log('load iOS media error: ' + ex.message);
+                //    }
+                //} else {
+                //    self.audio = self.media.create(path);
+                //    if (self.audio) {
+                //        self.audio.play();
+                //    } else {
+                //        console.log('unable to load audio');
+                //    }
+                //}
+                self.load();
+            }
+            self.audio.play();
+        } catch (ex) {
+            console.error(ex.message);
+            console.log(ex);
+            alert(ex.message);
+        }
+    }, 1000, true);
+
+    settings() {
+        self.modal.show('settings');
+    }
+
+    toggle() {
+        //self.sound = !self.sound;
+        let msg = 'sound: ';
+        msg += self.sound ? 'on' : 'off'
+        console.info(msg);
+        localStorage.setItem('sound', JSON.stringify(self.sound));
     }
 
     //#region ionic deploy update

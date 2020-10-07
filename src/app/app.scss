@@ -180,7 +180,10 @@ ion-footer {
             ion-segment-button.segment-button {
                 /*flex: 1 1 100%;*/
                 max-width: unset;
-                height: 54px;
+                /*height: 54px;*/
+                /*min-height: calc(env(safe-area-inset-bottom) + 54px);*/
+                min-height:  54px;
+                margin-bottom: env(safe-area-inset-bottom);
                 border: none;
                 color: #fff;
             
@@ -197,7 +200,7 @@ ion-footer {
         }
     }
 }
-.ios ion-footer .toolbar:last-child { min-height: 54px; }
+.ios ion-footer .toolbar:last-child { min-height: calc(env(safe-area-inset-bottom) + 54px); }
 
 /*# region *ngIf fade-in */
 @keyframes fadein {

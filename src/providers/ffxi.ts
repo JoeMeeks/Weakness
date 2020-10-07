@@ -974,7 +974,7 @@ export class FFXIService {
 			self.vanatime = vt;
 			//filter dynamis triggers
 			if (vt == '0:00' || vt == '8:00' || vt == '16:00') {
-				self.publish(vt);
+				self.publish('time', vt);
 			}
 		} catch (ex) {
 			console.log(ex.message);

@@ -125,6 +125,8 @@
     <Content Include="src\manifest.json" />
     <Content Include="src\pages\abyssea\abyssea.html" />
     <Content Include="src\pages\abyssea\abyssea.scss" />
+    <Content Include="src\pages\settings\settings.html" />
+    <Content Include="src\pages\settings\settings.scss" />
     <Content Include="src\pages\voidwatch\voidwatch.html" />
     <Content Include="src\pages\voidwatch\voidwatch.scss" />
     <Content Include="src\pages\dynamis\dynamis.html" />
@@ -238,6 +240,7 @@
     <Folder Include="src\assets\images\weapons\" />
     <Folder Include="src\pages\abyssea\" />
     <Folder Include="src\pages\dynamis\" />
+    <Folder Include="src\pages\settings\" />
     <Folder Include="src\pages\voidwatch\" />
     <Folder Include="src\providers\" />
     <Folder Include="src\pages\" />
@@ -249,6 +252,7 @@
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\main.ts" />
     <TypeScriptCompile Include="src\pages\abyssea\abyssea.ts" />
+    <TypeScriptCompile Include="src\pages\settings\settings.ts" />
     <TypeScriptCompile Include="src\pages\voidwatch\voidwatch.ts" />
     <TypeScriptCompile Include="src\pages\dynamis\dynamis.ts" />
     <TypeScriptCompile Include="src\pages\home\home.ts" />

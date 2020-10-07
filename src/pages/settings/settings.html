@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar [hideBackButton]="true">
+        <ion-title>Clock Settings</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only outline small (click)="close()"><ion-icon name="close"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-list>
+            <!--<ion-list-header>Sounds</ion-list-header>-->
+            <ion-item-divider>Sounds</ion-item-divider>
+            <ion-list inset>
+                <ion-item>
+                    <ion-label>Dynamis time change</ion-label>
+                    <ion-toggle [(ngModel)]="ui.sound" (ngModelChange)="ui.toggle($event)"  [checked]="ui.sound"></ion-toggle>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Test</ion-label>
+                    <button ion-button icon-only large item-end class="play" (click)="ui.chime()"><ion-icon name="play"></ion-icon></button>
+                </ion-item>
+            </ion-list>
+        </ion-list>
+    </ion-card>
+</ion-content>

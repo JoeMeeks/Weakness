@@ -102,6 +102,7 @@ export class MyApp {
 			ui.page = 'home';
 			this.active = 'index';
 			this.events.subscribe('link', val => this.active = val);
+			//this.events.subscribe('time', val => { this.ui.chime(); });
 		});
 	}
 
