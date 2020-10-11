@@ -2,18 +2,20 @@ import { Injectable } from '@angular/core';
 import { App, Animation, Events, PageTransition, Platform, MenuController, NavControllerBase, NavOptions, Loading, LoadingController, LoadingOptions, AlertController, AlertOptions, ModalController, ModalOptions, Modal, ToastController, ToastOptions } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Media, MediaObject } from '@ionic-native/media';
-//import { Pro } from '@ionic/pro';
+import { Pro } from '@ionic/pro';
+import { Storage } from '@ionic/storage';
 import * as _ from 'underscore';
 
-var self: UIService;
+declare var require: any;
+
+let self: UIService;
 
 @Injectable()
 export class UIService {
 
-    progress = {
-        download: 0,
-        extract: 0
-    };
+
+    private json: any = require('../../package.json');
+    version: string = null;
 
     public loading = {
         visible: false,
@@ -86,19 +88,6 @@ export class UIService {
         fixedPixelsBottom: 0
     };
 
-    //public loader: any = {
-    //    ctrl: null,
-    //    show: (opts?: LoadingOptions) => {
-    //        self.loading.ctrl = self.loadingCtrl.create(_.extend({
-    //            content: 'Loading&hellip;'
-    //        }, opts));
-    //        self.loading.ctrl.present();
-    //    },
-    //    hide: () => {
-    //        self.loading.ctrl.dismiss();
-    //    }
-    //};
-
     public confirm: any = {
         ctrl: null,
         show: (options: AlertOptions) => {
@@ -162,19 +151,34 @@ export class UIService {
 
     public page: string;
 
-    //public audio: MediaObject;
-    public audio: any;
-    public sound: boolean = true;
+    public sound: { audio: HTMLAudioElement, enabled: boolean, load: Function, play: Function, save: Function } = {
+        audio: null,
+        enabled: true,
+        load: () => {
+            self.sound.audio = new Audio();
+            self.sound.audio.src = '../../assets/audio/alert.mp3';
+            self.storage.get('sound').then((sound) => {
+                self.sound.enabled = sound;
+            });
+        },
+        play: () => {
+            try {
+                if (!self.sound.audio) {
+                    console.info('init sound');
+                    self.sound.load();
+                }
+                self.sound.audio.play();
+            } catch (ex) {
+                console.error(ex.message);
+                console.log(ex);
+                alert(ex.message);
+            }
+		},
+        save: () => {
+            self.storage.set('sound', self.sound.enabled);
+		}
+    };
 
-    private load() {
-        self.audio = new Audio();
-        self.audio.src = '../../assets/audio/alert.mp3';
-        self.audio.load();
-	}
-
-    //public viewDidEnter = null;
-    //public options;
-    //public tabBarElement: any;
     constructor(
         public app: App,
         public platform: Platform,
@@ -185,7 +189,8 @@ export class UIService {
 		private menuCtrl: MenuController,
         private modalCtrl: ModalController,
         private toastCtrl: ToastController,
-        private transitions: NativePageTransitions
+        private transitions: NativePageTransitions,
+        private storage: Storage
     ) {
         self = this;
 
@@ -207,20 +212,26 @@ export class UIService {
 		});
 
         self.menu = menuCtrl;
-        
-        let sound = localStorage.getItem('sound');
-        if (sound) {
-            self.sound = JSON.parse(sound);
-        } else {
-            self.sound = true;
-        }
-        self.load();
+
+        self.storage.ready().then(() => {
+            self.sound.load();
+        });
+
         self.events.subscribe('time', (val) => {
             //console.info('time event');
-            if (self.sound) {
-                self.chime();
+            if (self.sound.enabled) {
+                self.sound.play();
             }
         });
+
+        console.info(`Version ${self.json.version}`);
+        self.version = self.json.version;
+
+        //Pro.deploy.getCurrentVersion().then(ver => {
+        //    console.debug('Pro Deploy version:');
+        //    console.log(ver);
+        //    //self.version = version;
+        //});
     }
 
     flip = _.debounce((page: string, params?: any, opts?: NativeTransitionOptions) => {
@@ -286,178 +297,55 @@ export class UIService {
         self.events.publish('link', type);
     }
 
-    chime = _.debounce(() => {
-        try {
-            if (!self.audio) {
-                console.info('init sound');
-                //self.audio = self.media.create('../../assets/audio/alert.mp3');
-                //self.audio.onStatusUpdate.subscribe(status => console.info(status)); // fires when file status changes
-                //self.audio.onSuccess.subscribe(() => console.log('Action is successful'));
-                //self.audio.onError.subscribe(err => console.log('Error!', JSON.stringify(err)));
-
-                //let path = window.cordova.file.applicationDirectory + "www/audio/alert.mp3";
-                //if (self.platform.is('ios')) {
-                //    try {
-                //        window.resolveLocalFileSystemURL(path, function (fileEntry) {
-                //            console.log('fileEntry:');
-                //            console.log(fileEntry);
-                //            fileEntry.file(function (file) {
-                //                var audio = self.media.create(file.localURL);
-                //                if (audio) {
-                //                    //tkj.vm.set('sound', audio);
-                //                    console.log('audio set: ' + audio);
-                //                } else {
-                //                    console.log('unable to load audio');
-                //                }
-                //            }, function (error) {
-                //                console.log('file error:', error);
-                //            });
-                //        }, function (err) {
-                //            console.log('resolveLocalFileSystemURL error: ' + JSON.stringify(err));
-                //        });
-                //    } catch (ex) {
-                //        console.log('load iOS media error: ' + ex.message);
-                //    }
-                //} else {
-                //    self.audio = self.media.create(path);
-                //    if (self.audio) {
-                //        self.audio.play();
-                //    } else {
-                //        console.log('unable to load audio');
-                //    }
-                //}
-                self.load();
-            }
-            self.audio.play();
-        } catch (ex) {
-            console.error(ex.message);
-            console.log(ex);
-            alert(ex.message);
-        }
-    }, 1000, true);
-
     settings() {
         self.modal.show('settings');
-    }
-
-    toggle() {
-        //self.sound = !self.sound;
-        let msg = 'sound: ';
-        msg += self.sound ? 'on' : 'off'
-        console.info(msg);
-        localStorage.setItem('sound', JSON.stringify(self.sound));
-    }
-
-    //#region ionic deploy update
-    private download(progress: number) {
-        //console.log(progress);
-        if (self.progress.download === 0 || progress > self.progress.download) {
-            self.progress.download = progress;
-            self.loading.show({ text: 'Downloading update\r\n' + self.progress.download + '%' });
-        }
-    }
-
-    private extract(progress: number) {
-        //console.log(progress);
-        if (self.progress.download === 0 || progress > self.progress.extract) {
-            self.progress.extract = progress;
-        }
-        self.loading.show({ text: 'Installing update\r\n' + self.progress.extract + '%' });
     }
 
     /**
      * Ionic Pro Deploy Update
      * return {Promise}
      */
-	/*
-    update() {
-		return new Promise((resolve, reject) => {
-			try {
-				Pro.deploy.getCurrentVersion().then((info) => {
-					console.info('Pro.deploy.info:');
-					console.log(info);
-					Pro.deploy.checkForUpdate().then(update => {
-						console.info('Pro.deploy.checkForUpdate:');
-						console.info(JSON.stringify(update));
-						if (update && update.available) {
-							self.progress.download = 0;
-							self.progress.extract = 0;
-							self.confirm.show({
-								title: 'Version Update Available',
-								message: 'Click "Install" to proceed or "Later" to postpone',
-								buttons: [
-									{
-										text: 'Install',
-										handler: () => {
-											Pro.deploy.downloadUpdate(self.download).then((res) => {
-												console.info('Pro.deploy.downloadUpdate:');
-												console.info(JSON.stringify(res));
-												Pro.deploy.extractUpdate(self.extract).then((res) => {
-													console.info('Pro.deploy.extractUpdate:');
-													console.info(JSON.stringify(res));
-													if (self.loading.visible) {
-														self.loading.hide().then(() => {
-															Pro.deploy.reloadApp().then(resolve).catch(reject);
-														});
-													} else {
-														Pro.deploy.reloadApp().then(resolve).catch(reject);
-													}
-												}).catch(err => {
-													console.error('Pro.deploy.extract error');
-													console.info(JSON.stringify(err));
-													//Pro.monitoring.exception(err);
-													self.toast.show({ message: err, cssClass: 'error' });
-													reject(err);
-												});
-											}).catch(err => {
-												console.error('Pro.deploy.download error');
-												console.info(JSON.stringify(err));
-												//Pro.monitoring.exception(err);
-												self.toast.show({ message: err, cssClass: 'error' });
-												reject(err);
-											});
-										}
-									},
-									{
-										text: 'Later',
-										handler: resolve
-									}
-								],
-								enableBackdropDismiss: false,
-							});
-						} else {
-							resolve(update);
-						}
-					}).catch(err => {
-						console.error(err);
-						console.info(JSON.stringify(err));
-						self.toast.show({ message: err.message, cssClass: 'error' });
-						reject(err.message);
-					});
-				}).catch(err => {
-					console.error(err);
-					console.info(JSON.stringify(err));
-					self.toast.show({ message: err.message, cssClass: 'error' });
-					reject(err.message);
-				});
-			} catch (ex) {
-				if (typeof ex === 'object' && ex.message) {
-					console.error(ex.message);
-					console.info(JSON.stringify(ex));
-					self.toast.show({ message: ex.message, cssClass: 'error' });
-				} else {
-					console.error(ex);
-					console.info(JSON.stringify(ex));
-					self.toast.show({ message: ex, cssClass: 'error' });
-				}
-				console.log(ex);
-				//Pro.monitoring.exception(ex);
-				reject(ex);
+    async update() {
+        try {
+            let next = await Pro.deploy.checkForUpdate();
+            console.info('Pro.deploy.checkForUpdate:');
+            console.info(JSON.stringify(next));
+            if (next && next.available) {
+                let opts: LoadingOptions = {
+                        content: 'Loading update',
+                        enableBackdropDismiss: false
+                    },
+                    loading: Loading = self.loadingCtrl.create(opts);
+                loading.present();
+
+                await Pro.deploy.downloadUpdate(progress => {
+                    //console.log(progress);
+                    loading.setContent(`Downloading update&hellip;${progress}%`);
+                });
+
+                await Pro.deploy.extractUpdate(progress => {
+                    //console.log(progress);
+                    loading.setContent(`Installing update&hellip;${progress}%`);
+                });
+
+                loading.dismiss();
+
+                await Pro.deploy.reloadApp();
+            }
+		} catch (ex) {
+			if (typeof ex === 'object' && ex.message) {
+				console.error(ex.message);
+				console.info(JSON.stringify(ex));
+				self.toast.show({ message: ex.message, cssClass: 'error' });
+			} else {
+				console.error(ex);
+				console.info(JSON.stringify(ex));
+				self.toast.show({ message: ex, cssClass: 'error' });
 			}
-		});
+			console.log(ex);
+			//Pro.monitoring.exception(ex);
+		}
     }
-	*/
-    //#endregion ionic deploy update
 }
 
 export class PageFlip extends PageTransition {
@@ -495,13 +383,6 @@ export class PageFlip extends PageTransition {
             }
 
             enteringPage.beforeClearStyles(['opacity']);
-
-            //if (enteringView.hasNavbar()) {
-            //    let enteringPageEle = enteringView.pageRef().nativeElement,
-            //        enteringNavbarEle = enteringPageEle.querySelector('ion-navbar'),
-            //        enteringNavBar = new Animation(plt, enteringNavbarEle);
-            //    this.add(enteringNavBar);
-            //}
         }
 
         // setup leaving view
@@ -525,20 +406,6 @@ export class PageFlip extends PageTransition {
             };
 
             leavingPage.afterStyles({ 'opacity': 0 });
-
-            //if (leavingView.hasNavbar()) {
-            //    let leavingPageEle = leavingView.pageRef().nativeElement,
-            //        leavingNavbarEle = leavingPageEle.querySelector('ion-navbar'),
-            //        leavingNavBar = new Animation(plt, leavingNavbarEle);
-            //    this.add(leavingNavBar);
-            //}
         }
-
-        //this.onFinish(() => {
-        //    let until = new Date().getTime(),
-        //        total = until - since;
-        //    console.log('pagefade finish: ' + until);
-        //    console.warn('pagefade total: ' + total);
-        //});
     }
 }

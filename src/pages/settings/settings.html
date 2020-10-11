@@ -14,13 +14,14 @@
             <ion-list inset>
                 <ion-item>
                     <ion-label>Dynamis time change</ion-label>
-                    <ion-toggle [(ngModel)]="ui.sound" (ngModelChange)="ui.toggle($event)"  [checked]="ui.sound"></ion-toggle>
+                    <ion-toggle [(ngModel)]="ui.sound.enabled" (ngModelChange)="ui.sound.save()" [checked]="ui.sound.enabled"></ion-toggle>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Test</ion-label>
-                    <button ion-button icon-only large item-end class="play" (click)="ui.chime()"><ion-icon name="play"></ion-icon></button>
+                    <ion-label>Sound Test</ion-label>
+                    <button ion-button icon-only large item-end class="play" (click)="ui.sound.play()"><ion-icon name="play"></ion-icon></button>
                 </ion-item>
             </ion-list>
         </ion-list>
     </ion-card>
+    <div class="version">Version <span [innerHTML]="ui.version"></span></div>
 </ion-content>

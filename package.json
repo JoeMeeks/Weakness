@@ -28,12 +28,16 @@
         "@ionic-native/native-page-transitions": "4.20.0",
         "@ionic-native/splash-screen": "4.20.0",
         "@ionic-native/status-bar": "4.20.0",
+        "@ionic/pro": "2.0.4",
         "@ionic/storage": "2.1.3",
+        "cordova-admob-plus": "0.34.0",
         "cordova-android": "8.1.0",
-        "cordova-ios": "^5.1.1",
+        "cordova-ios": "5.1.1",
+        "cordova-plugin-add-swift-support": "2.0.2",
         "cordova-plugin-androidx": "1.0.2",
         "cordova-plugin-androidx-adapter": "1.1.0",
-        "cordova-plugin-file": "^6.0.2",
+        "cordova-plugin-file": "6.0.2",
+        "cordova-plugin-ionic": "5.4.7",
         "cordova-plugin-ionic-webview": "2.5.3",
         "cordova-plugin-media": "5.0.3",
         "cordova-plugin-splashscreen": "5.0.4",
@@ -53,13 +57,26 @@
     },
     "cordova": {
         "plugins": {
+            "cordova-admob-plus": {
+                "APP_ID_ANDROID": "ca-app-pub-1450135138875904~6705571665",
+                "APP_ID_IOS": "ca-app-pub-1450135138875904~9128894336",
+                "PLAY_SERVICES_VERSION": "18.3.0"
+            },
+            "cordova-plugin-ionic": {
+                "APP_ID": "b230666d",
+                "CHANNEL_NAME": "Master",
+                "UPDATE_METHOD": "none",
+                "UPDATE_API": "https://api.ionicjs.com",
+                "MAX_STORE": "2",
+                "MIN_BACKGROUND_DURATION": "30"
+            },
             "cordova-plugin-ionic-webview": {},
-            "cordova-plugin-splashscreen": {},
-            "cordova-plugin-statusbar": {},
-            "cordova-plugin-whitelist": {},
             "cordova-plugin-media": {
                 "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
-            }
+            },
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {}
         },
         "platforms": [
             "android",

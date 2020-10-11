@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { Platform, ViewController } from 'ionic-angular';
 import { FFXIService } from '../../providers/ffxi';
 import { UIService } from '../../providers/ui';
-import * as _ from 'underscore';
 
 let vm: SettingsPage;
 declare var window;
+declare var admob;
 
 @Component({
 	selector: 'page-settings',
@@ -13,59 +13,68 @@ declare var window;
 })
 export class SettingsPage {
 
+	id: string;
+
 	constructor(
+		private platform: Platform,
 		private view: ViewController,
-		private ffxi: FFXIService,
 		public ui: UIService
 	) {
 		vm = this;
+	}
+
+	load(e) {
+		console.info('banner load');
+		console.info(JSON.stringify(e));
+	}
+
+	fail(e) {
+		console.error('banner fail');
+		console.info(JSON.stringify(e));
 	}
 
 	close() {
 		vm.view.dismiss();
 	}
 
-	//tips = _.debounce(() => {
-	//	//let mv = vm.mo
-	//	vm.modal = vm.mod.create(TipsPage, { seen: vm.seen }, { cssClass: 'tips', enableBackdropDismiss: false });
-	//	vm.modal.onDidDismiss(() => {
-	//		if (!vm.overlay) {
-	//			vm.load();
-	//		}
-	//		if (!vm.seen) {
-	//			vm.seen = true;
-	//			vm.storage.create('settings').then((sso: SecureStorageObject) => {
-	//				sso.set('seentips', 'true');
-	//			});
-	//		}
-	//	});
-	//	vm.modal.present();
-	//}, 400, true);
-
-	ionViewWillEnter() {
-		//load
-	}
-
 	ionViewDidEnter() {
-		//if ('proximity' in navigator) {
-		//	//alert('ProximitySensor');
-		//	let proximity: any = navigator['proximity'],
-		//		onSuccess = (state) => {
-		//			//alert('Proximity state: ' + (state ? 'near' : 'far'));
-		//			console.info(state);
-		//		};
+		//vm.admob.setDevMode(true);
+		//document.addEventListener('admob.banner.load', vm.load);
+		//document.addEventListener('admob.banner.load_fail', vm.fail);
 
-		//	proximity.enableSensor();
+		admob.setDevMode(true);
+		if (vm.platform.is('android')) {
+			//vm.id = 'ca-app-pub-3940256099942544/6300978111' //prod banner
+			vm.id = 'ca-app-pub-3940256099942544/6300978111' //test banner
+		} else if (vm.platform.is('ios')) {
+			//vm.id = 'ca-app-pub-1450135138875904/3285023796' //prod banner
+			vm.id = 'ca-app-pub-3940256099942544/2934735716' //test banner
+		}
 
-		//	setInterval(function () {
-		//		proximity.getProximityState(onSuccess);
-		//	}, 1000);
-		//}
+		let opt: any = 
+		//console.info(JSON.stringify(window.cordova));
+		//console.info(`${vm.platform.width()}x${vm.platform.width() * (250 / 300)}`);
+		admob.banner.show({
+			id: vm.id,
+			size: {
+				width: 300,
+				height: 250
+			}
+		}).then((res) => {
+			//console.info('banner show success');
+			//console.info(JSON.stringify(res));
+		}).catch(err => {
+			console.error('banner show failure');
+			//console.error(err.message);
+			console.info(JSON.stringify(err));
+		});
 	}
 
 	ionViewWillLeave() {
-		//if (window['DeviceOrientationEvent']) {
-		//	window.removeEventListener('deviceorientation', vm.tilt);
-		//}
+		//document.removeEventListener('admob.banner.load', vm.load);
+		//document.addEventListener('admob.banner.load_fail', vm.fail);
+		//vm.admob.banner.hide({ id: 'ca-app-pub-3940256099942544/2934735716' }); //test banner
+		//vm.admob.banner.hide(); //Error: adUnitID is missing 
+		admob.banner.hide(vm.id);
 	}
 }

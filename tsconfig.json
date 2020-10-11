@@ -11,6 +11,7 @@
         "module": "es2015",
         "moduleResolution": "node",
         "sourceMap": true,
+        "skipLibCheck": true,
         "target": "es5",
         "baseUrl": ".",
         "typeRoots": [ "node_modules/@types" ],

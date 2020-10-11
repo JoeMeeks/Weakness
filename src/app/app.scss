@@ -1,9 +1,7 @@
 html, body { width: 100%; height: 100%; margin: 0; padding: 0; background-color: transparent; }
 body { font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
 
-html, body, ion-app, ion-content, ion-page, .nav-decor {
-  background-color: transparent;
-}
+html, body, ion-app, ion-content, ion-page, .nav-decor { background-color: transparent; }
 
 form { display: block; }
 
@@ -63,7 +61,8 @@ ion-nav.menu-content-open {
     ion-header button.bar-button-ios[menuToggle] { background-color: rgba(255,255,255,0.1);  }
 }
 
-ion-menu .version, ion-menu .copyright { margin: 16px 0; color: #b4bac6; font-size: 14px; line-height: 20px; text-align: center; }
+.version, .copyright { margin: 16px 0; font-size: 14px; line-height: 20px; text-align: center; }
+ion-menu .version, ion-menu .copyright { color: #b4bac6; }
 
 ion-header.brand {
     /*background: transparent url('../assets/images/brand.png') left center no-repeat;*/
@@ -77,6 +76,8 @@ ion-tabs.brand {
 
 ion-nav .scroll-content {
     background: #485570;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
 ion-nav ion-list.list-ios {

@@ -6,16 +6,12 @@ import { FFXIService } from '../providers/ffxi';
 import { UIService } from '../providers/ui';
 import { HomePage } from '../pages/home/home';
 
-declare var require: any;
-
 @Component({
 	templateUrl: 'app.html'
 })
 export class MyApp {
 	rootPage: any = HomePage;
 
-	private json: any = require('../../package.json');
-	version: string;
 	copyright: string;
 	active: string;
 
@@ -71,7 +67,7 @@ export class MyApp {
 		private status: StatusBar,
 		private splash: SplashScreen,
 		private ffxi: FFXIService,
-		private ui: UIService,
+		public ui: UIService,
 		public mc: MenuController
 	) {
 		platform.ready().then(() => {
@@ -82,19 +78,20 @@ export class MyApp {
 			status.styleLightContent();
 			splash.hide();
 			//0x00000000
-			//this.update(lc);
+			if (platform.is('cordova')) this.ui.update();
 
 			platform.resume.subscribe((e) => {
-				console.log('resume');
+				console.info('resume');
+				if (platform.is('cordova')) this.ui.update();
 				//this.update(lc);
 			});
 
 			platform.pause.subscribe((e) => {
-				console.log('pause');
+				console.info('pause');
 			});
 
 			//this.version = `Version ${this.json.version}`;
-			this.version = `Version 1.5.0`;
+			//this.version = `Version 1.5.0`;
 			//process.env.npm_package_version
 			//this.copyright = `&copy; ${new Date().getFullYear()} ${process.env.npm_package_author}`;
 			this.copyright = `&copy; ${new Date().getFullYear()} RARE BEAR SOFTWARE LTD`;
@@ -120,40 +117,5 @@ export class MyApp {
 		console.debug('show timer modal');
 		//this.ui.modal
 	}
-	
-	//private async update(lc: LoadingController) {
-	//	try {
-	//		//let ver = await Pro.deploy.getCurrentVersion();
-	//		//console.debug('Pro Deploy version:');
-	//		//console.log(ver);
-	//		let next = await Pro.deploy.checkForUpdate();
-	//		if (next && next.available) {
-	//			let opts: LoadingOptions = {
-	//					content: 'Loading update',
-	//					enableBackdropDismiss: false
-	//				},
-	//				loading: Loading = lc.create(opts);
-	//			loading.present();
-
-	//			await Pro.deploy.downloadUpdate((progress) => {
-	//				//console.log(progress);
-	//				loading.setContent(`Downloading update&hellip;${progress}%`);
-	//			});
-
-	//			await Pro.deploy.extractUpdate((progress) => {
-	//				//console.log(progress);
-	//				loading.setContent(`Installing update&hellip;${progress}%`);
-	//			});
-
-	//			loading.dismiss();
-
-	//			await Pro.deploy.reloadApp();
-	//		}
-	//	} catch (ex) {
-	//		// We encountered an error.
-	//		console.error(`Pro Deploy update exception: ${ex.message}`);
-	//		console.log(ex);
-	//	}
-	//}
 }
 

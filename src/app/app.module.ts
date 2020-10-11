@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { Media } from '@ionic-native/media';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +39,8 @@ import { VoidwatchPage } from '../pages/voidwatch/voidwatch';
 				{ component: VoidwatchPage, name: 'voidwatch', segment: 'voidwatch/:type' },
 				{ component: SettingsPage, name: 'settings', segment: 'settings' }
 			]
-		})
+		}),
+		IonicStorageModule.forRoot()
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
