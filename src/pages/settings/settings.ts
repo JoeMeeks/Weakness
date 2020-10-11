@@ -42,13 +42,13 @@ export class SettingsPage {
 		//document.addEventListener('admob.banner.load', vm.load);
 		//document.addEventListener('admob.banner.load_fail', vm.fail);
 
-		admob.setDevMode(true);
+		//admob.setDevMode(true);
 		if (vm.platform.is('android')) {
-			//vm.id = 'ca-app-pub-3940256099942544/6300978111' //prod banner
-			vm.id = 'ca-app-pub-3940256099942544/6300978111' //test banner
+			vm.id = 'ca-app-pub-3940256099942544/6300978111' //prod banner
+			//vm.id = 'ca-app-pub-3940256099942544/6300978111' //test banner
 		} else if (vm.platform.is('ios')) {
-			//vm.id = 'ca-app-pub-1450135138875904/3285023796' //prod banner
-			vm.id = 'ca-app-pub-3940256099942544/2934735716' //test banner
+			vm.id = 'ca-app-pub-1450135138875904/3285023796' //prod banner
+			//vm.id = 'ca-app-pub-3940256099942544/2934735716' //test banner
 		}
 
 		let opt: any = 
