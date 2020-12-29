@@ -112,4 +112,4 @@ UpgradeLog*.XML
 /node_modules
 /platforms
 /plugins
-/www
+www/
