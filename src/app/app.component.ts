@@ -82,6 +82,7 @@ export class MyApp {
 
 			platform.resume.subscribe((e) => {
 				console.info('resume');
+				events.publish('time', ffxi.vanatime);
 				if (platform.is('cordova')) this.ui.update();
 				//this.update(lc);
 			});
