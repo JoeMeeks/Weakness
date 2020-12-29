@@ -64,7 +64,7 @@
             },
             "cordova-plugin-ionic": {
                 "APP_ID": "b230666d",
-                "CHANNEL_NAME": "Debug",
+                "CHANNEL_NAME": "Master",
                 "UPDATE_METHOD": "none",
                 "UPDATE_API": "https://api.ionicjs.com",
                 "MAX_STORE": "2",
