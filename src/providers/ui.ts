@@ -219,7 +219,7 @@ export class UIService {
 
         self.events.subscribe('time', (val) => {
             //console.info('time event');
-            if (self.sound.enabled) {
+            if (!!val && self.sound.enabled) {
                 self.sound.play();
             }
         });

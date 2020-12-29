@@ -49,7 +49,8 @@ export class DynamisPage {
 	//	vm.modal.present();
 	//}, 400, true);
 
-	switch() {
+
+	switch(mode?: string) {
 		let hour:number = vm.ffxi.hour(),
 			time: number = 0;
 		if (hour < 8) {
@@ -59,11 +60,15 @@ export class DynamisPage {
 		} else {
 			time = 16;
 		}
-		console.log(hour);
+		//console.log(hour);
 		
 		vm.ordelle = _.filter(vm.ffxi.dynamis.ordelle, { time: time });
 		vm.tukuku = _.filter(vm.ffxi.dynamis.tukuku, { time: time });
 		vm.byne = _.filter(vm.ffxi.dynamis.byne, { time: time });
+
+		if (mode) {
+			vm.ui.link(mode);
+		}
 	}
 
 	ionViewWillEnter() {
@@ -71,7 +76,9 @@ export class DynamisPage {
 		vm.type = vm.params.data.type;
 		vm.switch();
 
-		vm.events.subscribe('time', vm.switch);
+		vm.events.subscribe('time', () => {
+			vm.switch(null);
+		});
 	}
 
 	ionViewWillLeave() {

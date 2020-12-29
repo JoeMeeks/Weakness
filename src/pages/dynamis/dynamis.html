@@ -54,19 +54,19 @@
 <ion-footer>
     <ion-toolbar>
         <ion-segment [(ngModel)]="type">
-            <ion-segment-button value="beastmen" (click)="ui.link('beastmen')">
+            <ion-segment-button value="beastmen" (click)="switch('beastmen')">
                 <img src="../assets/images/type/beastmen.png" />
                 <ion-label>Beastmen</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="ordelle" (click)="ui.link('ordelle')">
+            <ion-segment-button value="ordelle" (click)="switch('ordelle')">
                 <img src="../assets/images/currency/ordelle.png" />
                 <ion-label>O. Bronzepiece</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="tukuku" (click)="ui.link('tukuku')">
+            <ion-segment-button value="tukuku" (click)="switch('tukuku')">
                 <img src="../assets/images/currency/tukuku.png" />
                 <ion-label>T. Whiteshell</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="byne" (click)="ui.link('byne')">
+            <ion-segment-button value="byne" (click)="switch('byne')">
                 <img src="../assets/images/currency/byne.png" />
                 <ion-label>1 Byne Bill</ion-label>
             </ion-segment-button>
