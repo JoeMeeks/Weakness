@@ -842,7 +842,12 @@ export class FFXIService {
 			{
 				title: "fire",
 				items: [
-					"Ice Threnody",
+					"Ice Threnody"
+				]
+			},
+			{
+				title: "ice",
+				items: [
 					"Wind Threnody"
 				]
 			},
