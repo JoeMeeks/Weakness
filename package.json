@@ -1,6 +1,6 @@
 {
     "name": "Weakness",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "author": "RARE BEAR SOFT LTD",
     "homepage": "https://rarebearsoft.com",
     "description": "PROC Triggers for FFXI",
@@ -64,7 +64,7 @@
             },
             "cordova-plugin-ionic": {
                 "APP_ID": "b230666d",
-                "CHANNEL_NAME": "Master",
+                "CHANNEL_NAME": "Production",
                 "UPDATE_METHOD": "none",
                 "UPDATE_API": "https://api.ionicjs.com",
                 "MAX_STORE": "2",
